@@ -25,6 +25,7 @@ class ProjectUpdatesController < ApplicationController
   # POST /project_updates.json
   def create
     @project_update = ProjectUpdate.new(project_update_params)
+    logger.debug params
 
     respond_to do |format|
       if @project_update.save

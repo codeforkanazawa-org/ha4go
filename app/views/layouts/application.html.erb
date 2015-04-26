@@ -25,7 +25,7 @@
             <ul class="nav navbar-nav">
                 <% if authorized? %>
                     <li><%= link_to('ログアウト', logout_path) %></li>
-                    <li><%= link_to('マイページ', user_path(id: 1)) %></li>
+                    <li><%= link_to('マイページ', user_path(id: @my_user.id)) %></li>
                 <% else %>
                     <li><%= link_to('新規登録', signup_path) %></li>
                     <li><%= link_to('ログイン', login_path) %></li>

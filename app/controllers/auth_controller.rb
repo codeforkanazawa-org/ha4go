@@ -51,7 +51,7 @@ class AuthController < ApplicationController
         return false
     end
 
-    if @user.password != params[:login][:password]
+    if get_hash(@user.password) != get_hash(params[:login][:password])
         return false
     end
 
@@ -60,9 +60,13 @@ class AuthController < ApplicationController
 
   def create_user
       signup_params = params[:signup]
-      @user = User.new(:name => '名前未設定', :email => signup_params[:email], :password => signup_params[:password])
+      @user = User.new(:name => '名前未設定', :email => signup_params[:email], :password => get_hash(signup_params[:password]))
 
       return @user.save
+  end
+
+  def get_hash string
+      return Digest::MD5.hexdigest(string)
   end
 
 end

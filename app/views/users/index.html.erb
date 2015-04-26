@@ -4,7 +4,7 @@
         <% @users.each do |user| %>
         <div class="col-md-3 col-xs-6 user-list__box">
                 <%= image_tag('http://dummyimage.com/200x200', :class => 'img-rounded, img-responsive') %>
-            <label class="user-list__name"><%= link_to(user.name, user_path(id: 1)) %></label>
+            <label class="user-list__name"><%= link_to(user.name, user_path(id: user.id)) %></label>
         </div>
         <% end %>
     </div>
