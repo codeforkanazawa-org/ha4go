@@ -8,11 +8,7 @@ class ApplicationController < ActionController::Base
   helper_method :authorized?
 
   def authorize
-      begin
-          @my_user = User.find(session[:user_id])
-      rescue
-          @my_user = nil
-      end
+      @my_user = get_user_by_session
 
       # 名前が未設定だったらプロフィールへ
       if authorized? && @my_user.name.nil?
@@ -26,5 +22,21 @@ class ApplicationController < ActionController::Base
       else
           return false
       end
+  end
+
+  private
+
+  def get_user_by_session
+      if session[:token].nil?
+          return nil;
+      end
+
+      session_backend = UserSession.find_by token: session[:token]
+
+      if session_backend.nil?
+        return nil;
+      end
+
+      return User.find(session_backend.user_id);
   end
 end

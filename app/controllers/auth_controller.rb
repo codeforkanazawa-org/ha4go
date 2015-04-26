@@ -12,8 +12,16 @@ class AuthController < ApplicationController
   end
 
   def create_session_and_redirect_top
-      session[:user_id] = @user.id
-      redirect_to root_path
+      token = get_session_token
+
+      session_backend = UserSession.new(:user_id => @user.id, :token => token)
+
+      if session_backend.save
+          session[:token] = token
+          redirect_to root_path
+      else
+          redirect_to login_path
+      end
   end
 
   def signup
@@ -28,11 +36,15 @@ class AuthController < ApplicationController
   end
 
   def logout
-      session[:user_id] = nil
+      session[:token] = nil
       redirect_to root_path
   end
 
   private
+
+  def get_session_token
+      return Digest::SHA1.hexdigest("#{Time.now.to_s}#{@user.password}")
+  end
 
   def authorized_user?
     if @user.nil?
@@ -49,9 +61,6 @@ class AuthController < ApplicationController
   def create_user
       signup_params = params[:signup]
       @user = User.new(:name => '名前未設定', :email => signup_params[:email], :password => signup_params[:password])
-
-      a = @user.save
-      logger.debug a
 
       return @user.save
   end
