@@ -1,9 +1,11 @@
 <div class="container">
     <p id="notice"><%= notice %></p>
     <h1><%= @user.name %></h1>
-    <button type="button" class="btn btn-default btn-primary mb20" aria-label="Left Align">
-        <%= link_to '変更する', edit_user_path(@user) %>
-    </button>
+    <% if @my_user.id == @user.id %>
+        <button type="button" class="btn btn-default btn-primary mb20" aria-label="Left Align">
+            <%= link_to '変更する', edit_user_path(@user) %>
+        </button>
+    <% end %>
 
     <div class="row">
         <div class="col-sm-3">

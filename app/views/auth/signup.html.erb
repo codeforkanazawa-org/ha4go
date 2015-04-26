@@ -2,18 +2,16 @@
     <h2 class="form-signin-heading">新規登録</h2>
     <button class="btn btn-lg btn-primary" type="submit">Facebookで登録する</button>
     
-    <form class="form-signin">
+    <%= form_tag signup_check_path, :method => :post do %>
         <h4 class="mt50">もしくはEメールアドレスで登録</h4>
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" class="form-control mb10" placeholder="Email address" required="" autofocus="">
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+        <%= text_field :signup, :email, :type => "email", :class => 'form-control mb10', :placeholder => 'Email Address' %>
+        <%= text_field :signup, :password, :type => 'password', :class => 'form-control', :placeholder => 'Password' %>
         <div class="checkbox">
             <label>
                 <input type="checkbox" value="remember-me"> Remember me
             </label>
         </div>
         <button class="btn btn-lg btn-primary" type="submit">登録</button>
-    </form>
-    <p class="mt20 text-right"><%= link_to('>>すでにアカウントを持っている方はこちら', login_path) %></p>
+    <% end %>
+    <p class="mt20 text-right">>>すでにアカウントを持っている方は<%= link_to('ログイン', login_path, :class => 'ml5') %></p>
 </div>

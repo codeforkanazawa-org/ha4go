@@ -4,11 +4,17 @@ $img_kanazawa: 'img_kanazawa.jpg';
   .mt#{$i} {
     margin-top:#{$i}px;
   }
-}
 
-@for $i from 5 through 100 {
   .mb#{$i} {
     margin-bottom:#{$i}px;
+  }
+
+  .ml#{$i} {
+    margin-left:#{$i}px;
+  }
+
+  .mr#{$i} {
+    margin-right:#{$i}px;
   }
 }
 

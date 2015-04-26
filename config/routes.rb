@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
   resources :project_updates
-  get 'auth/login'
+  get 'top/help', as: 'help'
+
+  get 'auth/logout', as: 'logout'
+
+  post 'auth/signup_check', as: 'signup_check'
+
+  post 'auth/login_check', as: 'login_check'
 
   get 'auth/signup'
 

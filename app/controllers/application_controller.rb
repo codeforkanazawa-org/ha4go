@@ -5,16 +5,26 @@ class ApplicationController < ActionController::Base
 
   before_action :authorize
 
+  helper_method :authorized?
+
   def authorize
-      if authorized?
-        @my_user = User.find(1)
-      else
-        @my_user = nil
+      begin
+          @my_user = User.find(session[:user_id])
+      rescue
+          @my_user = nil
+      end
+
+      # 名前が未設定だったらプロフィールへ
+      if authorized? && @my_user.name.nil?
+          redirect_to user_path(:id => @my_user.id)
       end
   end
 
   def authorized?
-      # TODO セッション判定処理
-      return false
+      if @my_user
+          return true
+      else
+          return false
+      end
   end
 end
