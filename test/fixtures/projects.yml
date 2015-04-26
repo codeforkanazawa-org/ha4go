@@ -7,7 +7,6 @@ one:
   description: MyString
   user_url: MyString
   development_url: MyString
-  delete_flag: 1
 
 two:
   user_id: 1
@@ -16,4 +15,3 @@ two:
   description: MyString
   user_url: MyString
   development_url: MyString
-  delete_flag: 1

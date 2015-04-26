@@ -6,7 +6,6 @@ one:
   password: MyString
   description: MyString
   facebook_user_id: 1
-  delete_flag: 1
 
 two:
   name: MyString
@@ -14,4 +13,3 @@ two:
   password: MyString
   description: MyString
   facebook_user_id: 1
-  delete_flag: 1

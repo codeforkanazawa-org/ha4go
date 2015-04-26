@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150426023934) do
+ActiveRecord::Schema.define(version: 20150426045313) do
+
+  create_table "project_updates", force: :cascade do |t|
+    t.integer  "project_id"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "projects", force: :cascade do |t|
     t.integer  "user_id"
@@ -20,7 +27,6 @@ ActiveRecord::Schema.define(version: 20150426023934) do
     t.string   "description"
     t.string   "user_url"
     t.string   "development_url"
-    t.integer  "delete_flag"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
@@ -31,7 +37,6 @@ ActiveRecord::Schema.define(version: 20150426023934) do
     t.string   "password"
     t.string   "description"
     t.integer  "facebook_user_id"
-    t.integer  "delete_flag"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end

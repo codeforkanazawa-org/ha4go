@@ -1,3 +1,4 @@
+<% require 'date' %>
 <div class="container project-detail">
     <p id="notice"><%= notice %></p>
     <h1 class="mb20"><%= @project.subject %></h1>
@@ -69,19 +70,16 @@
 
     <div class="project--follow-list">
         
-        <button type="button" class="btn btn-default btn-primary btn-sm" aria-label="Left Align">
-            フォローを書く
+        <button type="button" class="btn btn-default btn-primary btn-sm mb20" aria-label="Left Align">
+            <%= link_to 'フォローを書く', new_project_update_path(:project_id => 1) %>
         </button>
-        <% for i in (1..10).to_a.reverse do %>
-            <h5>#<%= i %> <span class="small">shimazuさんから 03/02 11:11</span></h5>
+        <% @project.project_updates.reverse.each do |update| %>
+            <p><span class="small">shimazuさんから <%= update.created_at %></span></p>
             <div class="panel panel-default">
                 <div class="panel-body">
-                    Adipisicing natus beatae corrupti quaerat porro. Iusto qui distinctio dolorem deleniti totam repudiandae nostrum culpa! Voluptatum officia delectus porro corrupti error facere f.....
+                    <%= update.description %>
                 </div>
             </div>
         <% end %>
-        <button type="button" class="btn btn-default btn-primary btn-sm" aria-label="Left Align">
-            <%= link_to('フォローを書き込む', project_edit_path, :class => 'link--inner') %>
-        </button>
     </div>
 </div>

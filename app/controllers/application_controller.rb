@@ -6,7 +6,15 @@ class ApplicationController < ActionController::Base
   before_action :authorize
 
   def authorize
-      # TODO 認証処理
-      @my_user = User.find(1)
+      if authorized?
+        @my_user = User.find(1)
+      else
+        @my_user = nil
+      end
+  end
+
+  def authorized?
+      # TODO セッション判定処理
+      return false
   end
 end
