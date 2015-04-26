@@ -71,7 +71,7 @@
     <div class="project--follow-list">
         
         <button type="button" class="btn btn-default btn-primary btn-sm mb20" aria-label="Left Align">
-            <%= link_to 'フォローを書く', new_project_update_path(:project_id => 1) %>
+            <%= link_to 'フォローを書く', new_project_update_path(:project_id => @project.id) %>
         </button>
         <% @project.project_updates.reverse.each do |update| %>
             <p><span class="small">shimazuさんから <%= update.created_at %></span></p>

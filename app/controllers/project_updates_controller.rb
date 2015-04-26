@@ -29,7 +29,7 @@ class ProjectUpdatesController < ApplicationController
 
     respond_to do |format|
       if @project_update.save
-        format.html { redirect_to @project_update, notice: 'Project update was successfully created.' }
+        format.html { redirect_to project_path(:id => params[:project_update][:project_id]), notice: 'Project update was successfully created.' }
         format.json { render :show, status: :created, location: @project_update }
       else
         format.html { render :new }
