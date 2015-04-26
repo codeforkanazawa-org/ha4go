@@ -1,0 +1,33 @@
+<div class="column__top">
+    <div class="jumbotron">
+        <div class="container">
+            <div class="caption">
+                <img src="http://www.codeforkanazawa.org/images/logo.png" alt="Code for Kanazawa">
+                <div class="caption__text">
+                    <p>Facebookでの課題管理はしんどいので<br>新しいツール、つくりました。</p>
+                    <p><%= link_to('新規登録する', signup_path, :class => 'btn btn-primary btn-lg') %></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <h2>最近の課題</h2>
+    <button type="button" class="btn btn-default btn-primary" aria-label="Left Align">
+        <%= link_to '課題を投稿する', new_project_path %>
+    </button>
+    <div class="panel-group">
+        <% @projects.each do |project| %>
+            <h3><%= link_to(project.subject, project_path(id: project.id)) %></h3>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <%= project.description %>
+            </div>
+        </div>
+        <% end %>
+    </div>
+    <button type="button" class="btn btn-default btn-primary" aria-label="Left Align">
+        <%= link_to '課題を投稿する', new_project_path %>
+    </button>
+</div>

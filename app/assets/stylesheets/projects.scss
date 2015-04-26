@@ -1,0 +1,12 @@
+// Place all the styles related to the project controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.project-detail__define {
+    .row {
+        margin-bottom: 20px;
+        &>div:first-child {
+            font-weight: bold;
+        }
+    }
+}

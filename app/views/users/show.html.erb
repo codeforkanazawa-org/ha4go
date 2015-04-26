@@ -1,0 +1,31 @@
+<div class="container">
+    <p id="notice"><%= notice %></p>
+    <h1><%= @user.name %></h1>
+    <button type="button" class="btn btn-default btn-primary mb20" aria-label="Left Align">
+        <%= link_to '変更する', edit_user_path(@user) %>
+    </button>
+
+    <div class="row">
+        <div class="col-sm-3">
+            <%= image_tag('http://dummyimage.com/200x200', :class => 'img-rouded img-responsive') %>
+        </div>
+        <div class="col-sm-9">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <%= @user.description %>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row user-detail__list">
+        <div class="col-sm-3">できること</div>
+        <div class="col-sm-9">HTML, CSS, Javascript, PHP, Ruby, MySQL, Ruby on Rails</div>
+    </div>
+
+    <div class="row user-detail__list">
+        <div class="col-sm-3">参加中のプロジェクト</div>
+        <div class="col-sm-9">カラオケ大会、ボウリング大会</div>
+    </div>
+</div>
+

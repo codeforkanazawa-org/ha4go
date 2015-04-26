@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ha4go</title>
+  <%= stylesheet_link_tag    'http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js' %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <%= link_to('Code for Kanazawa', root_path, :class => 'navbar-brand') %>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><%= link_to('新規登録', signup_path) %></li>
+                <li><%= link_to('ログイン', login_path) %></li>
+                <li><%= link_to('マイページ', user_path(id: 1)) %></li>
+                <li><%= link_to('メンバー', user_list_path) %></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+
+<div class="spacer-navbar"></div>
+
+
+<%= yield %>
+
+</body>
+</html>

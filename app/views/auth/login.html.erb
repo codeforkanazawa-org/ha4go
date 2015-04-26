@@ -1,0 +1,20 @@
+<div class="container">
+
+    <h2 class="form-signin-heading">ログイン</h2>
+    <button class="btn btn-lg btn-primary" type="submit">Facebookでログインする</button>
+
+    <form class="form-signin">
+        <h4 class="mt50">もしくはEメールアドレスでログイン</h4>
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="email" id="inputEmail" class="form-control mb10" placeholder="Email address" required="" autofocus="">
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" value="remember-me"> Remember me
+            </label>
+        </div>
+        <button class="btn btn-lg btn-primary" type="submit">ログイン</button>
+    </form>
+    <p class="mt20 text-right"><%= link_to('>>アカウントを持っていない方はこちら', signup_path) %></p>
+</div>

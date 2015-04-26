@@ -1,0 +1,25 @@
+// Place all the styles related to the user controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.user-list__box {
+    margin-top: 30px;
+}
+
+.user-list__name {
+    margin-top: 15px;
+    font-size: 24px;
+}
+
+.user-detail__list {
+    margin-top: 20px;
+}
+
+.user-edit {
+    .row {
+        margin-bottom: 20px;
+
+        &>div:first-child {
+            font-weight: bold;
+        }
+    }
+}

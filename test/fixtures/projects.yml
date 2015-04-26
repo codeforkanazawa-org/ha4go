@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  stage_id: 1
+  subject: MyString
+  description: MyString
+  user_url: MyString
+  development_url: MyString
+  delete_flag: 1
+
+two:
+  user_id: 1
+  stage_id: 1
+  subject: MyString
+  description: MyString
+  user_url: MyString
+  development_url: MyString
+  delete_flag: 1
