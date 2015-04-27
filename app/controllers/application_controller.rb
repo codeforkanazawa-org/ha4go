@@ -9,11 +9,6 @@ class ApplicationController < ActionController::Base
 
   def authorize
       @my_user = get_user_by_session
-
-      # 名前が未設定だったらプロフィールへ
-      if authorized? && @my_user.name.nil?
-          redirect_to user_path(:id => @my_user.id)
-      end
   end
 
   def authorized?

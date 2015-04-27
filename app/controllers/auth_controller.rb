@@ -62,7 +62,11 @@ class AuthController < ApplicationController
       signup_params = params[:signup]
       @user = User.new(:name => '名前未設定', :email => signup_params[:email], :password => get_hash(signup_params[:password]))
 
-      return @user.save
+      begin
+        return @user.save
+      rescue
+          return false
+      end
   end
 
   def get_hash string

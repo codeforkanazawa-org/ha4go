@@ -2,9 +2,11 @@
 <div class="container project-detail">
     <p id="notice"><%= notice %></p>
     <h1 class="mb20"><%= @project.subject %></h1>
+    <% if authorized? %>
     <button type="button" class="btn btn-default btn-primary btn-sm" aria-label="Left Align">
-        <%= link_to('編集する', edit_project_path) %>
+            <%= link_to('編集する', edit_project_path) %>
     </button>
+    <% end %>
     <div class="project-detail__define mt20">
         <div class="row">
             <div class="col-md-2">
@@ -70,9 +72,11 @@
 
     <div class="project--follow-list">
         
+        <% if authorized? %>
         <button type="button" class="btn btn-default btn-primary btn-sm mb20" aria-label="Left Align">
             <%= link_to 'フォローを書く', new_project_update_path(:project_id => @project.id) %>
         </button>
+        <% end %>
         <% @project.project_updates.reverse.each do |update| %>
             <p><span class="small">shimazuさんから <%= update.created_at %></span></p>
             <div class="panel panel-default">
