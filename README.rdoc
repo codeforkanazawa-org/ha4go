@@ -1,28 +1,26 @@
-== README
+# 実装済みユースケース
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* すべてのユーザー
+ - プロジェクト一覧を見る（トップ画面→プロジェクト詳細）
+ - プロジェクトの詳細とフォローの一覧を見る
+ - ユーザー一覧を閲覧する（メニュー→メンバー）
 
-Things you may want to cover:
+* 未認証ユーザー
+ - メールアドレスの新規登録を行う（メニュー）
+ - 登録済みのメールアドレスとパスワードログインする
 
-* Ruby version
+* 認証済みユーザー
+ - プロジェクトを投稿・編集する（トップ画面→プロジェクト詳細→編集画面）
+ - ユーザー情報を登録・編集（メニュー→マイページ→編集）
+ - ログアウト
 
-* System dependencies
+#️ 未実装ユースケース
 
-* Configuration
+* 未認証ユーザー
+ - facebookで新規登録
+ - facebookでログイン
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+* 認証済みユーザー
+ - プロジェクト、ユーザー情報編集時にスキルタグを登録
+ - プロジェクト投稿、編集時に参加するユーザーを登録する
+ - プロジェクト投稿時に進捗段階（ステージ）を登録する
