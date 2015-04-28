@@ -29,7 +29,7 @@
                 立てた人
             </div>
             <div class="col-md-10">
-                username
+                <%= @project.user.name %>
             </div>
         </div>
         <div class="row">
@@ -78,7 +78,7 @@
         </button>
         <% end %>
         <% @project.project_updates.reverse.each do |update| %>
-            <p><span class="small">shimazuさんから <%= update.created_at %></span></p>
+            <p><span class="small"><%= update.user.name %>さんから <%= update.created_at %></span></p>
             <div class="panel panel-default">
                 <div class="panel-body">
                     <%= update.description %>
