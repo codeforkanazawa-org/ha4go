@@ -5,3 +5,15 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+Skill.create([
+    { name: 'HTML' },
+    { name: 'CSS' },
+    { name: 'JavaScript' },
+    { name: 'PHP' },
+    { name: 'Ruby' },
+    { name: 'Java' },
+    { name: 'Python' },
+    { name: 'Perl' },
+    { name: 'C++' },
+    { name: 'C#' },
+])

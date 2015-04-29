@@ -22,12 +22,14 @@
 
     <div class="row user-detail__list">
         <div class="col-sm-3">できること</div>
-        <div class="col-sm-9">HTML, CSS, Javascript, PHP, Ruby, MySQL, Ruby on Rails</div>
+        <div class="col-sm-9">
+            <%= @user.skills.map{|skill| skill.name}.join(', ') %>
+        </div>
     </div>
 
     <div class="row user-detail__list">
         <div class="col-sm-3">参加中のプロジェクト</div>
-        <div class="col-sm-9">カラオケ大会、ボウリング大会</div>
+        <div class="col-sm-9"><%= @user.projects.map{|project| project.subject}.join(', ') %></div>
     </div>
 </div>
 
