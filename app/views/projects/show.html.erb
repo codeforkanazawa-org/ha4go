@@ -8,28 +8,32 @@
     </button>
     <% end %>
     <div class="project-detail__define mt20">
-        <div class="row">
-            <div class="col-md-2">
-                URL
+        <% if @project.user_url.present? %>
+            <div class="row">
+                <div class="col-md-2">
+                    URL
+                </div>
+                <div class="col-md-10">
+                    <%= link_to nil, @project.user_url %>
+                </div>
             </div>
-            <div class="col-md-10">
-                <%= @project.user_url %>
+        <% end %>
+        <% if @project.user_url.present? %>
+            <div class="row">
+                <div class="col-md-2">
+                    Github URL
+                </div>
+                <div class="col-md-10">
+                    <%= link_to nil, @project.development_url %>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2">
-                Github URL
-            </div>
-            <div class="col-md-10">
-                <%= @project.development_url %>
-            </div>
-        </div>
+        <% end %>
         <div class="row">
             <div class="col-md-2">
                 立てた人
             </div>
             <div class="col-md-10">
-                <%= @project.user.name %>
+                <%= link_to @project.user.name, user_path(id: @project.user.id) %>
             </div>
         </div>
         <div class="row">
