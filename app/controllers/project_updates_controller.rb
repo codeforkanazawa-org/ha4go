@@ -2,13 +2,11 @@ class ProjectUpdatesController < ApplicationController
   before_action :set_project_update, only: [:show, :edit, :update, :destroy]
 
   # GET /project_updates
-  # GET /project_updates.json
   def index
     @project_updates = ProjectUpdate.all
   end
 
   # GET /project_updates/1
-  # GET /project_updates/1.json
   def show
   end
 
@@ -22,44 +20,30 @@ class ProjectUpdatesController < ApplicationController
   end
 
   # POST /project_updates
-  # POST /project_updates.json
   def create
-    @project_update = ProjectUpdate.new(project_update_params)
-    logger.debug params
+      @project_update = ProjectUpdate.new(project_update_params)
+      @project_update.user_id = @my_user.id
 
-    respond_to do |format|
       if @project_update.save
-        format.html { redirect_to project_path(:id => params[:project_update][:project_id]), notice: 'Project update was successfully created.' }
-        format.json { render :show, status: :created, location: @project_update }
+          redirect_to project_path(:id => params[:project_update][:project_id]), notice: 'Project update was successfully created.'
       else
-        format.html { render :new }
-        format.json { render json: @project_update.errors, status: :unprocessable_entity }
+          render :new
       end
-    end
   end
 
   # PATCH/PUT /project_updates/1
-  # PATCH/PUT /project_updates/1.json
   def update
-    respond_to do |format|
       if @project_update.update(project_update_params)
-        format.html { redirect_to @project_update, notice: 'Project update was successfully updated.' }
-        format.json { render :show, status: :ok, location: @project_update }
+          redirect_to @project_update, notice: 'Project update was successfully updated.'
       else
-        format.html { render :edit }
-        format.json { render json: @project_update.errors, status: :unprocessable_entity }
+          render :edit
       end
-    end
   end
 
   # DELETE /project_updates/1
-  # DELETE /project_updates/1.json
   def destroy
-    @project_update.destroy
-    respond_to do |format|
-      format.html { redirect_to project_updates_url, notice: 'Project update was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+      @project_update.destroy
+      redirect_to project_updates_url, notice: 'Project update was successfully destroyed.'
   end
 
   private

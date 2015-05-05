@@ -46,6 +46,24 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-2">
+                必要なスキル
+            </div>
+            <div class="col-md-10">
+                <% @project.skills.each do |skill| %>
+                    <button type="button" class="btn btn-default btn-sm"><%= skill.name %><span class="glyphicon glyphicon-align-right"></span></button>
+                    <%= hidden_field :skill_ids, :value => skill.id %>
+                <% end %>
+                <%= text_field :input, :new_skill_ids, :list => 'skill_names' %>
+                <datalist id="skill_names">
+                <% @skills.each do |skill| %>
+                    <option value="<%= skill.name %>"></option>
+                <% end %>
+                </datalist>
+                <button type="button" class="btn btn-default btn-sm">追加</button>
+            </div>
+        </div>
     </div>
         
         <button type="submit" class="btn btn-default btn-primary" aria-label="Left Align">

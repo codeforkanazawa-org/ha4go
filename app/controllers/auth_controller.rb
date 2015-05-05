@@ -51,7 +51,7 @@ class AuthController < ApplicationController
         return false
     end
 
-    if get_hash(@user.password) != get_hash(params[:login][:password])
+    if @user.password != get_hash(params[:login][:password])
         return false
     end
 
