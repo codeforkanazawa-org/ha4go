@@ -14,10 +14,12 @@ class ProjectsController < ApplicationController
   def new
     @project = Project.new
     @skills  = Skill.all
+    @users   = User.all
   end
 
   # GET /projects/1/edit
   def edit
+    @users   = User.all
   end
 
   # POST /projects

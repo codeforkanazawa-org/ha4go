@@ -1,5 +1,7 @@
 <div class="container project-detail">
-    <p id="notice"><%= notice %></p>
+    <% if notice %>
+        <div class="alert alert-success mt20" role="alert"><%= notice %></div>
+    <% end %>
     <h1 class="mb20"><%= @project.subject %></h1>
     <% if authorized? && @project.editable_user_id?(@my_user.id) %>
     <button type="button" class="btn btn-default btn-primary btn-sm" aria-label="Left Align">

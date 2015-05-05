@@ -1,5 +1,7 @@
 <div class="container">
-    <p id="notice"><%= notice %></p>
+    <% if notice %>
+        <div class="alert alert-success mt20" role="alert"><%= notice %></div>
+    <% end %>
     <h1><%= @user.name %></h1>
     <% if authorized? && @my_user.id == @user.id %>
         <button type="button" class="btn btn-default btn-primary mb20" aria-label="Left Align">
