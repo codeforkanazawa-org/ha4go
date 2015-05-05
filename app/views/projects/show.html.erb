@@ -2,7 +2,7 @@
 <div class="container project-detail">
     <p id="notice"><%= notice %></p>
     <h1 class="mb20"><%= @project.subject %></h1>
-    <% if authorized? %>
+    <% if authorized? && @project.editable_user_id?(@my_user.id) %>
     <button type="button" class="btn btn-default btn-primary btn-sm" aria-label="Left Align">
             <%= link_to('編集する', edit_project_path) %>
     </button>
@@ -41,7 +41,9 @@
                 メンバー
             </div>
             <div class="col-md-10">
-                username, 名前, なまえ, aaaaaaa, hogeさん
+                <% @project.users.each do |user| %>
+                    <%= link_to user.name, user_path(id: user.id) %>
+                <% end %>
             </div>
         </div>
         <div class="row">
@@ -57,7 +59,7 @@
                 必要なスキル
             </div>
             <div class="col-md-10">
-                Ruby on Rails
+                <%= @project.skills.map{|skill|skill.name}.join(', ') %>
             </div>
         </div>
         <div class="row">
