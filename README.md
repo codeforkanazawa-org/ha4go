@@ -28,3 +28,4 @@
 
 ## その他
  * 各種Validation
+ * Admin機能
