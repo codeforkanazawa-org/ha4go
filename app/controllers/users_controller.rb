@@ -15,6 +15,7 @@
   # GET /users/new
   def new
     @user = User.new
+    @skills = Skill.all
   end
 
   # GET /users/1/edit
@@ -24,6 +25,7 @@
   # PATCH/PUT /users/1
   def update
       if @user.update(user_params)
+        @user.update_skill_ids_by_skill_names(params[:skill_names])
         redirect_to @user, notice: 'User was successfully updated.'
       else
         render :edit
@@ -34,6 +36,7 @@
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
+      @skills = Skill.all
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

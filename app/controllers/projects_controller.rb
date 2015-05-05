@@ -24,6 +24,7 @@ class ProjectsController < ApplicationController
   def create
       @project = Project.new(project_params)
       @project.user_id = @my_user.id
+      @project.update_skill_ids_by_skill_names(params[:skill_names])
 
       if @project.save
           redirect_to @project, notice: 'Project was successfully created.'
@@ -35,6 +36,7 @@ class ProjectsController < ApplicationController
   # PATCH/PUT /projects/1
   def update
       if @project.update(project_params)
+          @project.update_skill_ids_by_skill_names(params[:skill_names])
           redirect_to @project, notice: 'Project was successfully updated.'
       else
           render :edit
