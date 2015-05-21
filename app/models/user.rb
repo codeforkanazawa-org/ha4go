@@ -13,12 +13,15 @@ class User < ActiveRecord::Base
     def update_skill_ids_by_skill_names(skill_names)
         @before_skill_ids = self.skills.map{|skill| skill.id}
         @after_skill_ids  = []
-        skill_names.each do |skill_name|
-            skill = Skill.find_by(name: skill_name)
-            if skill.nil?
-                skill = Skill.create(name: skill_name)
+
+        if skill_names.present?
+            skill_names.each do |skill_name|
+                skill = Skill.find_by(name: skill_name)
+                if skill.nil?
+                    skill = Skill.create(name: skill_name)
+                end
+                @after_skill_ids.push(skill.id)
             end
-            @after_skill_ids.push(skill.id)
         end
 
         # 追加
