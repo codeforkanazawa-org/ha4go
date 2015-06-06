@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150505071406) do
+ActiveRecord::Schema.define(version: 20150606131655) do
 
   create_table "project_updates", force: :cascade do |t|
     t.integer  "project_id"
@@ -76,6 +76,10 @@ ActiveRecord::Schema.define(version: 20150505071406) do
     t.integer  "facebook_user_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "oauth_token"
+    t.datetime "oauth_expires_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

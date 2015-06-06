@@ -7,7 +7,6 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
@@ -22,11 +21,10 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <% if authorized? %>
-                    <li><%= link_to('ログアウト', logout_path) %></li>
+                    <li><%= link_to('ログアウト', signout_path, id: 'sign_out') %></li>
                     <li><%= link_to('マイページ', user_path(id: @my_user.id)) %></li>
                 <% else %>
-                    <li><%= link_to('新規登録', signup_path) %></li>
-                    <li><%= link_to('ログイン', login_path) %></li>
+                    <li><%= link_to('ログイン', '/auth/facebook', id: 'sign_in') %></li>
                 <% end %>
                 <li><%= link_to('メンバー', users_path) %></li>
             </ul>
@@ -34,8 +32,8 @@
     </div>
 </nav>
 
-<div class="spacer-navbar"></div>
 
+<div class="spacer-navbar"></div>
 
 <%= yield %>
 

@@ -5,7 +5,7 @@
                 <img src="http://www.codeforkanazawa.org/images/logo.png" alt="Code for Kanazawa">
                 <div class="caption__text">
                     <p>Facebookでの課題管理はしんどいので<br>新しいツール、つくりました。</p>
-                    <% if authorized? %>
+                    <% if !authorized? %>
                         <p><%= link_to('使い方を見る', help_path, :class => 'btn btn-primary btn-lg') %></p>
                     <% else %>
                         <p><%= link_to('新規登録する', signup_path, :class => 'btn btn-primary btn-lg') %></p>

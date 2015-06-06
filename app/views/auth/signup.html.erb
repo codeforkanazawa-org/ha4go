@@ -1,6 +1,6 @@
 <div class="container">
     <h2 class="form-signin-heading">新規登録</h2>
-    <button class="btn btn-lg btn-primary" type="submit">Facebookで登録する</button>
+    <a href="/auth/facebook"><button class="btn btn-lg btn-primary" type="submit">Facebookで登録する</button></a>
     
     <%= form_tag signup_check_path, :method => :post do %>
         <h4 class="mt50">もしくはEメールアドレスで登録</h4>
