@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-    has_many :user_sessions
     has_many :projects
     has_many :project_updates
     belongs_to :project
