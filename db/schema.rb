@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150606234247) do
+ActiveRecord::Schema.define(version: 20150607001212) do
 
   create_table "project_updates", force: :cascade do |t|
     t.integer  "project_id"
@@ -72,7 +72,5 @@ ActiveRecord::Schema.define(version: 20150606234247) do
     t.string   "oauth_token"
     t.datetime "oauth_expires_at"
   end
-
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
 
 end

@@ -60,6 +60,14 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-2">
+                メールアドレス<span class="small">&nbsp;※設定するとプロジェクトの更新通知が来ます</span>
+            </div>
+            <div class="col-md-10">
+                <%= f.text_field :email, :class => 'form-control' %>
+            </div>
+        </div>
     </div>
     <button type="button" class="btn btn-default btn-primary" aria-label="Left Align">
         <%= f.submit %>
