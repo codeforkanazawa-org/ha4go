@@ -1,11 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
-  # GET /projects
-  def index
-    @projects = Project.all
-  end
-
   # GET /projects/1
   def show
   end
@@ -28,6 +23,10 @@ class ProjectsController < ApplicationController
       @project.user_id = @my_user.id
       @project.update_skill_ids_by_skill_names(params[:skill_names])
 
+      @project.send_mail_users.each do |user|
+        ProjectMailer.tell_create(user, @project).deliver
+      end
+
       if @project.save
           redirect_to @project, notice: 'Project was successfully created.'
       else
@@ -43,13 +42,6 @@ class ProjectsController < ApplicationController
       else
           render :edit
       end
-  end
-
-  # DELETE /projects/1
-  # DELETE /projects/1.json
-  def destroy
-    @project.destroy
-    redirect_to projects_url, notice: 'Project was successfully destroyed.'
   end
 
   private

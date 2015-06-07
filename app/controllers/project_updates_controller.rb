@@ -1,11 +1,6 @@
 class ProjectUpdatesController < ApplicationController
   before_action :set_project_update, only: [:show, :edit, :update, :destroy]
 
-  # GET /project_updates
-  def index
-    @project_updates = ProjectUpdate.all
-  end
-
   # GET /project_updates/1
   def show
   end
@@ -23,6 +18,9 @@ class ProjectUpdatesController < ApplicationController
   def create
       @project_update = ProjectUpdate.new(project_update_params)
       @project_update.user_id = @my_user.id
+      @project_update.project.send_mail_users.each do |user|
+        ProjectMailer.tell_create(user, @project_update).deliver
+      end
 
       if @project_update.save
           redirect_to project_path(:id => params[:project_update][:project_id]), notice: 'Project update was successfully created.'
@@ -38,12 +36,6 @@ class ProjectUpdatesController < ApplicationController
       else
           render :edit
       end
-  end
-
-  # DELETE /project_updates/1
-  def destroy
-      @project_update.destroy
-      redirect_to project_updates_url, notice: 'Project update was successfully destroyed.'
   end
 
   private

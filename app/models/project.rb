@@ -40,4 +40,12 @@ class Project < ActiveRecord::Base
             self.skills.find(skill_id).destroy()
         end
     end
+
+    # メールを送るユーザーを取得 
+    def send_mail_users
+      send_users = self.users
+      send_users.push self.user
+
+      return send_users
+    end
 end
