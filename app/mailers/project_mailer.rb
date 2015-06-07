@@ -7,7 +7,7 @@ class ProjectMailer < ApplicationMailer
     end
 
     def tell_update(user, project_update)
-        @project_update = project_update.project.subject
+        @project_update = project_update
         mail to: user.email, subject: "プロジェクトに更新がありました"
     end
 end

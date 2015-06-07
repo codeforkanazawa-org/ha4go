@@ -33,7 +33,7 @@ class ProjectsController < ApplicationController
       end
 
       if @project.save
-          redirect_to @project, notice: 'Project was successfully created.'
+          redirect_to @project, notice: '課題を作成しました。'
       else
           render :new
       end
@@ -43,7 +43,7 @@ class ProjectsController < ApplicationController
   def update
       if @project.update(project_params)
           @project.update_skill_ids_by_skill_names(params[:skill_names])
-          redirect_to @project, notice: 'Project was successfully updated.'
+          redirect_to @project, notice: '課題の内容を変更しました。'
       else
           render :edit
       end

@@ -26,6 +26,7 @@
     <div class="panel-group">
         <% @projects.each do |project| %>
             <h3><%= link_to(project.subject, project_path(id: project.id)) %></h3>
+            <p><span class="small"><%= name_and_link(project.user) %>さんが <%= project.created_at.strftime("%Y-%m-%d %H:%M") %>に投稿</span></p>
         <div class="panel panel-default">
             <div class="panel-body">
                 <%= project.description %>
@@ -38,3 +39,9 @@
         </button>
     </div>
 </div>
+
+<% if notice %>
+<div class="notice">
+    <%= notice %>
+</div>
+<% end %>

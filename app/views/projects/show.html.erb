@@ -3,6 +3,7 @@
         <div class="alert alert-success mt20" role="alert"><%= notice %></div>
     <% end %>
     <h1 class="mb20"><%= @project.subject %></h1>
+    <p><span class="small"><%= name_and_link(@project.user) %>さんが <%= @project.created_at.strftime("%Y-%m-%d %H:%M") %>に投稿</span></p>
     <% if authorized? && @project.editable_user_id?(@my_user.id) %>
     <button type="button" class="btn btn-default btn-primary btn-sm" aria-label="Left Align">
         <%= link_to('編集する', edit_project_path) %>
@@ -34,7 +35,7 @@
                 立てた人
             </div>
             <div class="col-md-10">
-                <%= link_to @project.user.name, user_path(id: @project.user.id) %>
+                <%= name_and_link(@project.user) %>
             </div>
         </div>
         <div class="row">
@@ -85,7 +86,7 @@
         </button>
         <% end %>
         <% @project.project_updates.reverse.each do |update| %>
-            <p><span class="small"><%= update.user.name %>さんから <%= update.created_at %></span></p>
+            <p><span class="small"><%= name_and_link(@project.user) %>さんが <%= update.created_at.strftime("%Y-%m-%d %H:%M") %>に投稿</span></p>
             <div class="panel panel-default">
                 <div class="panel-body">
                     <%= update.description %>

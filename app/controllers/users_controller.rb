@@ -1,5 +1,5 @@
  class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update]
 
   # GET /users
   # GET /users.json
@@ -20,7 +20,7 @@
   def update
       if @user.update(user_params)
         @user.update_skill_ids_by_skill_names(params[:skill_names])
-        redirect_to @user, notice: 'User was successfully updated.'
+        redirect_to @user, notice: 'プロフィールを更新しました。'
       else
         render :edit
       end

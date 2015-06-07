@@ -1,10 +1,6 @@
 class ProjectUpdatesController < ApplicationController
   before_action :set_project_update, only: [:show, :edit, :update, :destroy]
 
-  # GET /project_updates/1
-  def show
-  end
-
   # GET /project_updates/new
   def new
     @project_update = ProjectUpdate.new
@@ -19,11 +15,11 @@ class ProjectUpdatesController < ApplicationController
       @project_update = ProjectUpdate.new(project_update_params)
       @project_update.user_id = @my_user.id
       @project_update.project.send_mail_users.each do |user|
-        ProjectMailer.tell_create(user, @project_update).deliver
+        ProjectMailer.tell_update(user, @project_update).deliver
       end
 
       if @project_update.save
-          redirect_to project_path(:id => params[:project_update][:project_id]), notice: 'Project update was successfully created.'
+          redirect_to project_path(:id => params[:project_update][:project_id]), notice: 'フォローを投稿しました。'
       else
           render :new
       end
@@ -32,10 +28,16 @@ class ProjectUpdatesController < ApplicationController
   # PATCH/PUT /project_updates/1
   def update
       if @project_update.update(project_update_params)
-          redirect_to @project_update, notice: 'Project update was successfully updated.'
+          redirect_to @project_update, notice: '投稿を修正しました。'
       else
           render :edit
       end
+  end
+
+  # DELETE /project_updates/1
+  def destroy
+      @project_update.destroy
+      redirect_to project_url, notice: 'フォローを削除しました。'
   end
 
   private
