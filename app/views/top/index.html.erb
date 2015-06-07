@@ -1,7 +1,7 @@
 <div class="column__top">
     <div class="jumbotron">
         <div class="container">
-            <div class="caption">
+            <div class="caption col-md-8 col-sm-12">
                 <img src="http://www.codeforkanazawa.org/images/logo.png" alt="Code for Kanazawa">
                 <div class="caption__text">
                     <p>Facebookでの課題管理はしんどいので<br>新しいツール、つくりました。</p>
@@ -26,9 +26,7 @@
 
     <h2>最近の課題</h2>
     <% if authorized? %>
-        <button type="button" class="btn btn-default btn-primary" aria-label="Left Align">
-            <%= link_to '課題を投稿する', new_project_path %>
-        </button>
+        <%= link_to '課題を投稿する', new_project_path , :class => "btn btn-default btn-primary"%>
     <% end %>
     <div class="panel-group">
         <% @projects.each do |project| %>
@@ -40,9 +38,6 @@
             </div>
         </div>
         <% end %>
-        <button class="btn btn-default btn-small">
-            <span class"glyphicon glyphicon-chevron-right"></span>
-            <%= link_to 'プロジェクト一覧をみる', projects_path %>
-        </button>
+        <%= link_to 'プロジェクト一覧をみる', projects_path, :class => "btn btn-default" %>
     </div>
 </div>

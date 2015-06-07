@@ -4,9 +4,7 @@
     <% end %>
     <h1><%= @user.name %></h1>
     <% if authorized? && @my_user.id == @user.id %>
-        <button type="button" class="btn btn-default btn-primary mb20" aria-label="Left Align">
-            <%= link_to '変更する', edit_user_path(@user) %>
-        </button>
+        <%= link_to '変更する', edit_user_path(@user), :class => "btn btn-default btn-primary mb20" %>
     <% end %>
 
     <div class="row">

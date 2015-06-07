@@ -3,9 +3,7 @@
 <div class="container">
     <h2>課題一覧</h2>
     <% if authorized? %>
-        <button type="button" class="btn btn-default btn-primary" aria-label="Left Align">
-            <%= link_to '課題を投稿する', new_project_path %>
-        </button>
+        <%= link_to '課題を投稿する', new_project_path, :class => "btn btn-default btn-primary" %>
     <% end %>
     <div class="panel-group">
         <% @projects.each do |project| %>

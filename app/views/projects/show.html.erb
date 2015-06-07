@@ -5,9 +5,7 @@
     <h1 class="mb20"><%= @project.subject %></h1>
     <p><span class="small"><%= name_and_link(@project.user) %>さんが <%= @project.created_at.strftime("%Y-%m-%d %H:%M") %>に投稿</span></p>
     <% if authorized? && @project.editable_user_id?(@my_user.id) %>
-    <button type="button" class="btn btn-default btn-primary btn-sm" aria-label="Left Align">
-        <%= link_to('編集する', edit_project_path) %>
-    </button>
+        <%= link_to '編集する', edit_project_path, :class => "btn btn-default btn-primary" %>
     <% end %>
     <div class="project-detail__define mt20">
         <% if @project.user_url.present? %>
@@ -81,9 +79,7 @@
     <div class="project--follow-list">
         
         <% if authorized? %>
-        <button type="button" class="btn btn-default btn-primary btn-sm mb20" aria-label="Left Align">
-            <%= link_to 'フォローを書く', new_project_update_path(:project_id => @project.id) %>
-        </button>
+            <%= link_to 'フォローを書く', new_project_update_path(:project_id => @project.id), :class => "btn btn-default btn-primary btn-sm mb20" %>
         <% end %>
         <% @project.project_updates.reverse.each do |update| %>
             <p><span class="small"><%= name_and_link(@project.user) %>さんが <%= update.created_at.strftime("%Y-%m-%d %H:%M") %>に投稿</span></p>
