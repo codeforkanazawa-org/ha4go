@@ -17,6 +17,13 @@
 </div>
 
 <div class="container">
+
+    <% if notice %>
+        <div class="alert alert-success" role="alert">
+            <%= notice %>
+        </div>
+    <% end %>
+
     <h2>最近の課題</h2>
     <% if authorized? %>
         <button type="button" class="btn btn-default btn-primary" aria-label="Left Align">
@@ -39,9 +46,3 @@
         </button>
     </div>
 </div>
-
-<% if notice %>
-<div class="notice">
-    <%= notice %>
-</div>
-<% end %>
