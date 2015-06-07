@@ -1,38 +1,23 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Projects</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Stage</th>
-      <th>Subject</th>
-      <th>Description</th>
-      <th>User url</th>
-      <th>Development url</th>
-      <th>Delete flag</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @projects.each do |project| %>
-      <tr>
-        <td><%= project.user_id %></td>
-        <td><%= project.stage_id %></td>
-        <td><%= project.subject %></td>
-        <td><%= project.description %></td>
-        <td><%= project.user_url %></td>
-        <td><%= project.development_url %></td>
-        <td><%= link_to 'Show', project %></td>
-        <td><%= link_to 'Edit', edit_project_path(project) %></td>
-        <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+<div class="container">
+    <h2>課題一覧</h2>
+    <% if authorized? %>
+        <button type="button" class="btn btn-default btn-primary" aria-label="Left Align">
+            <%= link_to '課題を投稿する', new_project_path %>
+        </button>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Project', new_project_path %>
+    <div class="panel-group">
+        <% @projects.each do |project| %>
+            <h3><%= link_to(project.subject, project_path(id: project.id)) %></h3>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <%= project.description %>
+            </div>
+        </div>
+        <% end %>
+        <button class="btn btn-default btn-small">
+            <span class"glyphicon glyphicon-chevron-right"></span>
+        </button>
+    </div>
+</div>

@@ -5,10 +5,10 @@
                 <img src="http://www.codeforkanazawa.org/images/logo.png" alt="Code for Kanazawa">
                 <div class="caption__text">
                     <p>Facebookでの課題管理はしんどいので<br>新しいツール、つくりました。</p>
-                    <% if !authorized? %>
-                        <p><%= link_to('使い方を見る', help_path, :class => 'btn btn-primary btn-lg') %></p>
+                    <% unless authorized? %>
+                        <p><%= link_to('Facebookで登録', signup_path, :class => 'btn btn-primary btn-lg') %></p>
                     <% else %>
-                        <p><%= link_to('新規登録する', signup_path, :class => 'btn btn-primary btn-lg') %></p>
+                        <p><%= link_to('使い方を見る', help_path, :class => 'btn btn-primary btn-lg') %></p>
                     <% end %>
                 </div>
             </div>
@@ -32,5 +32,9 @@
             </div>
         </div>
         <% end %>
+        <button class="btn btn-default btn-small">
+            <span class"glyphicon glyphicon-chevron-right"></span>
+            <%= link_to 'プロジェクト一覧をみる', projects_path %>
+        </button>
     </div>
 </div>
