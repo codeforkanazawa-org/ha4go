@@ -1,31 +1,45 @@
-# DONE LIST 
+# ha4go
+## ローカル環境へのインストール手順
 
-## すべてのユーザー
- * プロジェクト一覧を見る（トップ画面→プロジェクト詳細）
- * プロジェクトの詳細とフォローの一覧を見る
- * ユーザー一覧を閲覧する（メニュー→メンバー）
+###  Facebookにテスト用アプリとして登録(OAuth認証のため登録必須)
 
-## 未認証ユーザー
- * メールアドレスの新規登録を行う（メニュー）
- * 登録済みのメールアドレスとパスワードログインする
+Facebook Developers
+https://developers.facebook.com/
 
-## 認証済みユーザー
- * プロジェクトを投稿・編集する（トップ画面→プロジェクト詳細→編集画面）
- * ユーザー情報を登録・編集（メニュー→マイページ→編集）
- * ログアウト
- * プロジェクト、ユーザー情報編集時にスキルタグを登録
+1. メニュー > My Apps > Add a New App
 
-# TODO LIST
+2. 種別の中から、「ウェブサイト(www)」を選択
 
-## 未認証ユーザー
- * facebookで新規登録
- * facebookでログイン
+3. アプリの名前を入力(ha4go-devなど)
 
-## 認証済みユーザー
- * プロジェクト投稿、編集時に所属するユーザーを登録する
- * プロジェクト投稿時に進捗段階（ステージ）を登録する
- * プロジェクト投稿、プロジェクトへのフォローに合わせてメール通知
+4. カテゴリを適当に選択してCreate App ID でID発行
 
-## その他
- * 各種Validation
- * Admin機能
+5. Quick Startとしてコードが出てくるが、ここは飛ばして
+"Tell us about your website"
+Site URL: "http://localhost:3000/"
+Mobile Site URL: "http://localhost:3000/"
+を入力してNext
+
+6. メニュー > My Appsに3で入力したアプリ名が出るのでそこからダッシュボードへ
+
+7. "App ID" と "App Secret"を控える
+
+### ローカルに環境構築&サーバー起動
+
+1. リポジトリのインストール
+```
+git clone https://github.com/jshimazu/ha4go.git
+cd ha4go
+bundle install --path vendor/bundle --without staging production
+rake db:migrate
+```
+
+2. 先ほど控えたApp IDとApp Secretを.envというファイルに記載
+```
+echo "FACEBOOK_APP_ID={App ID}" >> .env
+echo "FACEBOOK_APP_SECRET={App Secret}" >> .env
+```
+
+ブラウザで
+http://localhost:3000 にアクセスして
+起動できれば完了！

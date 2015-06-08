@@ -49,6 +49,15 @@ class ProjectsController < ApplicationController
       end
   end
 
+  # GET /projects/add
+  # メンバー追加
+  def add
+  end
+
+  # POST /projects/add_member
+  def add_member
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_project
