@@ -12,5 +12,9 @@ class TopController < ApplicationController
   end
 
   def feed
+    @projects = Project.last(LIMIT_ROWS).reverse
+    respond_to do |format|
+      format.rss { render layout: false }
+    end
   end
 end
