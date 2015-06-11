@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
   get 'auth/signup'
 
-  get 'top/index' 
+  get 'top/index'
 
   get 'auth/login', as: 'login'
 
@@ -39,6 +39,7 @@ Rails.application.routes.draw do
 
   get 'project/create', as: 'project_create'
 
+  get 'feed' => 'top#feed'
   root 'top#index', as: 'root'
 
   resources :projects
