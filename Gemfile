@@ -40,7 +40,6 @@ group :development, :test do
   gem 'spring'
   gem 'dotenv-rails'
 
-  gem 'rails-Graphviz'
   gem 'rails-erd'
 end
 
