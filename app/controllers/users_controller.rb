@@ -4,7 +4,15 @@
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    @skills = Skill.all
+    skills = Skill.all.map{ |skill| [skill.name, skill.id] };
+    @options = skills.unshift(['指定なし', nil])
+
+    if params[:skill_id].present?
+        @users = User.joins(:skills).where(skills: {id: params[:skill_id] })
+    else
+        @users = User.all
+    end
   end
 
   # GET /users/1
