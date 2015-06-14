@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150607104348) do
+ActiveRecord::Schema.define(version: 20150614110547) do
 
   create_table "project_updates", force: :cascade do |t|
     t.integer  "project_id"
@@ -23,13 +23,13 @@ ActiveRecord::Schema.define(version: 20150607104348) do
 
   create_table "projects", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "stage_id"
+    t.integer  "stage_id",        default: 1, null: false
     t.string   "subject"
     t.string   "description"
     t.string   "user_url"
     t.string   "development_url"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "projects_skills", force: :cascade do |t|
@@ -59,6 +59,12 @@ ActiveRecord::Schema.define(version: 20150607104348) do
   create_table "skills_users", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "skill_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "stages", force: :cascade do |t|
+    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

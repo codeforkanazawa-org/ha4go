@@ -3,7 +3,7 @@
     <div class="row">
         <% @users.each do |user| %>
         <div class="col-md-3 col-xs-6 user-list__box">
-                <%= image_tag('http://dummyimage.com/200x200', :class => 'img-rounded, img-responsive') %>
+                <%= image_tag(user.image, :class => 'img-rounded, img-responsive') %>
             <label class="user-list__name"><%= name_and_link(user) %></label>
         </div>
         <% end %>

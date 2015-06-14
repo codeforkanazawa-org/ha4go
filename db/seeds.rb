@@ -5,7 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-Skill.create([
+Skill.first_or_create([
     { name: 'HTML' },
     { name: 'CSS' },
     { name: 'JavaScript' },
@@ -16,4 +16,11 @@ Skill.create([
     { name: 'Perl' },
     { name: 'C++' },
     { name: 'C#' },
+])
+
+Stage.first_or_create([
+    { name: '新規' },
+    { name: '進行中' },
+    { name: '保留' },
+    { name: '完了' },
 ])
