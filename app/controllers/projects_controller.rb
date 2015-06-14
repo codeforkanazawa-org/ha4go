@@ -19,6 +19,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1/edit
   def edit
+    @stages = Stage.all
     @users   = User.all
   end
 
