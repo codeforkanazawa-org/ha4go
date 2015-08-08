@@ -1,3 +1,4 @@
+# coding: utf-8
 source 'https://rubygems.org'
 
 
@@ -41,6 +42,10 @@ group :development, :test do
   gem 'dotenv-rails'
 
   gem 'rails-erd'
+end
+
+group :production do
+  gem 'pg'
 end
 
 # Herokuログ出力用

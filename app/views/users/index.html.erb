@@ -1,6 +1,14 @@
 <div class="container">
     <h1>メンバー</h1>
     <div class="row">
+        <div class="col-md-4">
+            <%= form_tag users_path, :method => 'GET' do %>
+                <%= select_tag 'skill_id', options_for_select(@options, :selected => params[:skill_id]), :class => 'form-control' %>
+                <button class="btn btn-default user-search__button" type="submit">条件を指定して検索</button>
+            <% end %>
+        </div>
+    </div>
+    <div class="row">
         <% @users.each do |user| %>
         <div class="col-md-3 col-xs-6 user-list__box">
                 <%= image_tag(user.image, :class => 'img-rounded, img-responsive') %>
