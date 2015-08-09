@@ -4,7 +4,7 @@
       <div class="caption col-md-8 col-sm-12">
         <img src="http://www.codeforkanazawa.org/images/logo.png" alt="Code for Kanazawa">
         <div class="caption__text">
-          <p>課題を深く知る市民とシビックテックの情報交換サイト、はじめました。</p>
+          <p><%= t '.overview' %></p>
           <% unless authorized? %>
             <p><%= link_to('Facebookで登録', '/auth/facebook', id: 'sign_in', :class => 'btn btn-primary btn-lg') %></p>
           <% else %>
