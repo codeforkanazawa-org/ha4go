@@ -24,14 +24,14 @@
     </div>
   <% end %>
 
-  <h2>最近の課題</h2>
+  <h2><%= t '.recent_project'  %></h2>
   <% if authorized? %>
     <%= link_to t('.post_project'), new_project_path , class: "btn-default btn-primary"%>
   <% end %>
   <div class="panel-group">
     <% @projects.each do |project| %>
       <h3><%= link_to(project.subject, project_path(id: project.id)) %></h3>
-      <p><span class="small"><%= name_and_link(project.user) %>さんが <%= project.created_at.strftime("%Y-%m-%d %H:%M") %>に投稿</span></p>
+      <p><span class="small"><%= name_and_link(project.user) %><% t('.title') %> <%= project.created_at.strftime("%Y-%m-%d %H:%M") %><% t('posted_on') %></span></p>
       <div class="panel panel-default">
         <div class="panel-body">
           <%= project.description %>
