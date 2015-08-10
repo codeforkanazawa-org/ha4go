@@ -1,0 +1,7 @@
+<h3><%= link_to(project.subject, project_path(id: project.id)) %></h3>
+<p><span class="label label-default"><%= project.stage.name %></span>&emsp;<span class="small"><%= name_and_link(project.user) %><% t('.title') %>&emsp;<%= project.created_at.strftime("%Y-%m-%d %H:%M") %><% t('posted_on') %></span></p>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <%= project.description %>
+  </div>
+</div>
