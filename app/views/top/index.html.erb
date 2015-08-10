@@ -30,13 +30,7 @@
   <% end %>
   <div class="panel-group">
     <% @projects.each do |project| %>
-      <h3><%= link_to(project.subject, project_path(id: project.id)) %></h3>
-      <p><span class="small"><%= name_and_link(project.user) %><% t('.title') %> <%= project.created_at.strftime("%Y-%m-%d %H:%M") %><% t('posted_on') %></span></p>
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <%= project.description %>
-        </div>
-      </div>
+      <%= render 'shared/project', project: project %>
     <% end %>
     <%= link_to t('.list_project'), projects_path, class: "btn btn-default" %>
   </div>
