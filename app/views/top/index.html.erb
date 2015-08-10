@@ -6,9 +6,9 @@
         <div class="caption__text">
           <p><%= t '.overview' %></p>
           <% unless authorized? %>
-            <p><%= link_to('Facebookで登録', '/auth/facebook', id: 'sign_in', :class => 'btn btn-primary btn-lg') %></p>
+            <p><%= link_to('Facebookで登録', '/auth/facebook', id: 'sign_in', class: 'btn btn-primary btn-lg') %></p>
           <% else %>
-            <p><%= link_to('使い方を見る', help_path, :class => 'btn btn-primary btn-lg') %></p>
+            <p><%= link_to('使い方を見る', help_path, class: 'btn btn-primary btn-lg') %></p>
           <% end %>
         </div>
       </div>
@@ -26,7 +26,7 @@
 
   <h2>最近の課題</h2>
   <% if authorized? %>
-    <%= link_to '課題を投稿する', new_project_path , :class => "btn btn-default btn-primary"%>
+    <%= link_to t('.post_project'), new_project_path , class: "btn-default btn-primary"%>
   <% end %>
   <div class="panel-group">
     <% @projects.each do |project| %>
@@ -38,6 +38,6 @@
         </div>
       </div>
     <% end %>
-    <%= link_to '課題一覧をみる', projects_path, :class => "btn btn-default" %>
+    <%= link_to t('.list_project'), projects_path, class: "btn btn-default" %>
   </div>
 </div>
