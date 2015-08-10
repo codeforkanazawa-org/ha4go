@@ -1,3 +1,4 @@
+# coding: utf-8
 class ProjectMailer < ApplicationMailer
     default from: "info@ha4go.jp"
 
@@ -9,5 +10,11 @@ class ProjectMailer < ApplicationMailer
     def tell_update(user, project_update)
         @project_update = project_update
         mail to: user.email, subject: "プロジェクトに更新がありました"
+    end
+
+    # test code
+    def sendmail_confirm
+      @greeting = "Hi"
+      mail to: "kato@phalanxware.com", subject: "ActionMailer test"
     end
 end

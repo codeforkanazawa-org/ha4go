@@ -1,3 +1,4 @@
+# coding: utf-8
 class Project < ActiveRecord::Base
     validates :subject, presence: true
     has_many :project_updates
@@ -15,7 +16,7 @@ class Project < ActiveRecord::Base
         else
             return false
         end
-    end 
+    end
 
     # 必要なスキルを更新
     # @param [Array] skill_names スキル名の配列
@@ -36,17 +37,19 @@ class Project < ActiveRecord::Base
             self.skills << Skill.find(skill_id)
         end
 
-        # 削除 
+        # 削除
         (@before_skill_ids - @after_skill_ids).each do |skill_id|
             self.skills.find(skill_id).destroy()
         end
     end
 
-    # メールを送るユーザーを取得 
+    # メールを送るユーザーを取得
     def send_mail_users
       send_users = self.users
-      send_users.push self.user
-
+      me = self.user
+      if send_users.select{|u| u['user_id'] == me['user_id']}.empty?
+        send_users.push self.user
+      end
       return send_users
     end
 end

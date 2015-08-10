@@ -1,3 +1,4 @@
+# coding: utf-8
 class ProjectUpdatesController < ApplicationController
   before_action :set_project_update, only: [:show, :edit, :update, :destroy]
 
@@ -15,7 +16,7 @@ class ProjectUpdatesController < ApplicationController
       @project_update = ProjectUpdate.new(project_update_params)
       @project_update.user_id = @my_user.id
       @project_update.project.send_mail_users.each do |user|
-        ProjectMailer.tell_update(user, @project_update).deliver
+        ProjectMailer.tell_update(user, @project_update).deliver_now
       end
 
       if @project_update.save
