@@ -1,5 +1,5 @@
 class DropTableUserSession < ActiveRecord::Migration
-  def change
+  def down
       drop_table :user_sessions
   end
 end
