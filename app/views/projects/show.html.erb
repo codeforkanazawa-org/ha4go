@@ -1,8 +1,13 @@
+<% content_for :ogp do %>
+    <%= render 'shared/ogp_project', project: @project %>
+<% end %>
+
 <div class="container project-detail">
     <% if notice %>
         <div class="alert alert-success mt20" role="alert"><%= notice %></div>
     <% end %>
     <h1 class="mb20"><%= @project.subject %></h1>
+    <p><%= facebook_share_btn(request.url) %></p>
     <p><span class="small"><%= name_and_link(@project.user) %>さんが <%= @project.created_at.strftime("%Y-%m-%d %H:%M") %>に投稿</span></p>
     <% if authorized? && @project.editable_user_id?(@my_user.id) %>
         <%= link_to '編集する', edit_project_path, :class => "btn btn-default btn-primary" %>

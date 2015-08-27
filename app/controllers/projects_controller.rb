@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+  helper SnsHelper
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   # GET /projects

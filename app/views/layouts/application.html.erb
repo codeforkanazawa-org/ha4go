@@ -5,6 +5,8 @@
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
+  <%= render partial: "shared/ogp_common" %>
+  <%= yield :twitter_card %>
 </head>
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -38,5 +40,7 @@
 <%= yield %>
 
 <%= javascript_include_tag :jquery, :bootstrap, :jquery_ujs %>
+<%= render 'shared/facebook' %>
+<%= render 'shared/twitter' %>
 </body>
 </html>
