@@ -1,3 +1,4 @@
+# coding: utf-8
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
@@ -15,12 +16,19 @@ Skill.first_or_create([
     { name: 'Python' },
     { name: 'Perl' },
     { name: 'C++' },
-    { name: 'C#' },
+    { name: 'C#' }
 ])
 
-Stage.first_or_create([
-    { name: '新規' },
-    { name: '進行中' },
-    { name: '保留' },
-    { name: '完了' },
-])
+Stage.first_or_create(
+  [
+    { name: '議論' },
+    { name: '企画・設計' },
+    { name: 'プロトタイプ作成' },
+    { name: 'ユーザテスト' },
+    { name: '運用' },
+    { name: '改善・改修' },
+    { name: '参加者募集' },
+    { name: 'デザイナー募集' },
+    { name: 'エンジニア募集' }
+  ]
+)
