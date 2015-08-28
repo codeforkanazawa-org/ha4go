@@ -6,7 +6,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-Skill.first_or_create([
+Skill.first_or_create(
+  [
     { name: 'HTML' },
     { name: 'CSS' },
     { name: 'JavaScript' },
@@ -17,7 +18,8 @@ Skill.first_or_create([
     { name: 'Perl' },
     { name: 'C++' },
     { name: 'C#' }
-])
+  ]
+)
 
 Stage.first_or_create(
   [

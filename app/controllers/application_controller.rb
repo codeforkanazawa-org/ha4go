@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
   private
 
   def authorized?
-        @my_user ||= User.find(session[:user_id]) if session[:user_id]
+    @my_user = User.find(session[:user_id]) if session[:user_id]
+    !@my_user.nil?
   end
 end
