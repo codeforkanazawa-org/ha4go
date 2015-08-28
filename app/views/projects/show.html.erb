@@ -9,7 +9,7 @@
   <h1 class="mb20"><%= @project.subject %></h1>
   <p><%= facebook_share_btn(request.url) %></p>
   <p><span class="small">
-    <%= name_and_link(@project.user) %> <%= t '.title' %> <%= @project.created_at.strftime("%Y-%m-%d %H:%M") %> <%= t '.post_on' %>
+    <%= name_and_link(@project.user) %> <%= t 'dic.title' %> <%= @project.created_at.strftime("%Y-%m-%d %H:%M") %> <%= t 'dic.posted_on' %>
   </span></p>
   <% if authorized? && @project.editable_user_id?(@my_user.id) %>
     <%= link_to t('.edit'),edit_project_path, class: "btn btn-default btn-primary" %>
@@ -90,7 +90,7 @@
     <% end %>
     <% @project.project_updates.reverse.each do |update| %>
       <p><span class="small">
-        <%= name_and_link(update.user) %> <%= t '.title'%> <%= update.created_at.strftime("%Y-%m-%d %H:%M") %> <%= t '.post_on' %>
+        <%= name_and_link(update.user) %> <%= t 'dic.title'%> <%= update.created_at.strftime("%Y-%m-%d %H:%M") %> <%= t 'dic.posted_on' %>
       </span></p>
       <div class="panel panel-default">
         <div class="panel-body">

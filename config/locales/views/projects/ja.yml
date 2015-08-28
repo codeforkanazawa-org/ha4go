@@ -1,8 +1,6 @@
 ja:
   projects:
     show:
-      title:   さんが
-      post_on: に投稿
       edit:    編集する
       url:     URL
       github:  GitHub URL
