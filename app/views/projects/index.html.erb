@@ -1,9 +1,9 @@
 <p id="notice"><%= notice %></p>
 
 <div class="container">
-    <h2>課題一覧</h2>
+    <h2><%= t('dic.list_project') %></h2>
     <% if authorized? %>
-        <%= link_to '課題を投稿する', new_project_path, :class => "btn btn-default btn-primary" %>
+        <%= link_to t('dic.post_project_do'), new_project_path, class: "btn btn-default btn-primary" %>
     <% end %>
     <div class="panel-group">
         <% @projects.each do |project| %>

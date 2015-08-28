@@ -3,3 +3,7 @@ ja:
     common: 共通辞書はここで t dic.common で参照
     title:     さんが
     posted_on: に投稿
+    post_project:    課題を投稿
+    post_project_do: 課題を投稿する
+    list_project:    課題一覧
+    list_project_do: 課題一覧をみる
