@@ -1,3 +1,4 @@
+# coding: utf-8
 class ProjectsController < ApplicationController
   helper SnsHelper
   before_action :set_project, only: [:show, :edit, :update, :destroy]
@@ -28,7 +29,7 @@ class ProjectsController < ApplicationController
   def create
       @project = Project.new(project_params)
       @project.user_id = @my_user.id
-      @project.update_skill_ids_by_skill_names(params[:skill_names])
+      @project.update_skill_ids_by_skill_names(params[:skill_names]) unless params[:skill_names].nil?
 
       @project.send_mail_users.each do |user|
         ProjectMailer.tell_create(user, @project).deliver
