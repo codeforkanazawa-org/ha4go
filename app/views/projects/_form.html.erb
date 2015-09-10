@@ -2,7 +2,6 @@
   <% if @project.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
-
       <ul>
         <% @project.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -14,10 +13,10 @@
   <div class="project-detail__define">
     <div class="row">
       <div class="col-md-2">
-        タイトル
+        <%= t '.title' %>
       </div>
       <div class="col-md-10">
-        <%= f.text_field :subject, :class => 'form-control' %>
+        <%= f.text_field :subject, class: 'form-control' %>
       </div>
     </div>
     <div class="row">
@@ -25,7 +24,7 @@
         URL
       </div>
       <div class="col-md-10">
-        <%= f.url_field :user_url, :class => 'form-control' %>
+        <%= f.url_field :user_url, class: 'form-control' %>
       </div>
     </div>
     <div class="row">
@@ -33,22 +32,22 @@
         Github URL
       </div>
       <div class="col-md-10">
-        <%= f.url_field :development_url, :class => 'form-control' %>
+        <%= f.url_field :development_url, class: 'form-control' %>
       </div>
     </div>
     <div class="row">
       <div class="col-md-2">
-        詳細
+        <%= t '.detail' %>
       </div>
       <div class="col-md-10">
         <div class="panel panel-default">
-          <%= f.text_area :description, :class => 'form-control' %>
+          <%= f.text_area :description, class: 'form-control' %>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-md-2">
-        必要なスキル
+        <%= t '.skill'%>
       </div>
       <div class="col-md-10">
         <div class="quick-add">
@@ -80,7 +79,7 @@
     </div>
     <div class="row">
       <div class="col-md-2">
-        メンバー
+        <% t '.member' %>
       </div>
       <div class="col-md-10">
         <div class="form-inline mt10">
@@ -96,7 +95,7 @@
     <% if (params[:action] == 'edit') then %>
       <div class="row">
         <div class="col-md-2">
-          ステータス
+          <%= t '.status' %>
         </div>
         <div class="col-md-10">
           <div class="form-inline mt10">
@@ -108,6 +107,6 @@
   </div>
 
   <button type="submit" class="btn btn-default btn-primary" aria-label="Left Align">
-    作成する
+    <%= t '.create' %>
   </button>
 <% end %>
