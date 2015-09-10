@@ -12,7 +12,7 @@
   <% end %>
 
   <%= f.hidden_field :project_id, value: params[:project_id] %>
-  <%= f.text_area :description, class: 'form-control' %>
+  <%= f.text_area :description, class: 'form-control', rows: 5 %>
   <button type="submit" class="btn btn-default btn-primary mt20" aria-label="Left Align">
     <%= t '.do_comment' %>
   </button>
