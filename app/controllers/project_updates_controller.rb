@@ -15,9 +15,8 @@ class ProjectUpdatesController < ApplicationController
   def create
     @project_update = ProjectUpdate.new(project_update_params)
     @project_update.user_id = @my_user.id
-    @project_update.project.send_mail_users.each do |user|
-      ProjectMailer.tell_update(user, @project_update).deliver_now
-    end
+    mails = @project_update.project.send_mail_users.pluck(:email).compact
+    ProjectMailer.tell_update(mails, @project_update).deliver_now unless mails.count == 0
 
     if @project_update.save
       redirect_to project_path(id: params[:project_update][:project_id]), notice: 'フォローを投稿しました。'

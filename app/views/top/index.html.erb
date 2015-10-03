@@ -24,7 +24,7 @@
     </div>
   <% end %>
 
-  <h2><%= t '.recent_project'  %></h2>
+  <h2><%= t '.recent_project' %></h2>
   <% if authorized? %>
     <%= link_to t('dic.post_project_do'), new_project_path , class: "btn btn-default btn-primary"%>
   <% end %>
