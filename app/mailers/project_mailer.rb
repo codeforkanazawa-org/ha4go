@@ -2,14 +2,14 @@
 class ProjectMailer < ApplicationMailer
   default from: 'ha4go@codeforkanazawa.org'
 
-  def tell_create(user, project)
+  def tell_create(mails, project)
     @project = project
-    mail to: user.email, subject: 'プロジェクトが作成されました'
+    mail to: mails, subject: 'プロジェクトが作成されました'
   end
 
-  def tell_update(user, project_update)
+  def tell_update(mails, project_update)
     @project_update = project_update
-    mail to: user.email, subject: 'プロジェクトに更新がありました'
+    mail to: mails, subject: 'プロジェクトに更新がありました'
   end
 
   # test code
