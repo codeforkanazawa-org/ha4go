@@ -31,10 +31,9 @@ class ProjectsController < ApplicationController
     @project.user_id = @my_user.id
     @project.update_skill_ids_by_skill_names(params[:skill_names]) unless params[:skill_names].nil?
 
-    mails = @project.send_mail_users.pluck(:email).compact
-    ProjectMailer.tell_create(mails, @project).deliver_now unless mails.count == 0
-
     if @project.save
+      mails = @project.send_mail_users.pluck(:email).compact
+      ProjectMailer.tell_create(mails, @project).deliver_now unless mails.count == 0
       redirect_to @project, notice: '課題を作成しました。'
     else
       render :new

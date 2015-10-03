@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
   </head>
   <body>
-    <h1>プロジェクト「<%= @project_update.project.subject %> 」が更新されました。</h1>
-    詳細は <%= link_to( 'こちら', project_url(id: @project_update.project.id), only_path: false) %> を参照してください。
+    <h1><%= t('.update', project: @project_update.project.subject)%></h1>
+    <%= t('.link_head')%> <%= link_to( t('.here'), project_url(id: @project_update.project.id), only_path: false) %> <%= t('.link_foot')%>
   </body>
 </html>

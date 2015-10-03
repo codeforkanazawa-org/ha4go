@@ -1,0 +1,14 @@
+ja:
+  project_mailer:
+    tell_create:
+      create:      新しい課題「%{project}」ができました。
+      link_head:   詳細は
+      here:        こちら
+      link_foot:   を参照してください。
+    tell_update:
+      here:        こちら
+      update:      課題「%{project}」が更新されました。
+      link_head:   詳細は
+      link_foot:   を参照してください。
+    sendmail_confirm:
+      here:    こちらあ
