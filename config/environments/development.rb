@@ -26,6 +26,10 @@ Rails.application.configure do
     enable_starttls_auto:  true
   }
 
+  config.action_mailer.default_url_options = {
+    host: ENV['APP_HOST'] || 'localhost:3000'
+  }
+
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 

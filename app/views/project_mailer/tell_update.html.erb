@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="ja">
-    <head>
-        <meta charset="UTF-8">
-    </head>
-    <body>
-        <h1>プロジェクト「<%= @project_update.project.subject %> 」が更新されました。</h1>
-    </body>
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <h1>プロジェクト「<%= @project_update.project.subject %> 」が更新されました。</h1>
+    詳細は <%= link_to( 'こちら', project_url(id: @project_update.project.id), only_path: false) %> を参照してください。
+  </body>
 </html>
