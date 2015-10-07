@@ -1,8 +1,16 @@
 ja:
   dic:
     common: 共通辞書はここで t dic.common で参照
-    title:     さんが
-    posted_on: に投稿
+    title:      さんが
+    posted_on:  に投稿
+    back:       戻る
+    name:       名前
+    add:        追加
+    email:      メールアドレス
+    update:     更新する
+    able_to:    できること
+    self_intro: 自己紹介
+    joining:    参加中
     post_project:    課題を投稿
     post_project_do: 課題を投稿する
     list_project:    課題一覧

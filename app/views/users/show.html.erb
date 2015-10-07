@@ -1,35 +1,42 @@
 <div class="container">
-    <% if notice %>
-        <div class="alert alert-success mt20" role="alert"><%= notice %></div>
-    <% end %>
-    <h1><%= @user.name %></h1>
-    <% if authorized? && @my_user.id == @user.id %>
-        <%= link_to '変更する', edit_user_path(@user), :class => "btn btn-default btn-primary mb20" %>
-    <% end %>
+  <% if notice %>
+    <div class="alert alert-success mt20" role="alert"><%= notice %></div>
+  <% end %>
+  <h1><%= @user.name %></h1>
+  <% if authorized? && @my_user.id == @user.id %>
+    <%= link_to t('.edit'), edit_user_path(@user), :class => "btn btn-default btn-primary mb20" %>
+  <% end %>
 
-    <div class="row">
-        <div class="col-sm-3">
-            <%= image_tag(@user.image, :class => 'img-rouded img-responsive') %>
-        </div>
-        <div class="col-sm-9">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <%= @user.description %>
-                </div>
-            </div>
-        </div>
+  <div class="row">
+    <div class="col-sm-3">
+      <%= image_tag(@user.image, :class => 'img-rounded img-responsive') %>
     </div>
+    <div class="col-sm-9">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <%= @user.description %>
+        </div>
+      </div>
+    </div>
+  </div>
 
+  <div class="row user-detail__list">
+    <div class="col-sm-3"><%= t('dic.able_to')%></div>
+    <div class="col-sm-9">
+      <%= @user.skills.map{|skill| skill.name}.join(', ') %>
+    </div>
+  </div>
+
+  <div class="row user-detail__list">
+    <div class="col-sm-3"><%= t('dic.joining')%></div>
+    <div class="col-sm-9"><%= @user.projects.map{|project| project.subject}.join(', ') %></div>
+  </div>
+
+  <% if authorized? && @my_user.id == @user.id %>
     <div class="row user-detail__list">
-        <div class="col-sm-3">できること</div>
-        <div class="col-sm-9">
-            <%= @user.skills.map{|skill| skill.name}.join(', ') %>
-        </div>
+      <div class="col-sm-3"><%= t('dic.email')%></div>
+      <div class="col-sm-9"><%= @user.email %></div>
     </div>
+  <% end %>
 
-    <div class="row user-detail__list">
-        <div class="col-sm-3">参加中のプロジェクト</div>
-        <div class="col-sm-9"><%= @user.projects.map{|project| project.subject}.join(', ') %></div>
-    </div>
 </div>
-
