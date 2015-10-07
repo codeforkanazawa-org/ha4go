@@ -13,7 +13,7 @@
   <div class="project-detail__define">
     <div class="row">
       <div class="col-md-2">
-        <%= t '.title' %>
+        <%= t 'dic.title' %>
       </div>
       <div class="col-md-10">
         <%= f.text_field :subject, class: 'form-control' %>
@@ -37,7 +37,7 @@
     </div>
     <div class="row">
       <div class="col-md-2">
-        <%= t '.detail' %>
+        <%= t 'dic.detail' %>
       </div>
       <div class="col-md-10">
         <div class="panel panel-default">
@@ -72,30 +72,15 @@
                 <option value="<%= skill.name %>"></option>
               <% end %>
             </datalist>
-            <button type="button" class="btn btn-default btn-sm quick-add__btn">追加</button>
+            <button type="button" class="btn btn-default btn-sm quick-add__btn"><%= t('dic.add')%></button>
           </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-2">
-        <% t '.member' %>
-      </div>
-      <div class="col-md-10">
-        <div class="form-inline mt10">
-          <select name="user_ids" class="form-control">
-            <% @users.each do |user| %>
-              <option value="<%= user.id %>"><%= user.name %></option>
-            <% end %>
-          </select>
-          <button type="button" class="btn btn-default btn-sm quick-add__btn">追加</button>
         </div>
       </div>
     </div>
     <% if (params[:action] == 'edit') then %>
       <div class="row">
         <div class="col-md-2">
-          <%= t '.status' %>
+          <%= t 'dic.status' %>
         </div>
         <div class="col-md-10">
           <div class="form-inline mt10">
@@ -107,6 +92,6 @@
   </div>
 
   <button type="submit" class="btn btn-default btn-primary" aria-label="Left Align">
-    <%= t '.create' %>
+    <%= t 'dic.do_create' %>
   </button>
 <% end %>
