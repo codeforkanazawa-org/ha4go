@@ -1,10 +1,9 @@
 <div class="container">
-  <h1>プロフィールを編集する</h1>
-
+  <h1><%= t('.edit')%></h1>
   <%= render 'form' %>
-
   <%= link_to @user do %>
     <button type="submit" class="btn btn-default mt20" aria-label="Left Align">
-      戻る
+      <%= t('dic.back')%>
     </button>
   <% end %>
+</div>
