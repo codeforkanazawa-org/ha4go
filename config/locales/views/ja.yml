@@ -11,6 +11,11 @@ ja:
     able_to:    できること
     self_intro: 自己紹介
     joining:    参加中
+    member:     メンバー
+    status:     ステータス
+    detail:     詳細
+    title:      タイトル
+    do_create:  作成する
     post_project:    課題を投稿
     post_project_do: 課題を投稿する
     list_project:    課題一覧

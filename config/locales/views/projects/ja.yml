@@ -12,11 +12,5 @@ ja:
       write_comment: フォローを書く
     edit:
       edit:    課題を編集する
-      back:    戻る
     form:
-      title:   タイトル
-      detail:  詳細
       skill:   必要なスキル
-      member:  メンバー
-      status:  ステータス
-      create:  作成する
