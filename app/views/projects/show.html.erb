@@ -41,6 +41,7 @@
         <%= t '.creator' %>
       </div>
       <div class="col-md-10">
+        <%= image_tag(@project.user.image, :class => 'img-rounded img-responsive') %>
         <%= name_and_link(@project.user) %>
       </div>
     </div>
@@ -50,6 +51,7 @@
       </div>
       <div class="col-md-10">
         <% @project.users.each do |user| %>
+          <%= image_tag(user.image, :class => 'img-rounded img-responsive') %>
           <%= name_and_link(user) %>
         <% end %>
       </div>
@@ -90,7 +92,7 @@
     <% end %>
     <% @project.project_updates.reverse.each do |update| %>
       <p><span class="small">
-        <%= name_and_link(update.user) %> <%= t 'dic.title'%> <%= update.created_at.strftime("%Y-%m-%d %H:%M") %> <%= t 'dic.posted_on' %>
+        <%= image_tag(update.user.image, :class => 'img-rounded img-responsive') %> <%= name_and_link(update.user) %> <%= t 'dic.title'%> <%= update.created_at.strftime("%Y-%m-%d %H:%M") %> <%= t 'dic.posted_on' %>
       </span></p>
       <div class="panel panel-default">
         <div class="panel-body">
