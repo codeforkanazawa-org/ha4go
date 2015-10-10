@@ -22,7 +22,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1/edit
   def edit
     @stages = Stage.all
-    @users   = User.all
+    @users  = User.all
   end
 
   # POST /projects
@@ -60,10 +60,17 @@ class ProjectsController < ApplicationController
   end
 
   private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_project
-    @project = Project.find(params[:id])
-    @skills = Skill.all
+    @project  = Project.find(params[:id])
+    @skills   = Skill.all
+    @joinners = Project.find(params[:id]).users
+    if session[:user_id]
+      @joined   = !Project.find(params[:id]).users.find_by(id: session[:user_id]).nil?
+    else
+      @joined = false
+    end
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
