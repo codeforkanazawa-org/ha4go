@@ -16,6 +16,7 @@ ja:
     detail:       詳細
     title:        タイトル
     do_create:    作成する
+    do_edit:      編集する
     login:        ログイン
     logout:       ログアウト
     mypage:       マイページ
