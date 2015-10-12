@@ -1,5 +1,10 @@
 ja:
   projects:
+    banner:
+      joined:    課題に参加しました。
+      updated:   課題の内容を変更しました。
+      created:   課題を作成しました。
+      cannot:    失敗しました。
     show:
       edit:    編集する
       url:     URL

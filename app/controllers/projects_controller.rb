@@ -1,7 +1,7 @@
 # coding: utf-8
 class ProjectsController < ApplicationController
   helper SnsHelper
-  before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :set_project, only: [:show, :edit, :update, :destroy, :join]
 
   # GET /projects
   def index
@@ -34,7 +34,7 @@ class ProjectsController < ApplicationController
     if @project.save
       mails = @project.send_mail_users.pluck(:email).compact
       ProjectMailer.tell_create(mails, @project).deliver_now unless mails.count == 0
-      redirect_to @project, notice: '課題を作成しました。'
+      redirect_to @project, notice: I18n.t('projects.banner.created')
     else
       render :new
     end
@@ -44,7 +44,7 @@ class ProjectsController < ApplicationController
   def update
     if @project.update(project_params)
       @project.update_skill_ids_by_skill_names(params[:skill_names])
-      redirect_to @project, notice: '課題の内容を変更しました。'
+      redirect_to @project, notice: I18n.t('projects.banner.updated')
     else
       render :edit
     end
@@ -53,6 +53,16 @@ class ProjectsController < ApplicationController
   # GET /projects/add
   # メンバー追加
   def add
+  end
+
+  # Join Project
+  def join
+    if @my_user.nil?
+      redirect_to @project, notice: I18n.t('projects.banner.cannot')
+    else
+      @project.users << @my_user
+      redirect_to @project, notice: I18n.t('projects.banner.joined')
+    end
   end
 
   # POST /projects/add_member

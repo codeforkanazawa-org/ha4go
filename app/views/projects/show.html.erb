@@ -20,7 +20,7 @@
 
   <!-- edit -->
   <% if authorized? && @project.editable_user_id?(@my_user.id) %>
-    <%= link_to t('.edit'),edit_project_path, class: "btn btn-default btn-primary" %>
+    <%= link_to t('.edit'), edit_project_path, class: "btn btn-default btn-primary" %>
   <% end %>
   <div class="project-detail__define mt20">
     <% if @project.user_url.present? %>
@@ -64,11 +64,16 @@
       </div>
       <div class="col-md-10">
         <% @project.users.each do |user| %>
-          <%= image_tag(user.image, :class => 'img-rounded img-responsive') %>
+          <%= image_tag(user.image, :class => 'img-rounded') %>
           <%= name_and_link(user) %>
         <% end %>
         <% unless @joined %>
-          <%= t('dic.want_to_join')=%>
+          <div>
+            <%= link_to( t('dic.want_to_join'), {controller: :projects, action: :join, id: @project.id}) %></li>
+            <% unless authorized? %>
+              <%= link_to( t('dic.need_to_login'), '/auth/facebook', id: 'sign_in') %></li>
+            <% end %>
+          </div>
         <% end %>
       </div>
     </div>

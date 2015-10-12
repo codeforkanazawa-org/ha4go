@@ -1,6 +1,6 @@
 ja:
   dic:
-    common: 共通辞書はここで t dic.common で参照
+    common: 共通辞書はここで t('dic.common') で参照
     title:        さんが
     posted_on:    に投稿
     back:         戻る
@@ -16,7 +16,11 @@ ja:
     detail:       詳細
     title:        タイトル
     do_create:    作成する
+    login:        ログイン
+    logout:       ログアウト
+    mypage:       マイページ
     want_to_join: 参加を希望する
+    need_to_login: (ログインする必要があります)
     post_project:    課題を投稿
     post_project_do: 課題を投稿する
     list_project:    課題一覧
