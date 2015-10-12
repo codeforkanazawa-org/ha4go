@@ -1,21 +1,26 @@
 ja:
   dic:
-    common: 共通辞書はここで t dic.common で参照
-    title:      さんが
-    posted_on:  に投稿
-    back:       戻る
-    name:       名前
-    add:        追加
-    email:      メールアドレス
-    update:     更新する
-    able_to:    できること
-    self_intro: 自己紹介
-    joining:    参加中
-    member:     メンバー
-    status:     ステータス
-    detail:     詳細
-    title:      タイトル
-    do_create:  作成する
+    common: 共通辞書はここで t('dic.common') で参照
+    title:        さんが
+    posted_on:    に投稿
+    back:         戻る
+    name:         名前
+    add:          追加
+    email:        メールアドレス
+    update:       更新する
+    able_to:      できること
+    self_intro:   自己紹介
+    joining:      参加中
+    member:       メンバー
+    status:       ステータス
+    detail:       詳細
+    title:        タイトル
+    do_create:    作成する
+    login:        ログイン
+    logout:       ログアウト
+    mypage:       マイページ
+    want_to_join: 参加を希望する
+    need_to_login: (ログインする必要があります)
     post_project:    課題を投稿
     post_project_do: 課題を投稿する
     list_project:    課題一覧

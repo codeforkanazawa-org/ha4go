@@ -23,12 +23,12 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <% if authorized? %>
-                    <li><%= link_to('ログアウト', signout_path, id: 'sign_out') %></li>
-                    <li><%= link_to('マイページ', user_path(id: @my_user.id)) %></li>
+                    <li><%= link_to( t('dic.logout'), signout_path, id: 'sign_out') %></li>
+                    <li><%= link_to( t('dic.mypage'), user_path(id: @my_user.id)) %></li>
                 <% else %>
-                    <li><%= link_to('ログイン', '/auth/facebook', id: 'sign_in') %></li>
+                    <li><%= link_to( t('dic.login'), '/auth/facebook', id: 'sign_in') %></li>
                 <% end %>
-                <li><%= link_to('メンバー', users_path) %></li>
+                <li><%= link_to( t('dic.member'), users_path) %></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>

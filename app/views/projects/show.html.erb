@@ -6,13 +6,21 @@
   <% if notice %>
     <div class="alert alert-success mt20" role="alert"><%= notice %></div>
   <% end %>
+
+  <!-- subject  -->
   <h1 class="mb20"><%= @project.subject %></h1>
+
+  <!-- share buttons -->
   <p><%= facebook_share_btn(request.url) %></p>
+
+
   <p><span class="small">
     <%= name_and_link(@project.user) %> <%= t 'dic.title' %> <%= @project.created_at.strftime("%Y-%m-%d %H:%M") %> <%= t 'dic.posted_on' %>
   </span></p>
+
+  <!-- edit -->
   <% if authorized? && @project.editable_user_id?(@my_user.id) %>
-    <%= link_to t('.edit'),edit_project_path, class: "btn btn-default btn-primary" %>
+    <%= link_to t('.edit'), edit_project_path, class: "btn btn-default btn-primary" %>
   <% end %>
   <div class="project-detail__define mt20">
     <% if @project.user_url.present? %>
@@ -26,6 +34,7 @@
       </div>
     <% end %>
 
+    <!-- project url -->
     <% if @project.user_url.present? %>
       <div class="row">
         <div class="col-md-2">
@@ -36,6 +45,8 @@
         </div>
       </div>
     <% end %>
+
+    <!-- creator -->
     <div class="row">
       <div class="col-md-2">
         <%= t '.creator' %>
@@ -45,17 +56,29 @@
         <%= name_and_link(@project.user) %>
       </div>
     </div>
+
+    <!-- member -->
     <div class="row">
       <div class="col-md-2">
         <%= t '.member' %>
       </div>
       <div class="col-md-10">
         <% @project.users.each do |user| %>
-          <%= image_tag(user.image, :class => 'img-rounded img-responsive') %>
+          <%= image_tag(user.image, :class => 'img-rounded') %>
           <%= name_and_link(user) %>
+        <% end %>
+        <% unless @joined %>
+          <div>
+            <%= link_to( t('dic.want_to_join'), {controller: :projects, action: :join, id: @project.id}) %></li>
+            <% unless authorized? %>
+              <%= link_to( t('dic.need_to_login'), '/auth/facebook', id: 'sign_in') %></li>
+            <% end %>
+          </div>
         <% end %>
       </div>
     </div>
+
+    <!-- status -->
     <div class="row">
       <div class="col-md-2">
         <%= t '.stage' %>
@@ -64,6 +87,8 @@
         <%= @project.stage.name %>
       </div>
     </div>
+
+    <!-- need skills -->
     <div class="row">
       <div class="col-md-2">
         <%= t '.skill' %>
@@ -72,6 +97,8 @@
         <%= @project.skills.map{|skill|skill.name}.join(', ') %>
       </div>
     </div>
+
+    <!-- detail -->
     <div class="row">
       <div class="col-md-2">
         <%= t '.detail' %>
@@ -86,6 +113,7 @@
     </div>
   </div>
 
+  <!-- comments -->
   <div class="project--follow-list">
     <% if authorized? %>
       <%= link_to t('.write_comment'), new_project_update_path(project_id: @project.id), class: "btn btn-default btn-primary btn-sm mb20" %>
