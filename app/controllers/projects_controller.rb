@@ -32,8 +32,9 @@ class ProjectsController < ApplicationController
     @project.update_skill_ids_by_skill_names(params[:skill_names]) unless params[:skill_names].nil?
 
     if @project.save
-      mails = @project.send_mail_users.pluck(:email).compact
-      ProjectMailer.tell_create(mails, @project).deliver_now unless mails.count == 0
+      @project.send_mail_users.pluck(:email).compact.each do |m|
+        ProjectMailer.tell_create(m, @project).deliver_now
+      end
       redirect_to @project, notice: I18n.t('projects.banner.created')
     else
       render :new
