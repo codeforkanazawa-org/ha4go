@@ -33,7 +33,7 @@ class ProjectsController < ApplicationController
 
     if @project.save
       @project.send_mail_users.pluck(:email).compact.each do |m|
-        ProjectMailer.tell_create(m, @project).deliver_now
+        ProjectMailer.tell_create(m, @project).deliver_now unless m == ''
       end
       redirect_to @project, notice: I18n.t('projects.banner.created')
     else
