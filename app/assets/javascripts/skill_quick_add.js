@@ -93,8 +93,8 @@ var remove_item = function() {
 
 var add_item = function() {
   var template = $(this).parents('.quick-add').find('.quick-add__item--template').last().clone();
-  var text = $('.quick-add__input').val();
-  if (is_duplicate(text)) {
+  var text = $('.quick-add__input').val().trim();
+  if (text == '' || is_duplicate(text)) {
     return false;
   }
   template.show();
