@@ -15,8 +15,8 @@ class ProjectUpdatesController < ApplicationController
   def create
     @project_update = ProjectUpdate.new(project_update_params)
     @project_update.user_id = @my_user.id
-    @project_update.project.send_mail_users.pluck(:email).compact.each do | m |
-      ProjectMailer.tell_update(m, @project_update).deliver_now
+    @project_update.project.send_mail_users.pluck(:email).compact.each do |m|
+      ProjectMailer.tell_update(m, @project_update).deliver_now unless m == ''
     end
 
     if @project_update.save
