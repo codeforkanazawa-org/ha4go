@@ -1,15 +1,23 @@
 <div class="column__top">
   <div class="jumbotron">
     <div class="container">
-      <div class="caption col-md-8 col-sm-12">
-        <img src="http://www.codeforkanazawa.org/images/logo.png" alt="Code for Kanazawa">
-        <div class="caption__text">
-          <p><%= t '.overview' %></p>
-          <% unless authorized? %>
-            <p><%= link_to('Facebookで登録', '/auth/facebook', id: 'sign_in', class: 'btn btn-primary btn-lg') %></p>
-          <% else %>
-            <p><%= link_to('使い方を見る', help_path, class: 'btn btn-primary btn-lg') %></p>
-          <% end %>
+      <div class="row">
+        <div class="caption col-md-12 col-sm-12 col-xs-12">
+          <div class="row">
+            <div class="col-md-2 col-sm-2 col-xs-2">
+              <img src="http://www.codeforkanazawa.org/images/logo.png" alt="Code for Kanazawa" class="img-responsive">
+            </div>
+            <div class="col-md-10 col-sm-10 col-xs-10">
+              <div class="Caption__text">
+                <p><%= t '.overview' %></p>
+                <% unless authorized? %>
+                  <p><%= link_to('Facebookで登録', '/auth/facebook', id: 'sign_in', class: 'btn btn-primary btn-lg') %></p>
+                <% else %>
+                  <p><%= link_to('使い方を見る', help_path, class: 'btn btn-primary btn-lg') %></p>
+                <% end %>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -37,13 +37,13 @@
           <div class="quick-add__list">
             <button type="button" class="btn btn-default btn-xs quick-add__item--template" style="display:none">
               <span class="quick-add__item-name"></span>
-              <span class="glyphicon glyphicon-align-right"></span>
+              <span class="glyphicon glyphicon-remove"></span>
               <input type="hidden" name="" value="" class="quick-add__hidden">
             </button>
             <% @user.skills.each do |skill| %>
               <button type="button" class="btn btn-default btn-xs quick-add__item">
                 <span class="quick-add__item-name"><%= skill.name %></span>
-                <span class="glyphicon glyphicon-align-right"></span>
+                <span class="glyphicon glyphicon-remove"></span>
                 <input type="hidden" name="skill_names[]" value="<%= skill.name %>" class="quick-add__hidden">
               </button>
             <% end %>
