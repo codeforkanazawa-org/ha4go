@@ -1,0 +1,23 @@
+FROM ha4go-base
+
+RUN mkdir /myapp
+WORKDIR /myapp
+
+ADD Gemfile Gemfile
+ADD Gemfile.lock Gemfile.lock
+RUN bundle config without test development doc
+RUN bundle install
+ADD . /myapp/
+
+ENV RAILS_ENV production
+# RUN bundle exec rake db:create
+# RUN bundle exec rake db:migrate
+# RUN bundle exec rake assets:precompile
+
+# Add configuration files in repository to filesystem
+# ADD .env /myapp/.env
+# ADD start-server.sh /usr/bin/start-server
+# RUN chmod +x /usr/bin/start-server
+
+EXPOSE 3000
+CMD ["bundle exec rails s"]

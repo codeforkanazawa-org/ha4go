@@ -1,0 +1,69 @@
+SUDO = ENV['SUDO'] || ''
+
+DOCKER   = [SUDO, 'docker'].join(' ')
+APP_NAME = 'ha4go'.freeze
+
+ROLE_FRONT = 'front'
+ROLE_DB    = 'db'
+ROLE_BASE  = 'base'
+
+NAMES = {
+  ROLE_BASE  => "#{APP_NAME}-#{ROLE_BASE}",
+  ROLE_FRONT => "#{APP_NAME}-#{ROLE_FRONT}",
+  ROLE_DB    => "#{APP_NAME}-#{ROLE_DB}"
+}.freeze
+TAGS = {
+  ROLE_BASE  => '1.0',
+  ROLE_FRONT => '1.0',
+  ROLE_DB    => '1.0'
+}.freeze
+FILES = {
+  ROLE_BASE  => "Dockerfile.#{ROLE_BASE}",
+  ROLE_FRONT => "Dockerfile.#{ROLE_FRONT}",
+  ROLE_DB    => "Dockerfile.#{ROLE_DB}"
+}
+RELEASE_TAG = "release".freeze
+
+DOCKER_OPTIONS = {
+  'PRODUCT' => {
+    ROLE_BASE  => '',
+    ROLE_FRONT => '-d -p 3000:3000',
+    ROLE_DB    => "-d -v `pwd`/mysql:/var/lib/mysql -p 3306:3306"
+  },
+  'DEBUG'   => {
+    ROLE_FRONT => '-d -p 3000:3000',
+    ROLE_DB    => "-d -v `pwd`/mysql:/var/lib/mysql -p 3306:3306"
+  }
+}
+
+class Cmd
+  def self.gen(values)
+    values.join(' ')
+  end
+end
+
+desc "build[base/db/front]"
+task :build, [:role] do |_t, a|
+  r = a[:role]
+  sh Cmd.gen(
+       [
+         DOCKER,
+         'build',
+         "-t #{NAMES[r]}:#{TAGS[r]}",
+         "-f #{FILES[r]}",
+         './'
+       ]
+     )
+end
+
+desc 'run[<role>, <base>,<`docker-machine ip default`>]'
+task :run, [:role, :local, :docker_ip] do |_t, a|
+  r = a[:role]
+  e = a[:local] || 'DEBUG'
+  sh Cmd.gen([
+               DOCKER,
+               'run',
+               "#{DOCKER_OPTIONS[e][r]}",
+               "#{NAMES[r]}:#{TAGS[r]}"
+             ])
+end

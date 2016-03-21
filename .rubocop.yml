@@ -27,8 +27,8 @@ Style/SpecialGlobalVars:
 Style/StringLiterals:
   Enabled: false
 
-Style/TrailingComma:
-  Enabled: false
+#Style/TrailingComma:
+#  Enabled: false
 
 Style/UnneededPercentQ:
   Enabled: false
