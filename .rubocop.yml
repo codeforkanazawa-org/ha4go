@@ -1,0 +1,44 @@
+inherit_from: .rubocop_todo.yml
+
+Style/AsciiComments:
+  Enabled: false
+
+Style/ClassLength:
+  Max: 200
+
+Style/IfUnlessModifier:
+  Enabled: false
+
+Style/MethodLength:
+  Max: 50
+
+Style/PercentLiteralDelimiters:
+  Enabled: false
+
+Style/RedundantReturn:
+  Enabled: false
+
+Style/RegexpLiteral:
+  MaxSlashes: 0
+
+Style/SpecialGlobalVars:
+  Enabled: false
+
+Style/StringLiterals:
+  Enabled: false
+
+#Style/TrailingComma:
+#  Enabled: false
+
+Style/UnneededPercentQ:
+  Enabled: false
+
+Metrics/AbcSize:
+  Max: 20
+
+SignalException:
+  EnforcedStyle: only_raise
+
+# "Line is too long"を無効
+Metrics/LineLength:
+  Enabled: false

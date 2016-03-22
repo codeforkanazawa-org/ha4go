@@ -1,93 +1,132 @@
+<% content_for :ogp do %>
+  <%= render 'shared/ogp_project', project: @project %>
+<% end %>
+
 <div class="container project-detail">
-    <% if notice %>
-        <div class="alert alert-success mt20" role="alert"><%= notice %></div>
+  <% if notice %>
+    <div class="alert alert-success mt20" role="alert"><%= notice %></div>
+  <% end %>
+
+  <!-- subject  -->
+  <h1 class="mb20"><%= @project.subject %></h1>
+
+  <!-- share buttons -->
+  <p><%= facebook_share_btn(request.url) %></p>
+
+
+  <p><span class="small">
+    <%= name_and_link(@project.user) %> <%= t 'dic.title' %> <%= @project.created_at.strftime("%Y-%m-%d %H:%M") %> <%= t 'dic.posted_on' %>
+  </span></p>
+
+  <!-- edit -->
+  <% if authorized? && @project.editable_user_id?(@my_user.id) %>
+    <%= link_to t('.edit'), edit_project_path, class: "btn btn-default btn-primary" %>
+  <% end %>
+  <div class="project-detail__define mt20">
+    <% if @project.user_url.present? %>
+      <div class="row">
+        <div class="col-md-2">
+          <%= t '.url' %>
+        </div>
+        <div class="col-md-10">
+          <%= link_to nil, @project.user_url, target: 'blank' %>
+        </div>
+      </div>
     <% end %>
-    <h1 class="mb20"><%= @project.subject %></h1>
-    <p><span class="small"><%= name_and_link(@project.user) %>さんが <%= @project.created_at.strftime("%Y-%m-%d %H:%M") %>に投稿</span></p>
-    <% if authorized? && @project.editable_user_id?(@my_user.id) %>
-        <%= link_to '編集する', edit_project_path, :class => "btn btn-default btn-primary" %>
+
+    <!-- project url -->
+    <% if @project.user_url.present? %>
+      <div class="row">
+        <div class="col-md-2">
+          <%= t '.github' %>
+        </div>
+        <div class="col-md-10">
+          <%= link_to nil, @project.development_url, target: 'blank' %>
+        </div>
+      </div>
     <% end %>
-    <div class="project-detail__define mt20">
-        <% if @project.user_url.present? %>
-            <div class="row">
-                <div class="col-md-2">
-                    URL
-                </div>
-                <div class="col-md-10">
-                    <%= link_to nil, @project.user_url, :target => 'blank' %>
-                </div>
-            </div>
-        <% end %>
-        <% if @project.user_url.present? %>
-            <div class="row">
-                <div class="col-md-2">
-                    Github URL
-                </div>
-                <div class="col-md-10">
-                    <%= link_to nil, @project.development_url, :target => 'blank' %>
-                </div>
-            </div>
-        <% end %>
-        <div class="row">
-            <div class="col-md-2">
-                立てた人
-            </div>
-            <div class="col-md-10">
-                <%= name_and_link(@project.user) %>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2">
-                メンバー
-            </div>
-            <div class="col-md-10">
-                <% @project.users.each do |user| %>
-                    <%= name_and_link(user) %>
-                <% end %>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2">
-                ステージ
-            </div>
-            <div class="col-md-10">
-                <%= @project.stage.name %>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2">
-                必要なスキル
-            </div>
-            <div class="col-md-10">
-                <%= @project.skills.map{|skill|skill.name}.join(', ') %>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2">
-                詳細
-            </div>
-            <div class="col-md-10">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <%= @project.description %>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+    <!-- creator -->
+    <div class="row">
+      <div class="col-md-2">
+        <%= t '.creator' %>
+      </div>
+      <div class="col-md-10">
+        <%= image_tag(@project.user.image, :class => 'img-rounded img-responsive') %>
+        <%= name_and_link(@project.user) %>
+      </div>
     </div>
 
-    <div class="project--follow-list">
-        
-        <% if authorized? %>
-            <%= link_to 'フォローを書く', new_project_update_path(:project_id => @project.id), :class => "btn btn-default btn-primary btn-sm mb20" %>
+    <!-- member -->
+    <div class="row">
+      <div class="col-md-2">
+        <%= t '.member' %>
+      </div>
+      <div class="col-md-10">
+        <% @project.users.each do |user| %>
+          <%= image_tag(user.image, :class => 'img-rounded') %>
+          <%= name_and_link(user) %>
         <% end %>
-        <% @project.project_updates.reverse.each do |update| %>
-            <p><span class="small"><%= name_and_link(@project.user) %>さんが <%= update.created_at.strftime("%Y-%m-%d %H:%M") %>に投稿</span></p>
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <%= update.description %>
-                </div>
-            </div>
+        <% unless @joined %>
+          <div>
+            <%= link_to( t('dic.want_to_join'), {controller: :projects, action: :join, id: @project.id}) %></li>
+            <% unless authorized? %>
+              <%= link_to( t('dic.need_to_login'), '/auth/facebook', id: 'sign_in') %></li>
+            <% end %>
+          </div>
         <% end %>
+      </div>
     </div>
+
+    <!-- status -->
+    <div class="row">
+      <div class="col-md-2">
+        <%= t '.stage' %>
+      </div>
+      <div class="col-md-10">
+        <%= @project.stage.name %>
+      </div>
+    </div>
+
+    <!-- need skills -->
+    <div class="row">
+      <div class="col-md-2">
+        <%= t '.skill' %>
+      </div>
+      <div class="col-md-10">
+        <%= @project.skills.map{|skill|skill.name}.join(', ') %>
+      </div>
+    </div>
+
+    <!-- detail -->
+    <div class="row">
+      <div class="col-md-2">
+        <%= t '.detail' %>
+      </div>
+      <div class="col-md-10">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <%=br(@project.description)%>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- comments -->
+  <div class="project--follow-list">
+    <% if authorized? %>
+      <%= link_to t('.write_comment'), new_project_update_path(project_id: @project.id), class: "btn btn-default btn-primary btn-sm mb20" %>
+    <% end %>
+    <% @project.project_updates.reverse.each do |update| %>
+      <p><span class="small">
+        <%= image_tag(update.user.image, :class => 'img-rounded img-responsive') %> <%= name_and_link(update.user) %> <%= t 'dic.title'%> <%= update.created_at.strftime("%Y-%m-%d %H:%M") %> <%= t 'dic.posted_on' %>
+      </span></p>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <%=br(update.description)%>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>

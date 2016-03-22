@@ -16,4 +16,6 @@
 !/log/.keep
 /tmp
 /vendor/bundle
-/.env
+/.env*
+
+/mysql/*

@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="ja">
-    <head>
-        <meta charset="UTF-8">
-    </head>
-    <body>
-        <h1>新しい課題「<%= @project.subject %> 」ができました。</h1>
-    </body>
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <h1><%= t('.create', project: @project.subject)%></h1>
+    <%= t('.link_head')%> <%= link_to( t('.here'), project_url(id: @project.id), only_path: false) %> <%= t('.link_foot')%>
+  </body>
 </html>
