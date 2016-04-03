@@ -1,4 +1,4 @@
-FROM ha4go-base
+FROM ha4go-base:1.0
 
 RUN mkdir /myapp
 WORKDIR /myapp
@@ -9,15 +9,18 @@ RUN bundle config without test development doc
 RUN bundle install
 ADD . /myapp/
 
-ENV RAILS_ENV production
-# RUN bundle exec rake db:create
-# RUN bundle exec rake db:migrate
-# RUN bundle exec rake assets:precompile
+# ADD .env /myapp/.env
+ENV RAILS_ENV  production
+ENV MYSQL_HOST 192.168.3.1
+RUN bundle exec rake db:create
+RUN bundle exec rake db:migrate
+RUN bundle exec rake db:seed
+RUN bundle exec rake assets:precompile
 
 # Add configuration files in repository to filesystem
-# ADD .env /myapp/.env
 # ADD start-server.sh /usr/bin/start-server
 # RUN chmod +x /usr/bin/start-server
 
 EXPOSE 3000
-CMD ["bundle exec rails s"]
+# CMD ["bundle exec rails s"]
+CMD bash -l -c 'bundle exec rails s --bind=0.0.0.0'

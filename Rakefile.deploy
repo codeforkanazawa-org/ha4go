@@ -27,11 +27,11 @@ RELEASE_TAG = "release".freeze
 DOCKER_OPTIONS = {
   'PRODUCT' => {
     ROLE_BASE  => '',
-    ROLE_FRONT => '-d -p 3000:3000',
+    ROLE_FRONT => '-d -p 3000:3000 --env-file=.env',
     ROLE_DB    => "-d -v `pwd`/mysql:/var/lib/mysql -p 3306:3306"
   },
   'DEBUG'   => {
-    ROLE_FRONT => '-d -p 3000:3000',
+    ROLE_FRONT => '-d -p 3000:3000 --env-file=.env',
     ROLE_DB    => "-d -v `pwd`/mysql:/var/lib/mysql -p 3306:3306"
   }
 }
