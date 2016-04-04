@@ -54,3 +54,5 @@ gem 'rails_12factor', group: :production
 #gem 'compass', :git => 'git://github.com/chriseppstein/compass.git'
 gem 'compass'
 gem 'compass-rails', :git => 'git://github.com/Compass/compass-rails.git'
+
+gem 'google-analytics-rails'

@@ -42,5 +42,6 @@
 <%= javascript_include_tag :jquery, :bootstrap, :jquery_ujs %>
 <%= render 'shared/facebook' %>
 <%= render 'shared/twitter' %>
+<%= analytics_init if Rails.env.production? %>
 </body>
 </html>
