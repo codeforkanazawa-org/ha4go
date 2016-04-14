@@ -14,6 +14,8 @@ bundle install --path vendor/bundle
 
 # dbの準備
 
+**注意このMySQLは公式Dockerのrootパスワードそのままなど安全ではないですので運用には充分気をつけて下さい**
+
 ``` shell
 rake -f Rakefile.deploy build[db]     # image build
 rake -f Rakefile.deploy run[db,DEBUG] # start mysql
