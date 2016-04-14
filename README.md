@@ -1,7 +1,43 @@
 # ha4go
 ## ローカル環境へのインストール手順
 
-###  Facebookにテスト用アプリとして登録(OAuth認証のため登録必須)
+# 依存の確認
+git, docker, rubyなど
+
+# ソースコードの取得と準備
+
+``` shell
+git clone https://github.com/codeforkanazawa-org/ha4go.git
+cd ha4go
+bundle install --path vendor/bundle
+```
+
+# dbの準備
+
+``` shell
+rake -f Rakefile.deploy build[db]     # image build
+rake -f Rakefile.deploy run[db,DEBUG] # start mysql
+```
+
+これで `localhost` か `docker-machine ip` に MySQL が準備できるので
+
+``` shell
+export MYSQL_HOST=localhost # or `docker-machine ip default` など
+```
+
+dbを作成する。
+
+``` shell
+mysql -uroot -p1234 -h$(MYSQL_HOST) < init.sql
+```
+
+マイグレーションする
+
+``` shell
+rake db:migrate
+```
+
+# Facebookにテスト用アプリとして登録(OAuth認証のため登録必須)
 
 Facebook Developers
 https://developers.facebook.com/
@@ -24,22 +60,20 @@ Mobile Site URL: "http://localhost:3000/"
 
 7. "App ID" と "App Secret"を控える
 
-### ローカルに環境構築&サーバー起動
+# .env を作成する
 
-1. リポジトリのインストール
-```
-git clone https://github.com/jshimazu/ha4go.git
-cd ha4go
-bundle install --path vendor/bundle --without staging production
-rake db:migrate
-```
+先ほど控えたApp IDとApp Secretを.envというファイルに記載
 
-2. 先ほど控えたApp IDとApp Secretを.envというファイルに記載
 ```
 echo "FACEBOOK_APP_ID={App ID}" >> .env
 echo "FACEBOOK_APP_SECRET={App Secret}" >> .env
 ```
 
-ブラウザで
-http://localhost:3000 にアクセスして
-起動できれば完了！
+
+### ローカルに環境構築&サーバー起動
+
+```
+bundle exec rails s
+```
+
+その後、ブラウザで `http://localhost:3000` で画面が見えれば成功。

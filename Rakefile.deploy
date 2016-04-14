@@ -56,7 +56,7 @@ task :build, [:role] do |_t, a|
      )
 end
 
-desc 'run[<role>, <base>,<`docker-machine ip default`>]'
+desc 'run[<role>,<base>,<`docker-machine ip default`>]'
 task :run, [:role, :local, :docker_ip] do |_t, a|
   r = a[:role]
   e = a[:local] || 'DEBUG'

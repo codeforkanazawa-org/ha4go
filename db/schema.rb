@@ -14,72 +14,72 @@
 ActiveRecord::Schema.define(version: 20150614110547) do
 
   create_table "project_updates", force: :cascade do |t|
-    t.integer  "project_id"
-    t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.integer  "user_id"
+    t.integer  "project_id",  limit: 4
+    t.string   "description", limit: 255
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "user_id",     limit: 4
   end
 
   create_table "projects", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "stage_id",        default: 1, null: false
-    t.string   "subject"
-    t.string   "description"
-    t.string   "user_url"
-    t.string   "development_url"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.integer  "user_id",         limit: 4
+    t.integer  "stage_id",        limit: 4,   default: 1, null: false
+    t.string   "subject",         limit: 255
+    t.string   "description",     limit: 255
+    t.string   "user_url",        limit: 255
+    t.string   "development_url", limit: 255
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
   end
 
   create_table "projects_skills", force: :cascade do |t|
-    t.integer  "project_id"
-    t.integer  "skill_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "project_id", limit: 4
+    t.integer  "skill_id",   limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   create_table "projects_users", force: :cascade do |t|
-    t.integer  "project_id"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "project_id", limit: 4
+    t.integer  "user_id",    limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
-  add_index "projects_users", ["user_id", "project_id"], name: "index_projects_users_on_user_id_and_project_id", unique: true
+  add_index "projects_users", ["user_id", "project_id"], name: "index_projects_users_on_user_id_and_project_id", unique: true, using: :btree
 
   create_table "skills", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
-  add_index "skills", ["name"], name: "index_skills_on_name", unique: true
+  add_index "skills", ["name"], name: "index_skills_on_name", unique: true, using: :btree
 
   create_table "skills_users", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "skill_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "user_id",    limit: 4
+    t.integer  "skill_id",   limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   create_table "stages", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "description"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.string   "provider"
-    t.string   "uid"
-    t.string   "oauth_token"
+    t.string   "name",             limit: 255
+    t.string   "email",            limit: 255
+    t.string   "description",      limit: 255
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.string   "provider",         limit: 255
+    t.string   "uid",              limit: 255
+    t.string   "oauth_token",      limit: 255
     t.datetime "oauth_expires_at"
-    t.string   "image"
+    t.string   "image",            limit: 255
   end
 
 end
