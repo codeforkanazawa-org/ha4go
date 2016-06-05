@@ -106,7 +106,7 @@
       <div class="col-md-10">
         <div class="panel panel-default">
           <div class="panel-body">
-            <%=br(@project.description)%>
+            <%=description_text(@project.description) %>
           </div>
         </div>
       </div>
@@ -124,7 +124,7 @@
       </span></p>
       <div class="panel panel-default">
         <div class="panel-body">
-          <%=br(update.description)%>
+          <%= description_text(update.description) %>
         </div>
       </div>
     <% end %>

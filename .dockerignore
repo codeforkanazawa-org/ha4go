@@ -5,3 +5,11 @@ public/assets/*
 .bundle
 vendor/bundle
 bundle
+
+## local mount data
+mysql/*
+
+### EDITOR ###
+GTAGS
+GRTAGS
+GPATH
