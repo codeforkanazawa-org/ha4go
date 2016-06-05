@@ -11,25 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150614110547) do
+ActiveRecord::Schema.define(version: 20160605184821) do
 
   create_table "project_updates", force: :cascade do |t|
     t.integer  "project_id",  limit: 4
-    t.string   "description", limit: 255
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.text     "description", limit: 65535
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.integer  "user_id",     limit: 4
   end
 
   create_table "projects", force: :cascade do |t|
     t.integer  "user_id",         limit: 4
-    t.integer  "stage_id",        limit: 4,   default: 1, null: false
+    t.integer  "stage_id",        limit: 4,     default: 1, null: false
     t.string   "subject",         limit: 255
-    t.string   "description",     limit: 255
+    t.text     "description",     limit: 65535
     t.string   "user_url",        limit: 255
     t.string   "development_url", limit: 255
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
   end
 
   create_table "projects_skills", force: :cascade do |t|
@@ -72,9 +72,9 @@ ActiveRecord::Schema.define(version: 20150614110547) do
   create_table "users", force: :cascade do |t|
     t.string   "name",             limit: 255
     t.string   "email",            limit: 255
-    t.string   "description",      limit: 255
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.text     "description",      limit: 65535
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.string   "provider",         limit: 255
     t.string   "uid",              limit: 255
     t.string   "oauth_token",      limit: 255
