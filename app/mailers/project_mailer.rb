@@ -1,5 +1,6 @@
 # coding: utf-8
 class ProjectMailer < ApplicationMailer
+  add_template_helper(ApplicationHelper)
   default from: 'ha4go@codeforkanazawa.org'
 
   def tell_create(mails, project)

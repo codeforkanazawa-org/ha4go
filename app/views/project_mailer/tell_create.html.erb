@@ -6,5 +6,16 @@
   <body>
     <h1><%= t('.create', project: @project.subject)%></h1>
     <%= t('.link_head')%> <%= link_to( t('.here'), project_url(id: @project.id), only_path: false) %> <%= t('.link_foot')%>
+    <div>
+      <%= t('.dont_res') %>
+    </div>
+    <hr/>
+    <div>
+      <%= description_text(@project_update.description, 255) %>
+    </div>
+    <hr/>
+    <div>
+      <%= t('.miss')%>
+    </div>
   </body>
 </html>
