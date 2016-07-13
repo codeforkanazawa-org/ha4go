@@ -49,8 +49,7 @@ MySQLをインストールし、 `init.sql` を参考にして db と ha4go用�
 mysql.server start          # start mysql
 mysql -uroot -p < init.sql  # create db & user
 export MYSQL_HOST=localhost # (or edit .env)
-bundle exec rake db:migrate # migrate database
-bundle exec rake db:seed    # insert seed data
+bundle exec rake db:setup   # setup database
 ```
 
 
