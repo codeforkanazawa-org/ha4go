@@ -67,12 +67,20 @@
           <%= image_tag(user.image, :class => 'img-rounded') %>
           <%= name_and_link(user) %>
         <% end %>
-        <% unless @joined %>
+        <% if authorized? %>
+          <% if @joined %>
+            <div>
+              <%= link_to( t('projects.show.leave'), {controller: :projects, action: :leave, id: @project.id}) %>
+            </div>
+          <% else %>
+            <div>
+              <%= link_to( t('projects.show.join'), {controller: :projects, action: :join, id: @project.id}) %>
+            </div>
+          <% end %>
+        <% else %>
           <div>
-            <%= link_to( t('dic.want_to_join'), {controller: :projects, action: :join, id: @project.id}) %></li>
-            <% unless authorized? %>
-              <%= link_to( t('dic.need_to_login'), '/auth/facebook', id: 'sign_in') %></li>
-            <% end %>
+            <%= link_to( t('projects.show.login'), '/auth/facebook', id: 'sign_in') %>
+            ( <%= t('projects.show.login_recomendation') %> )
           </div>
         <% end %>
       </div>
