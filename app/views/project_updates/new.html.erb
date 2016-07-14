@@ -1,4 +1,8 @@
-<div class="container">
-  <h1><%= t '.add_comment' %></h1>
+<div class="content">
+  <% if notice %>
+    <div class="alert alert-success" role="alert">
+      <%= notice %>
+    </div>
+  <% end %>
   <%= render 'form' %>
 </div>
