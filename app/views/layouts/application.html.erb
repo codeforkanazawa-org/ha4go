@@ -1,47 +1,162 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>ha4go</title>
-  <%= stylesheet_link_tag    'application', media: 'all' %>
-  <%= javascript_include_tag 'application' %>
-  <%= csrf_meta_tags %>
-  <%= render partial: "shared/ogp_common" %>
-  <%= yield :twitter_card %>
-</head>
-<body>
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <%= link_to('Code for Kanazawa', root_path, :class => 'navbar-brand') %>
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
+<html lang="ja" class="build-menu-close">
+  <head>
+    <meta charset="utf-8">
+    <title>ha4go</title>
+    <meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1,initial-scale=1" />
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= csrf_meta_tags %>
+    <%= render partial: "shared/ogp_common" %>
+    <%= yield :twitter_card %>
+    <%= %>
+  </head>
+  <body>
+    <div class="all">
+      <header id="pc_header">
+        <section class="container clearfix">
+          <div class="header_left">
+            <h1>Code for kanazawa</h1>
+          </div>
+          <div class="header_center">
+            <h2><%= image_tag 'matsu/logo.png' %></h2>
+          </div>
+          <div class="header_right">
+            <div class="header_nav">
+              <ul id="first_ul" class="drop_nav">
+                <li class="nav-child">
+                  <a href="#"><%= image_tag 'matsu/header_item3.png' %></a>
+                  <!--プルダウンメニュー-->
+                  <ul class="sub_nav">
+                    <% if authorized? %>
+                      <li><%= link_to( t('dic.mypage'), user_path(id: @my_user.id)) %></li>
+                      <li><%= link_to( t('dic.logout'), signout_path, id: 'sign_out') %></li>
+                      <li><%= link_to( t('dic.post_project_do'), new_project_path , class: "btn btn-default btn-primary") %></li>
+                    <% else %>
+                      <li><%= link_to( t('dic.login'), '/auth/facebook', id: 'sign_in') %></li>
+                    <% end %>
+                    <li><%= link_to( t('dic.member'), users_path) %></li>
+                  </ul>
+                  <!--プルダウンメニューここまで-->
+                </li>
+              </ul>
+            </div>
+            <% if authorized? %>
+              <div class="user_name"></div>
+              <div class="login_after">
+                <span class="login_thum"><%= image_tag 'matsu/sample_thum.jpg' %></span>
+              </div>
+              <div class="post_content">
+                <%= link_to( image_tag('matsu/header_item1.png'), new_project_path) %>
+              </div>
+            <% else %>
+              <div class="login">
+                <%= link_to( image_tag('matsu/header_item2.png'), '/auth/facebook', id: 'sign_in') %>
+              </div>
+            <% end %>
+          </div>
+        </section>
+      </header>
+      <!--スマートフォン用ヘッダーここから-->
+      <header id="sp_header">
+        <section class="container clearfix">
+          <div class="sp_header_title"><h1>Code for kanazawa</h1></div>
+          <div class="sp_header_logo">
+            <h2><%= image_tag 'matsu/logo.png' %></h2>
+          </div>
+          <div class="sp_header_nav">
+            <nav id="mobile-bar"></nav>
+            <nav id="sp_nav">
+              <ul>
                 <% if authorized? %>
-                    <li><%= link_to( t('dic.logout'), signout_path, id: 'sign_out') %></li>
-                    <li><%= link_to( t('dic.mypage'), user_path(id: @my_user.id)) %></li>
+                  <li class="li_sub">
+                    <%= link_to t('dic.post_project_do'), new_project_path , class: "btn btn-default btn-primary" %>
+
+                  </li>
+                  <li class="li_sub">
+                    <%= link_to( t('dic.mypage'), user_path(id: @my_user.id)) %>
+                  </li>
                 <% else %>
-                    <li><%= link_to( t('dic.login'), '/auth/facebook', id: 'sign_in') %></li>
+                  <li class="li_sub"><%= link_to( t('dic.login'), '/auth/facebook', id: 'sign_in') %></li>
                 <% end %>
-                <li><%= link_to( t('dic.member'), users_path) %></li>
-            </ul>
-        </div><!--/.nav-collapse -->
+                <li class="li_sub"><%= link_to( t('dic.logout'), signout_path, id: 'sign_out') %></li>
+                <li class="li_sub"><%= link_to( t('dic.member'), users_path) %></li>
+              </ul>
+            </nav>
+          </div>
+        </section>
+      </header>
+      <!--スマートフォン用ヘッダーここまで-->
+      <!--コンテンツ-->
+      <!--コンテンツ-->
+      <div id="wrapper">
+        <article>
+          <div class="container clearfix">
+            <%= yield %>
+            <div class="menu">
+              <div class="clearfix">
+                <div class="menu01">
+                  <%= link_to t('dic.project_recent'), projects_path %>
+                </div>
+                <div class="menu02"><%= Array(@projects).count %></div>
+
+                <div class="menu01">
+                  <%= link_to t('dic.project_hot'), projects_path %>
+                </div>
+                <div class="menu02"><%= Array(@projects).count %></div>
+
+                <div class="menu01">
+                  <%= link_to t('dic.project_recruiting'), projects_path %>
+                </div>
+                <div class="menu02"><%= Array(@projects).count %></div>
+
+                <div class="menu01">
+                  <%= link_to t('dic.project_all'), projects_path %>
+                </div>
+                <div class="menu02"><%= Array(@projects).count %></div>
+              </div>
+              <% if authorized? %>
+                <div class="menu_post">
+                  <%= link_to image_tag('matsu/menu_item01.png'), new_project_path %>
+                </div>
+              <% end %>
+              <section class="menu_news">
+                <h1>運営事務局からのお知らせ</h1>
+                <dl>
+                  <dt>2016-1-12</dt>
+                  <dd>内容が入ります内容が入ります内容が入ります内容が入ります内容が入ります。</dd>
+                  <dt>2016-1-12</dt>
+                  <dd>内容が入ります内容が入ります内容が入ります内容が入ります内容が入ります。</dd>
+                </dl>
+              </section>
+            </div>
+          </div>
+        </article>
+      </div>
+      <!--コンテンツ-->
+
+      <footer>
+        <div class="container clearfix">
+        </div>
+      </footer>
+      <div class="copyright">
+        copyright(c) 2016 ha4go All Right Reserved.
+      </div>
     </div>
-</nav>
 
-
-<div class="spacer-navbar"></div>
-
-<%= yield %>
-
-<%= javascript_include_tag :jquery, :bootstrap, :jquery_ujs %>
-<%= render 'shared/facebook' %>
-<%= render 'shared/twitter' %>
-<%= analytics_init if Rails.env.production? %>
-</body>
+    <%= javascript_include_tag :jquery, :bootstrap, :jquery_ujs, 'matsu/jquery.mobile-menu' %>
+    <%= render 'shared/facebook' %>
+    <%= render 'shared/twitter' %>
+    <%= analytics_init if Rails.env.production? %>
+    <script>
+     $(function(){
+       $("body").mobile_menu({
+         menu: ['#sp_nav ul'],
+         menu_width: 260,
+         prepend_button_to: '#mobile-bar',
+         button_content: '<img src="<%= asset_path "matsu/nav.gif" %>" width="20px">'
+         //     button_content: '<img src="matsu/images/nav.gif" width="20px">'
+       });
+     });
+    </script>
+  </body>
 </html>

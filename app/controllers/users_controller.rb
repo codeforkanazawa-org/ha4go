@@ -29,7 +29,8 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   def update
     if @user.update(user_params)
-      @user.update_skill_ids_by_skill_names(params[:skill_names])
+      skills = Array(params[:skill_names][:skill_ids]) + params[:new_skills][:new_skills].split(' ')
+      @user.update_skill_ids_by_skill_names(skills) if skills.size > 0
       redirect_to @user, notice: 'プロフィールを更新しました。'
     else
       render :edit
@@ -42,6 +43,7 @@ class UsersController < ApplicationController
   def set_user
     @user = User.find(params[:id])
     @skills = Skill.all
+    @my_skills = @user.skills.all.map { |k| k[:name] }
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

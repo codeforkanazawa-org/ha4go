@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require matsu/jquery.mobile-menu
 //= require jquery_ujs
 //= require bootstrap.min
 //= require_tree .

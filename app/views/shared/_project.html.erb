@@ -1,8 +1,32 @@
-<h3><%= link_to(project.subject, project_path(id: project.id)) %></h3>
-<p><%= facebook_share_btn(project_path(id: project.id)) %></p>
-<p><span class="label label-default"><%= project.stage.name %></span>&emsp;<span class="small"><%= name_and_link(project.user) %><% t('dic.title') %>&emsp;<%= project.created_at.strftime("%Y-%m-%d %H:%M") %><% t('dic.posted_on') %></span></p>
-<div class="panel panel-default">
-  <div class="panel-body">
+<div class="content_inner">
+  <div class="content_header clearfix">
+    <div class="content_title"><%= link_to(project.subject, project_path(id: project.id)) %></div>
+    <div class="content_member"><%= image_tag project.user.image %></div>
+    <div class="content_time">
+      <%= name_and_link(project.user) %><% t('dic.title') %>&emsp;<%= project.created_at.strftime("%Y-%m-%d %H:%M") %><% t('dic.posted_on') %>
+    </div>
+  </div>
+  <div class="content_box">
     <%=description_text(project.description)%>
+  </div>
+  <div class="content_status clearfix">
+    <div class="content_status_left">ステータス</div>
+    <div class="content_status_right"><%= project.stage.name %></div>
+  </div>
+  <div class="content_skill clearfix">
+    <div class="content_status_left">募集スキル</div>
+    <div class="content_status_right">
+      <% project.skills.map{|skill|skill.name}.each do |s| %>
+        <span class="skill_web"><%= s%></span>
+      <% end %>
+    </div>
+  </div>
+  <div class="content_join clearfix">
+    <div class="content_join_left">参加者一覧</div>
+    <div class="content_join_right">
+      <% project.users.each do |user| %>
+        <span class="join_thum"><%= image_tag(user.image) %></span>
+      <% end %>
+    </div>
   </div>
 </div>

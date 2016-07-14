@@ -41,6 +41,8 @@ Rails.application.routes.draw do
 
   get 'projects/join/:id', to: 'projects#join'
 
+  get 'projects/leave/:id', to: 'projects#leave'
+
   get 'feed' => 'top#feed'
   root 'top#index', as: 'root'
 

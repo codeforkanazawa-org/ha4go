@@ -2,6 +2,7 @@ ja:
   projects:
     banner:
       joined:    課題に参加しました。
+      leaved:    課題への参加をやめました。
       updated:   課題の内容を変更しました。
       created:   課題を作成しました。
       cannot:    失敗しました。
@@ -15,7 +16,12 @@ ja:
       skill:   必要なスキル
       detail:  詳細
       write_comment: フォローを書く
+      join:  参加を希望する
+      leave: 参加をやめる
+      login_recomendation: ログインすることでこの課題に参加できるようになります
+      login: ログイン
     edit:
       edit:    課題を編集する
     form:
-      skill:   必要なスキル
+      skill:     必要なスキル
+      new_skill: 上記に無いスキルはスペース区切りでここに入力してください

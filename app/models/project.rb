@@ -24,7 +24,7 @@ class Project < ActiveRecord::Base
   def update_skill_ids_by_skill_names(skill_names)
     @before_skill_ids = skills.map(&:id)
     @after_skill_ids  = []
-    skill_names.each do |skill_name|
+    skill_names.compact.uniq.reject(&:empty?).each do |skill_name|
       skill = Skill.find_by(name: skill_name)
       if skill.nil?
         skill = Skill.create(name: skill_name)

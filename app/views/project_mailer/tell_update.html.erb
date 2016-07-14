@@ -4,20 +4,23 @@
     <meta charset="UTF-8">
   </head>
   <body>
-    <h1><%= t('.update', project: @project_update.project.subject)%></h1>
+    <h1><%= t('.update', project: @project_update.project.subject.truncate(25)) %></h1>
     <div>
-      <%= t('.link_head')%> <%= link_to( t('.here'), project_url(id: @project_update.project.id), only_path: false) %> <%= t('.link_foot')%>
+      <%= t('.update_by', name: @project_update.user.name)  %> <%= t('.link_head')%> <%= link_to( t('.here'), project_url(id: @project_update.project.id), only_path: false) %> <%= t('.link_foot')%>
     </div>
     <div>
       <%= t('.dont_res') %>
     </div>
     <hr/>
     <div>
-      <%= description_text(@project_update.description, 255) %>
+      <%= description_text(@project_update.description.truncate(255)) %>
     </div>
     <hr/>
     <div>
       <%= t('.miss') %>
+    </div>
+    <div>
+      <%= t('.footer')%>
     </div>
   </body>
 </html>
