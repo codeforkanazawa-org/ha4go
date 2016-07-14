@@ -14,9 +14,10 @@ class ProjectsController < ApplicationController
 
   # GET /projects/new
   def new
-    @project = Project.new
-    @skills  = Skill.all
-    @users   = User.all
+    @project   = Project.new
+    @skills    = Skill.all
+    @users     = User.all
+    @my_skills = []
   end
 
   # GET /projects/1/edit
@@ -29,7 +30,8 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
     @project.user_id = @my_user.id
-    @project.update_skill_ids_by_skill_names(params[:skill_names]) unless params[:skill_names].nil?
+    skills = Array(params[:skill_names][:skill_ids]) + params[:new_skills][:new_skills].split(' ')
+    @project.update_skill_ids_by_skill_names(skills) if skills.size > 0
 
     if @project.save
       @project.send_mail_users.pluck(:email).compact.each do |m|
@@ -44,7 +46,8 @@ class ProjectsController < ApplicationController
   # PATCH/PUT /projects/1
   def update
     if @project.update(project_params)
-      @project.update_skill_ids_by_skill_names(params[:skill_names])
+      skills = Array(params[:skill_names][:skill_ids]) + params[:new_skills][:new_skills].split(' ')
+      @project.update_skill_ids_by_skill_names(skills) if skills.size > 0
       redirect_to @project, notice: I18n.t('projects.banner.updated')
     else
       render :edit
@@ -77,8 +80,9 @@ class ProjectsController < ApplicationController
     @project  = Project.find(params[:id])
     @skills   = Skill.all
     @joinners = Project.find(params[:id]).users
+    @my_skills = @project.skills.all.map { |k| k[:name] }
     if session[:user_id]
-      @joined   = !Project.find(params[:id]).users.find_by(id: session[:user_id]).nil?
+      @joined = !Project.find(params[:id]).users.find_by(id: session[:user_id]).nil?
     else
       @joined = false
     end

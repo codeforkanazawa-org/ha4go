@@ -18,4 +18,5 @@ ja:
     edit:
       edit:    課題を編集する
     form:
-      skill:   必要なスキル
+      skill:     必要なスキル
+      new_skill: 上記に無いスキルはスペース区切りでここに入力してください

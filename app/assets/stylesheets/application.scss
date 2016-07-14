@@ -10,8 +10,12 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require bootstrap.min
- *= require bootstrap_override
+// * require bootstrap.min
+// * require bootstrap_override
+ *= require matsu/reset
+ *= require matsu/style
+ *= require matsu/sp_style
+ *= require matsu/jquery.mobile.menu
  *= require_tree .
  *= require_self
  */

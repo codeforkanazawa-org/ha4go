@@ -1,42 +1,40 @@
-<div class="container">
+<div class="content">
   <% if notice %>
-    <div class="alert alert-success mt20" role="alert"><%= notice %></div>
-  <% end %>
-  <h1><%= @user.name %></h1>
-  <% if authorized? && @my_user.id == @user.id %>
-    <%= link_to t('.edit'), edit_user_path(@user), :class => "btn btn-default btn-primary mb20" %>
-  <% end %>
-
-  <div class="row">
-    <div class="col-sm-3">
-      <%= image_tag(@user.image, :class => 'img-rounded img-responsive') %>
+    <div class="alert alert-success" role="alert">
+      <%= notice %>
     </div>
-    <div class="col-sm-9">
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <%= description_text(@user.description) %>
-        </div>
+  <% end %>
+  <div class="content_inner">
+    <div class="content_header clearfix">
+      <div class="member"><%= image_tag(@user.image) %></div>
+      <div class="member_name"><%= @user.name %></div>
+    </div>
+    <div class="content_box">
+      <p class="mb20">
+        <%= description_text(@user.description) %>
+      </p>
+    </div>
+    <div class="content_status">
+      <div class="content_status_left">参加中</div>
+      <div class="content_status_right">
+        <%= @user.projects.map{|project| project.subject}.join(', ') %>
+      </div>
+    </div>
+    <div class="content_skill clearfix">
+      <div class="content_status_left">スキル</div>
+      <div class="content_status_right">
+        <% @user.skills.map{|skill| skill.name}.each do |s| %>
+        <span class="skill_web"><%= s %></span>
+        <% end %>
       </div>
     </div>
   </div>
 
-  <div class="row user-detail__list">
-    <div class="col-sm-3"><%= t('dic.able_to')%></div>
-    <div class="col-sm-9">
-      <%= @user.skills.map{|skill| skill.name}.join(', ') %>
-    </div>
+
+  <div class="content_control clearfix">
+    <!-- <div class="btn"><a href="#">投稿を削除する</a></div> -->
+    <% if authorized? && @my_user.id == @user.id %>
+      <div class="btn"><%= link_to t('.edit'), edit_user_path(@user) %></div>
+    <% end %>
   </div>
-
-  <div class="row user-detail__list">
-    <div class="col-sm-3"><%= t('dic.joining')%></div>
-    <div class="col-sm-9"><%= @user.projects.map{|project| project.subject}.join(', ') %></div>
-  </div>
-
-  <% if authorized? && @my_user.id == @user.id %>
-    <div class="row user-detail__list">
-      <div class="col-sm-3"><%= t('dic.email')%></div>
-      <div class="col-sm-9"><%= @user.email %></div>
-    </div>
-  <% end %>
-
 </div>

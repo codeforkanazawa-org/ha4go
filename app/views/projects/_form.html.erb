@@ -9,21 +9,20 @@
       </ul>
     </div>
   <% end %>
-
   <div class="project-detail__define">
     <div class="row">
       <div class="col-md-2">
         <%= t 'dic.title' %>
       </div>
-      <div class="col-md-10">
-        <%= f.text_field :subject, class: 'form-control' %>
+      <div class="input_text">
+        <%= f.text_field :subject %>
       </div>
     </div>
     <div class="row">
       <div class="col-md-2">
         URL
       </div>
-      <div class="col-md-10">
+      <div class="input_text">
         <%= f.url_field :user_url, class: 'form-control' %>
       </div>
     </div>
@@ -31,7 +30,7 @@
       <div class="col-md-2">
         Github URL
       </div>
-      <div class="col-md-10">
+      <div class="input_text">
         <%= f.url_field :development_url, class: 'form-control' %>
       </div>
     </div>
@@ -39,42 +38,26 @@
       <div class="col-md-2">
         <%= t 'dic.detail' %>
       </div>
-      <div class="col-md-10">
-        <div class="panel panel-default">
+      <div class="input_text">
           <%= f.text_area :description, class: 'form-control', rows: 5 %>
-        </div>
       </div>
     </div>
     <div class="row">
       <div class="col-md-2">
         <%= t '.skill'%>
       </div>
-      <div class="col-md-10">
-        <div class="quick-add">
-          <div class="quick-add__list">
-            <button type="button" class="btn btn-default btn-xs quick-add__item--template" style="display:none">
-              <span class="quick-add__item-name"></span>
-              <span class="glyphicon glyphicon-remove"></span>
-              <input type="hidden" name="" value="" class="quick-add__hidden">
-            </button>
-            <% @project.skills.each do |skill| %>
-              <button type="button" class="btn btn-default btn-xs quick-add__item">
-                <span class="quick-add__item-name"><%= skill.name %></span>
-                <span class="glyphicon glyphicon-remove"></span>
-                <input type="hidden" name="skill_names[]" value="<%= skill.name %>" class="quick-add__hidden">
-              </button>
-            <% end %>
-          </div>
-          <div class="form-inline mt10">
-            <input type="input" type="text" list="skill_names" class="form-control quick-add__input">
-            <datalist id="skill_names">
-              <% @skills.each do |skill| %>
-                <option value="<%= skill.name %>"></option>
-              <% end %>
-            </datalist>
-            <button type="button" class="btn btn-default btn-sm quick-add__btn"><%= t('dic.add')%></button>
-          </div>
-        </div>
+      <div class="col-md-2">
+        <%= collection_check_boxes(:skill_names, :skill_ids, Skill.all, :name, :name) do |b| %>
+          <%= b.label { b.check_box(checked: @my_skills.include?(b.text)) + b.text } %>
+        <% end %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2">
+        <%= t '.new_skill'%>
+      </div>
+      <div class="input_text">
+        <%= text_field :new_skills, :new_skills  %>
       </div>
     </div>
     <% if (params[:action] == 'edit') then %>

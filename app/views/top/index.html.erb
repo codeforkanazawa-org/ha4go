@@ -1,45 +1,10 @@
-<div class="column__top">
-  <div class="jumbotron">
-    <div class="container">
-      <div class="row">
-        <div class="caption col-md-12 col-sm-12 col-xs-12">
-          <div class="row">
-            <div class="col-md-2 col-sm-2 col-xs-2">
-              <img src="http://www.codeforkanazawa.org/images/logo.png" alt="Code for Kanazawa" class="img-responsive">
-            </div>
-            <div class="col-md-10 col-sm-10 col-xs-10">
-              <div class="Caption__text">
-                <p><%= t '.overview' %></p>
-                <% unless authorized? %>
-                  <p><%= link_to('Facebookで登録', '/auth/facebook', id: 'sign_in', class: 'btn btn-primary btn-lg') %></p>
-                <% else %>
-                  <p><%= link_to('使い方を見る', help_path, class: 'btn btn-primary btn-lg') %></p>
-                <% end %>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="container">
-
+<div class="content">
   <% if notice %>
     <div class="alert alert-success" role="alert">
       <%= notice %>
     </div>
   <% end %>
-
-  <h2><%= t '.recent_project' %></h2>
-  <% if authorized? %>
-    <%= link_to t('dic.post_project_do'), new_project_path , class: "btn btn-default btn-primary"%>
+  <% @projects.each do |project| %>
+    <%= render 'shared/project', project: project %>
   <% end %>
-  <div class="panel-group">
-    <% @projects.each do |project| %>
-      <%= render 'shared/project', project: project %>
-    <% end %>
-    <%= link_to t('dic.list_project_do'), projects_path, class: "btn btn-default" %>
-  </div>
 </div>

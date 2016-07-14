@@ -1,132 +1,59 @@
 <% content_for :ogp do %>
   <%= render 'shared/ogp_project', project: @project %>
 <% end %>
-
-<div class="container project-detail">
+<div class="content">
   <% if notice %>
-    <div class="alert alert-success mt20" role="alert"><%= notice %></div>
+    <div class="alert alert-success" role="alert">
+      <%= notice %>
+    </div>
   <% end %>
-
-  <!-- subject  -->
-  <h1 class="mb20"><%= @project.subject %></h1>
-
-  <!-- share buttons -->
-  <p><%= facebook_share_btn(request.url) %></p>
-
-
-  <p><span class="small">
-    <%= name_and_link(@project.user) %> <%= t 'dic.title' %> <%= @project.created_at.strftime("%Y-%m-%d %H:%M") %> <%= t 'dic.posted_on' %>
-  </span></p>
-
-  <!-- edit -->
-  <% if authorized? && @project.editable_user_id?(@my_user.id) %>
-    <%= link_to t('.edit'), edit_project_path, class: "btn btn-default btn-primary" %>
-  <% end %>
-  <div class="project-detail__define mt20">
-    <% if @project.user_url.present? %>
-      <div class="row">
-        <div class="col-md-2">
-          <%= t '.url' %>
-        </div>
-        <div class="col-md-10">
-          <%= link_to nil, @project.user_url, target: 'blank' %>
-        </div>
-      </div>
-    <% end %>
-
-    <!-- project url -->
-    <% if @project.user_url.present? %>
-      <div class="row">
-        <div class="col-md-2">
-          <%= t '.github' %>
-        </div>
-        <div class="col-md-10">
-          <%= link_to nil, @project.development_url, target: 'blank' %>
-        </div>
-      </div>
-    <% end %>
-
-    <!-- creator -->
-    <div class="row">
-      <div class="col-md-2">
-        <%= t '.creator' %>
-      </div>
-      <div class="col-md-10">
-        <%= image_tag(@project.user.image, :class => 'img-rounded img-responsive') %>
-        <%= name_and_link(@project.user) %>
+  <div class="content_inner">
+    <div class="content_header clearfix">
+      <div class="content_title"><%= link_to(@project.subject, project_path(id: @project.id)) %></div>
+      <div class="content_member"><%= image_tag @project.user.image %></div>
+      <div class="content_time">
+        <%= name_and_link(@project.user) %><% t('dic.title') %>&emsp;<%= @project.created_at.strftime("%Y-%m-%d %H:%M") %><% t('dic.posted_on') %>
       </div>
     </div>
-
-    <!-- member -->
-    <div class="row">
-      <div class="col-md-2">
-        <%= t '.member' %>
+    <div class="content_box">
+      <%=description_text(@project.description)%>
+    </div>
+    <div class="content_status clearfix">
+      <div class="content_status_left">ステータス</div>
+      <div class="content_status_right"><%= @project.stage.name %></div>
+    </div>
+    <div class="content_skill clearfix">
+      <div class="content_status_left">募集スキル</div>
+      <div class="content_status_right">
+        <% @project.skills.map{|skill|skill.name}.each do |s| %>
+          <span class="skill_web"><%= s%></span>
+        <% end %>
       </div>
-      <div class="col-md-10">
+    </div>
+    <div class="content_join clearfix">
+      <div class="content_join_left">参加者一覧</div>
+      <div class="content_join_right">
         <% @project.users.each do |user| %>
-          <%= image_tag(user.image, :class => 'img-rounded') %>
-          <%= name_and_link(user) %>
+          <span class="join_thum"><%= image_tag(user.image) %></span>
         <% end %>
-        <% unless @joined %>
-          <div>
-            <%= link_to( t('dic.want_to_join'), {controller: :projects, action: :join, id: @project.id}) %></li>
-            <% unless authorized? %>
-              <%= link_to( t('dic.need_to_login'), '/auth/facebook', id: 'sign_in') %></li>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
-    </div>
-
-    <!-- status -->
-    <div class="row">
-      <div class="col-md-2">
-        <%= t '.stage' %>
-      </div>
-      <div class="col-md-10">
-        <%= @project.stage.name %>
-      </div>
-    </div>
-
-    <!-- need skills -->
-    <div class="row">
-      <div class="col-md-2">
-        <%= t '.skill' %>
-      </div>
-      <div class="col-md-10">
-        <%= @project.skills.map{|skill|skill.name}.join(', ') %>
-      </div>
-    </div>
-
-    <!-- detail -->
-    <div class="row">
-      <div class="col-md-2">
-        <%= t '.detail' %>
-      </div>
-      <div class="col-md-10">
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <%=description_text(@project.description) %>
-          </div>
-        </div>
       </div>
     </div>
   </div>
 
-  <!-- comments -->
-  <div class="project--follow-list">
-    <% if authorized? %>
-      <%= link_to t('.write_comment'), new_project_update_path(project_id: @project.id), class: "btn btn-default btn-primary btn-sm mb20" %>
-    <% end %>
-    <% @project.project_updates.reverse.each do |update| %>
-      <p><span class="small">
-        <%= image_tag(update.user.image, :class => 'img-rounded img-responsive') %> <%= name_and_link(update.user) %> <%= t 'dic.title'%> <%= update.created_at.strftime("%Y-%m-%d %H:%M") %> <%= t 'dic.posted_on' %>
-      </span></p>
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <%= description_text(update.description) %>
-        </div>
-      </div>
-    <% end %>
+  <div class="content_control clearfix">
+    <!-- <div class="btn"><a href="#">投稿を削除する</a></div> -->
+    <div class="btn"><%= link_to t('.write_comment'), new_project_update_path(project_id: @project.id) %></div>
+    <div class="btn"><%= link_to( t('dic.want_to_join'), {controller: :projects, action: :join, id: @project.id}) %></div>
+    <div class="btn"><%= link_to t('.edit'), edit_project_path, class: "btn btn-default btn-primary" %></div>
   </div>
+
+  <% @project.project_updates.reverse.each do |update| %>
+    <div class="comment clearfix">
+      <div class="comment_thum"><%= image_tag(update.user.image) %></div>
+      <div class="comment_text">
+        <p><%= description_text(update.description) %></p>
+        <p class="comment_author"><%= update.created_at.strftime("%Y-%m-%d %H:%M") %> <%= t 'dic.posted_on' %></p>
+      </div>
+    </div>
+  <% end %>
 </div>

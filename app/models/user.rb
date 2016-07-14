@@ -1,3 +1,4 @@
+# coding: utf-8
 class User < ActiveRecord::Base
   # has_many :projects
   has_many :project_updates
@@ -25,7 +26,7 @@ class User < ActiveRecord::Base
     @after_skill_ids  = []
 
     if skill_names.present?
-      skill_names.each do |skill_name|
+      skill_names.compact.uniq.reject(&:empty?).each do |skill_name|
         skill = Skill.find_by(name: skill_name)
         if skill.nil?
           skill = Skill.create(name: skill_name)
