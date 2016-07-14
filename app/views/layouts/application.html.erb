@@ -15,16 +15,16 @@
       <header id="pc_header">
         <section class="container clearfix">
           <div class="header_left">
-            <h1>Code for kanazawa</h1>
+            <h1><%= link_to( "Code for Kanazawa", '/' ) %></h1>
           </div>
           <div class="header_center">
-            <h2><%= image_tag 'matsu/logo.png' %></h2>
+            <h2><%= link_to( image_tag('matsu/logo.png'), '/') %></h2>
           </div>
           <div class="header_right">
             <div class="header_nav">
               <ul id="first_ul" class="drop_nav">
                 <li class="nav-child">
-                  <a href="#"><%= image_tag 'matsu/header_item3.png' %></a>
+                  <a href="#"><%= image_tag('matsu/header_item3.png') %></a>
                   <!--プルダウンメニュー-->
                   <ul class="sub_nav">
                     <% if authorized? %>
@@ -122,10 +122,8 @@
               <section class="menu_news">
                 <h1>運営事務局からのお知らせ</h1>
                 <dl>
-                  <dt>2016-1-12</dt>
-                  <dd>内容が入ります内容が入ります内容が入ります内容が入ります内容が入ります。</dd>
-                  <dt>2016-1-12</dt>
-                  <dd>内容が入ります内容が入ります内容が入ります内容が入ります内容が入ります。</dd>
+                  <dt>2016-7-14</dt>
+                  <dd>パブリックベータ開始。</dd>
                 </dl>
               </section>
             </div>
