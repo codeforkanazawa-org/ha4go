@@ -1,7 +1,7 @@
 # coding: utf-8
 class ProjectsController < ApplicationController
   helper SnsHelper
-  before_action :set_project, only: [:show, :edit, :update, :destroy, :join]
+  before_action :set_project, only: [:show, :edit, :update, :destroy, :join, :leave]
 
   # GET /projects
   def index
@@ -66,6 +66,20 @@ class ProjectsController < ApplicationController
     else
       @project.users << @my_user
       redirect_to @project, notice: I18n.t('projects.banner.joined')
+    end
+  end
+
+  # Leave Project
+  def leave
+    if @my_user.nil?
+      redirect_to @project, notice: I18n.t('projects.banner.cannot')
+    else
+      begin
+        @project.users.delete(@my_user)
+        redirect_to @project, notice: I18n.t('projects.banner.leaved')
+      rescue
+        redirect_to @project, notice: I18n.t('projects.banner.cannot')
+      end
     end
   end
 

@@ -43,7 +43,23 @@
   <div class="content_control clearfix">
     <!-- <div class="btn"><a href="#">投稿を削除する</a></div> -->
     <div class="btn"><%= link_to t('.write_comment'), new_project_update_path(project_id: @project.id) %></div>
-    <div class="btn"><%= link_to( t('dic.want_to_join'), {controller: :projects, action: :join, id: @project.id}) %></div>
+
+    <% if authorized? %>
+      <% if @joined %>
+        <div class="btn">
+          <%= link_to( t('projects.show.leave'), {controller: :projects, action: :leave, id: @project.id}) %>
+        </div>
+      <% else %>
+        <div class="btn">
+            <%= link_to( t('projects.show.join'), {controller: :projects, action: :join, id: @project.id}) %>
+          </div>
+      <% end %>
+    <% else %>
+      <div class="btn">
+        <%= link_to( t('projects.show.login'), '/auth/facebook', id: 'sign_in') %>
+      </div>
+        ( <%= t('projects.show.login_recomendation') %> )
+    <% end %>
     <div class="btn"><%= link_to t('.edit'), edit_project_path, class: "btn btn-default btn-primary" %></div>
   </div>
 
