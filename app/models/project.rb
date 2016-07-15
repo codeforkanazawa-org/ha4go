@@ -39,7 +39,7 @@ class Project < ActiveRecord::Base
 
     # 削除
     (@before_skill_ids - @after_skill_ids).each do |skill_id|
-      skills.find(skill_id).destroy
+      skills.delete(skill_id)
     end
   end
 
