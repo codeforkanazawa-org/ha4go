@@ -58,19 +58,20 @@ bundle exec rake db:setup   # setup database
 **注意このMySQLは公式Dockerのrootパスワードそのままなど安全ではないですので運用には充分気をつけて下さい**
 
 ``` shell
-bundle exec rake -f Rakefile.deploy build[db]     # image build
-bundle exec rake -f Rakefile.deploy run[db,DEBUG] # start mysql
+eval $(docker-machine env)
+docker-compose up
 ```
 
 これで Linuxなら `127.0.0.1` か `docker-machine ip` に MySQL が準備できるのでこれで接続します。(`127.0.0.1`ではなく、`localhost` を用いると、MySQLが自動的に UNIX ドメインソケットが用いてしまい、接続エラーになります)
 
-`init.sql` を参考にして db と ha4go用ユーザーを 作成してください。
+mysqldb/Dockerfile 内に書いてるMYSQL_DATABSE, MYSQL_USER, MYSQL_PASSWORD が development の環境になります。
+db:migrate を走らせる場合、以下のようなコマンドを実行してください。
 
 ``` shell
-export MYSQL_HOST=127.0.0.1                    # or =`docker-machine ip`
-mysql -uroot -p1234 -h$(MYSQL_HOST) < init.sql # create db & user
-bundle exec rake db:migrate                    # migrate database
+docker-compose run --rm web bundle exec rake db:migrate
 ```
+
+この状態で、`docker-machine ip`:3000 にブラウザでアクセスするとページが見れるようになります。
 
 
 # Facebook App ID の準備
