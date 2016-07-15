@@ -41,9 +41,9 @@
               </ul>
             </div>
             <% if authorized? %>
-              <div class="user_name"></div>
+              <div class="user_name"><%= @my_user.name %></div>
               <div class="login_after">
-                <span class="login_thum"><%= image_tag 'matsu/sample_thum.jpg' %></span>
+                <span class="login_thum"><%= image_tag @my_user.image %></span>
               </div>
               <div class="post_content">
                 <%= link_to( image_tag('matsu/header_item1.png'), new_project_path) %>
@@ -59,9 +59,9 @@
       <!--スマートフォン用ヘッダーここから-->
       <header id="sp_header">
         <section class="container clearfix">
-          <div class="sp_header_title"><h1>Code for Kanazawa</h1></div>
+          <div class="sp_header_title"><%= link_to( "Code for Kanazawa", '/' ) %></div>
           <div class="sp_header_logo">
-            <h2><%= image_tag 'matsu/logo.png' %></h2>
+            <h2><%= link_to( image_tag('matsu/logo.png'), '/') %></h2>
           </div>
           <div class="sp_header_nav">
             <nav id="mobile-bar"></nav>
