@@ -25,3 +25,4 @@ ja:
     form:
       skill:     必要なスキル
       new_skill: 上記に無いスキルはスペース区切りでここに入力してください
+      dev_url:   開発用URL(GitHubのURLなど)

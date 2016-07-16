@@ -20,12 +20,16 @@
     <div class="content_box">
       <%=description_text(@project.description)%>
     </div>
+    <div class="content_development_url clearfix">
+      <div class="content_development_url_left"><%= t('dic.dev_url')  %></div>
+      <div class="content_development_url_right"><%= link_to @project.development_url, @project.development_url %></div>
+    </div>
     <div class="content_status clearfix">
-      <div class="content_status_left">ステータス</div>
+      <div class="content_status_left"><%= t('dic.status') %></div>
       <div class="content_status_right"><%= @project.stage.name %></div>
     </div>
     <div class="content_skill clearfix">
-      <div class="content_status_left">募集スキル</div>
+      <div class="content_status_left"><%= t('dic.wantskill') %></div>
       <div class="content_status_right">
         <% @project.skills.map{|skill|skill.name}.each do |s| %>
           <span class="skill_web"><%= s%></span>
@@ -33,7 +37,7 @@
       </div>
     </div>
     <div class="content_join clearfix">
-      <div class="content_join_left">参加者一覧</div>
+      <div class="content_join_left"><%= t('dic.member_list') %></div>
       <div class="content_join_right">
         <% @project.users.each do |user| %>
           <span class="join_thum"><%= link_to image_tag(user.image, alt: user.name), user_path(id: user.id) %></span>

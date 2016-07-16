@@ -13,6 +13,7 @@ ja:
     joining:      参加中
     member:       メンバー
     status:       ステータス
+    wantskill:    募集スキル
     detail:       詳細
     title:        タイトル
     do_create:    作成する
@@ -28,3 +29,5 @@ ja:
     project_hot:        話題になっている課題
     project_recruiting: スキル募集中の課題
     project_all:     全ての課題
+    member_list:     参加者一覧
+    dev_url:         開発用URL
