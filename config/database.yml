@@ -9,8 +9,8 @@ default: &default
   encoding: utf8
   database: ha4go
   pool: 5
-  username: ha4go
-  password: ha4goha4go
+  username: root
+  password: 1234
   host:     <%= ENV['MYSQL_HOST'] %>
   timeout:  5000
 
