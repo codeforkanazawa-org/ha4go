@@ -86,6 +86,10 @@ docker-compose run --rm web bundle exec rake db:setup # dbの作成, migrate, se
 
 基本的に、rails コマンドなど他のものを実行したい場合も、上記のように`docker-compose run --rm web bundle exec`の後につければ実行できます。
 
+## Sequel Pro などでDBに直接アクセスしたい
+
+できます！3306ポートをマッピングしてありますので、`docker-machine ip` で取得できるIPアドレスの3306番にアクセスしてください。
+
 ## サーバの再起動
 
 `docker-compose up` を実行しているプロセスを、Ctrl+C で止めて、再度 `docker-compose up` を実行してください。
