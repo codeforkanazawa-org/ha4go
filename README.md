@@ -79,9 +79,7 @@ docker-compose up
 db の初期設定は以下の手順で行ってください。
 
 ``` shell
-docker-compose run --rm web bundle exec rake db:create # dbの作成
-docker-compose run --rm web bundle exec rake db:migrate # dbのマイグレーション
-docker-compose run --rm web bundle exec rake db:seed # 初期データの投入
+docker-compose run --rm web bundle exec rake db:setup # dbの作成, migrate, seed の投入
 ```
 
 この状態で、`docker-machine ip`:3000 にブラウザでアクセスするとページが見れるようになります。
