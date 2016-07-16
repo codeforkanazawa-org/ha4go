@@ -17,7 +17,12 @@
     <div class="content_status">
       <div class="content_status_left">参加中</div>
       <div class="content_status_right">
-        <%= @user.projects.map{|project| project.subject}.join(', ') %>
+        <%  @user.projects.each do |project| %>
+          <%= link_to( project.subject, project_url(id: project.id)) %>
+          <% if project != @user.projects.last %>
+            ,
+          <% end %>
+        <% end %>
       </div>
     </div>
     <div class="content_skill clearfix">
