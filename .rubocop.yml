@@ -3,13 +3,13 @@ inherit_from: .rubocop_todo.yml
 Style/AsciiComments:
   Enabled: false
 
-Style/ClassLength:
+Metrics/ClassLength:
   Max: 200
 
 Style/IfUnlessModifier:
   Enabled: false
 
-Style/MethodLength:
+Metrics/MethodLength:
   Max: 50
 
 Style/PercentLiteralDelimiters:
@@ -18,8 +18,8 @@ Style/PercentLiteralDelimiters:
 Style/RedundantReturn:
   Enabled: false
 
-Style/RegexpLiteral:
-  MaxSlashes: 0
+#Style/RegexpLiteral:
+#  MaxSlashes: 2
 
 Style/SpecialGlobalVars:
   Enabled: false
