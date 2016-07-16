@@ -7,7 +7,6 @@
 default: &default
   adapter: mysql2
   encoding: utf8
-  database: ha4go
   pool: 5
   username: root
   password: 1234
@@ -16,17 +15,22 @@ default: &default
 
 development:
   <<: *default
-  # database: db/development.sqlite3
+  database: ha4go_dev
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
+  database: ha4go_test
   # database: db/test.sqlite3
 
 production:
   <<: *default
+  database: ha4go
+  username: <%= ENV['MYSQL_PRODUCTION_USER'] %>
+  host:     <%= ENV['MYSQL_PRODUCTION_HOST'] %>
+  password: <%= ENV['MYSQL_PRODUCTION_PW'] %>
   # adapter: postgresql
   # encoding: unicode
   # pool: 5

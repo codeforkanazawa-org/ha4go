@@ -32,11 +32,13 @@ SMTP_DOMAIN='googleapps.domain'
 SMTP_USER='notifier_user@googleapps.domain'
 SMTP_PASSWORD='password_of_notifier_user'
 APP_HOST=localhost:3000
-MYSQL_HOST=localhost
+MYSQL_HOST=db
 ```
 
 
-# dbの準備
+# Docker を用いない場合の設定
+
+## dbの準備
 
 現在、環境が `production` だろうが `development` だろうが、MySQL を用いています。
 
@@ -51,9 +53,19 @@ mysql -uroot -p < init.sql  # create db & user
 export MYSQL_HOST=localhost # (or edit .env)
 bundle exec rake db:setup   # setup database
 ```
+# ローカルでサーバー起動
 
+```
+bundle exec rails s
+```
 
-## Docker 上の MySQL を用いる場合
+その後、ブラウザで `http://localhost:3000` で画面が見えれば成功。
+
+# Dockerを用いる場合の設定
+
+## DB, WEB サーバの起動
+
+docker-compose を使うと、db と web 両方の環境を立ち上げてくれます。
 
 **注意このMySQLは公式Dockerのrootパスワードそのままなど安全ではないですので運用には充分気をつけて下さい**
 
@@ -62,16 +74,23 @@ eval $(docker-machine env)
 docker-compose up
 ```
 
-これで Linuxなら `127.0.0.1` か `docker-machine ip` に MySQL が準備できるのでこれで接続します。(`127.0.0.1`ではなく、`localhost` を用いると、MySQLが自動的に UNIX ドメインソケットが用いてしまい、接続エラーになります)
+.env 内の設定でそのまま db に繋がるようになっています。
 
-mysqldb/Dockerfile 内に書いてるMYSQL_DATABSE, MYSQL_USER, MYSQL_PASSWORD が development の環境になります。
-db:migrate を走らせる場合、以下のようなコマンドを実行してください。
+db の初期設定は以下の手順で行ってください。
 
 ``` shell
-docker-compose run --rm web bundle exec rake db:migrate
+docker-compose run --rm web bundle exec rake db:create # dbの作成
+docker-compose run --rm web bundle exec rake db:migrate # dbのマイグレーション
+docker-compose run --rm web bundle exec rake db:seed # 初期データの投入
 ```
 
 この状態で、`docker-machine ip`:3000 にブラウザでアクセスするとページが見れるようになります。
+
+基本的に、rails コマンドなど他のものを実行したい場合も、上記のように`docker-compose run --rm web bundle exec`の後につければ実行できます。
+
+## サーバの再起動
+
+`docker-compose up` を実行しているプロセスを、Ctrl+C で止めて、再度 `docker-compose up` を実行してください。
 
 
 # Facebook App ID の準備
@@ -103,10 +122,4 @@ FACEBOOK_APP_SECRET={App Secret}
 Gmailがそのまま使えるので、アカウントを取得して設定してください。(Gmailの場合の SMTP_DOMAINは `smtp.gmail.com` です)
 
 
-# ローカルでサーバー起動
 
-```
-bundle exec rails s
-```
-
-その後、ブラウザで `http://localhost:3000` で画面が見えれば成功。
