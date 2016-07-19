@@ -1,0 +1,11 @@
+FROM mysql:5.7
+
+ENV MYSQL_ROOT_PASSWORD 1234
+
+# this need to stay the same for script to work
+ENV MYSQL_USER mysql
+
+COPY ./mysql.sh /
+RUN chmod 755 /mysql.sh
+
+ENTRYPOINT ["/mysql.sh"]
