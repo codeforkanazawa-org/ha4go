@@ -6,6 +6,8 @@ services:
       dockerfile: Dockerfile.db
     volumes:
       - ./mysql:/var/lib/mysql
+    ports:
+      - "3306:3306"
   web:
     build:
       context: .
