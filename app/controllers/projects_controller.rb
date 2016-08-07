@@ -75,9 +75,16 @@ class ProjectsController < ApplicationController
       redirect_to @project, notice: I18n.t('projects.banner.cannot')
     else
       begin
+        ProjectUpdate.new(
+          project_id:  @project.id,
+          description: "#{@my_user.name} さんは課題 #{@project.subject} への参加を辞めました。",
+          user_id:     @my_user.id
+        ).save
+
         @project.users.delete(@my_user)
         redirect_to @project, notice: I18n.t('projects.banner.leaved')
-      rescue
+      rescue => e
+        logger.debug(e.to_s)
         redirect_to @project, notice: I18n.t('projects.banner.cannot')
       end
     end
