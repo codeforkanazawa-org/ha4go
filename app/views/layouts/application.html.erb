@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>ha4go</title>
     <meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1,initial-scale=1" />
-    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= csrf_meta_tags %>
     <%= render partial: "shared/ogp_common" %>
     <%= yield :twitter_card %>
@@ -75,10 +75,12 @@
                   <li class="li_sub">
                     <%= link_to( t('dic.mypage'), user_path(id: @my_user.id)) %>
                   </li>
+                  <li class="li_sub">
+                    <%= link_to( t('dic.logout'), signout_path, id: 'sign_out') %>
+                  </li>
                 <% else %>
                   <li class="li_sub"><%= link_to( t('dic.login'), '/auth/facebook', id: 'sign_in') %></li>
                 <% end %>
-                <li class="li_sub"><%= link_to( t('dic.logout'), signout_path, id: 'sign_out') %></li>
                 <li class="li_sub"><%= link_to( t('dic.member'), users_path) %></li>
               </ul>
             </nav>
@@ -86,7 +88,6 @@
         </section>
       </header>
       <!--スマートフォン用ヘッダーここまで-->
-      <!--コンテンツ-->
       <!--コンテンツ-->
       <div id="wrapper">
         <article>
