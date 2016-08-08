@@ -7,6 +7,20 @@ class Project < ActiveRecord::Base
   has_and_belongs_to_many :skills
   belongs_to :stage
 
+  scope :recent, lambda { |before|
+    joins(:project_updates).where('project_updates.created_at > ?', before).group(:project_id)
+  }
+
+  scope :hot_rank, lambda { |before|
+    keys = joins(:project_updates).where(ProjectUpdate.arel_table[:created_at].gt(before)).group(ProjectUpdate.arel_table[:project_id]).order('count_project_updates_project_id desc').count('project_updates.project_id').keys
+    records = Project.find(keys).index_by(&:id)
+    out = []
+    keys.each do |k|
+      out << records[k]
+    end
+    out
+  }
+
   # プロジェクトを編集可能なユーザーかどうか
   # @param [Integer] user_id
   # @return [Boolean]

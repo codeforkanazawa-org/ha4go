@@ -98,12 +98,12 @@
                 <div class="menu01">
                   <%= link_to t('dic.project_recent'), projects_path %>
                 </div>
-                <div class="menu02"><%= Array(@projects).count %></div>
+                <div class="menu02"><%= @projects_recent_count %></div>
 
                 <div class="menu01">
                   <%= link_to t('dic.project_hot'), projects_path %>
                 </div>
-                <div class="menu02"><%= Array(@projects).count %></div>
+                <div class="menu02"><%= @projects_hot_rank_count %></div>
 
                 <div class="menu01">
                   <%= link_to t('dic.project_recruiting'), projects_path %>
@@ -113,7 +113,7 @@
                 <div class="menu01">
                   <%= link_to t('dic.project_all'), projects_path %>
                 </div>
-                <div class="menu02"><%= Array(@projects).count %></div>
+                <div class="menu02"><%= @projects_all_count %></div>
               </div>
               <% if authorized? %>
                 <div class="menu_post">
@@ -122,6 +122,10 @@
               <% end %>
               <section class="menu_news">
                 <h1>運営事務局からのお知らせ</h1>
+                <dl>
+                  <dt>2016-8-9</dt>
+                  <dd>少しバージョンアップ。</dd>
+                </dl>
                 <dl>
                   <dt>2016-7-14</dt>
                   <dd>パブリックベータ開始。</dd>
