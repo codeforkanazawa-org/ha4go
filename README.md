@@ -35,6 +35,7 @@ APP_HOST=localhost:3000
 MYSQL_HOST=127.0.0.1
 MYSQL_USER=ha4go
 MYSQL_PW=ha4goha4go
+USE_HTTPS=0
 ```
 
 # DBの準備
@@ -155,3 +156,12 @@ Gmailがそのまま使えるので、アカウントを取得して設定して
 
 
 
+# HTTPSを用いる場合
+
+nginxなどのリバースプロキシを使ってHTTPSを用いる場合、
+
+```
+USE_HTTPS=1
+```
+
+としてください。内部的にリンクを作成する際、 `https://` が採用されるようになります。

@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  before_action :authorized?, :set_quick_link, :set_ranking_link, :set_all_link
+  before_action :authorized?, :check_use_https, :set_quick_link, :set_ranking_link, :set_all_link
 
   helper_method :authorized?
 
@@ -16,6 +16,10 @@ class ApplicationController < ActionController::Base
   def authorized?
     @my_user = User.find(session[:user_id]) if session[:user_id]
     !@my_user.nil?
+  end
+
+  def check_use_https
+    request.env['HTTP_X_FORWARDED_SSL'] = 'on' if ENV['USE_HTTPS'].to_i >= 1
   end
 
   def set_quick_link
