@@ -5,11 +5,20 @@ class ProjectsController < ApplicationController
 
   # GET /projects
   def index
-    @projects = Project.all
+    type = params[:type]
+    if type == 'recent'
+      @projects = Project.recent(default_duration)
+    elsif type == 'hotrank'
+      @projects = Project.hot_rank(default_duration)
+    else
+      @projects = Project.all
+    end
+
   end
 
   # GET /projects/1
   def show
+    @use_custom_ogp = true
   end
 
   # GET /projects/new
@@ -107,6 +116,7 @@ class ProjectsController < ApplicationController
     else
       @joined = false
     end
+    @use_custom_ogp = false
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

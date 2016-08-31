@@ -1,6 +1,3 @@
-<% content_for :ogp do %>
-  <%= render 'shared/ogp_project', project: @project %>
-<% end %>
 <div class="content">
   <% if notice %>
     <div class="alert alert-success" role="alert">
@@ -19,6 +16,14 @@
     </div>
     <div class="content_box">
       <%=description_text(@project.description)%>
+    </div>
+    <div class="content_sns_share clearfix">
+      <div class="content_sns_share_left">
+        SNSシェア
+      </div>
+      <div class="content_sns_share_right">
+        <%= facebook_share_btn(project_path(id: @project.id)) %>
+      </div>
     </div>
     <div class="content_development_url clearfix">
       <div class="content_development_url_left"><%= t('dic.dev_url')  %></div>

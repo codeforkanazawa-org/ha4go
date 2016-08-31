@@ -6,7 +6,11 @@
     <meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1,initial-scale=1" />
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= csrf_meta_tags %>
-    <%= render partial: "shared/ogp_common" %>
+    <% if @use_custom_ogp %>
+      <%= render 'shared/ogp_project', project: @project %>
+    <% else %>
+      <%= render partial: "shared/ogp_common" %>
+    <% end %>
     <%= yield :twitter_card %>
     <%= %>
   </head>
@@ -96,12 +100,12 @@
             <div class="menu">
               <div class="clearfix">
                 <div class="menu01">
-                  <%= link_to t('dic.project_recent'), projects_path %>
+                  <%= link_to t('dic.project_recent'), projects_path(type: 'recent', order: 'desc') %>
                 </div>
                 <div class="menu02"><%= @projects_recent_count %></div>
 
                 <div class="menu01">
-                  <%= link_to t('dic.project_hot'), projects_path %>
+                  <%= link_to t('dic.project_hot'), projects_path(type: 'hotrank') %>
                 </div>
                 <div class="menu02"><%= @projects_hot_rank_count %></div>
 

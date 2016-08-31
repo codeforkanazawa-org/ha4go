@@ -9,17 +9,21 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def default_duration
+    Time.now - 30.days
+  end
+
   def authorized?
     @my_user = User.find(session[:user_id]) if session[:user_id]
     !@my_user.nil?
   end
 
   def set_quick_link
-    @projects_recent_count = Project.recent(Time.now - 30.days).length
+    @projects_recent_count = Project.recent(default_duration).length
   end
 
   def set_ranking_link
-    @projects_hot_rank_count = Project.hot_rank(Time.now - 30.days).length
+    @projects_hot_rank_count = Project.hot_rank(default_duration).length
   end
 
   def set_all_link
