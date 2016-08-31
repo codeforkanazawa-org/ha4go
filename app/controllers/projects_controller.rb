@@ -5,7 +5,14 @@ class ProjectsController < ApplicationController
 
   # GET /projects
   def index
-    @projects = Project.all
+    type = params[:type]
+    if type == 'recent'
+      @projects = Project.recent(default_duration)
+    elsif type == 'hotrank'
+      @projects = Project.hot_rank(default_duration)
+    else
+      @projects = Project.all
+    end
   end
 
   # GET /projects/1
