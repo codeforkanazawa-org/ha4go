@@ -33,12 +33,12 @@ class ApplicationController < ActionController::Base
     session[:current_url] = request.fullpath
   end
 
-  def add_rss_urls(url)
-    @rss_urls = Array(@rss_urls) << url
+  def add_rss_urls(name, url)
+    @rss_urls = Array(@rss_urls) << { name: name, url: url }
     @rss_urls.uniq!
   end
 
   def set_rss_url
-    @rss_urls = ['/feed.rss/']
+    @rss_urls = [{ name: 'ha4go Project List', url:  '/feed.rss/' }]
   end
 end
