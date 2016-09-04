@@ -9,7 +9,7 @@ module ApplicationHelper
 
   def description_text(text, length = 65_536)
     out = text.to_s
-    URI.extract(out, ['http', 'https']).uniq.each do |url|
+    URI.extract(out, %w(http https)).uniq.each do |url|
       sub_text = ""
       sub_text << "<a href=" << url << " target=\"_blank\">" << url << "</a>"
 

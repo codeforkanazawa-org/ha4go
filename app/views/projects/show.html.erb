@@ -78,13 +78,16 @@
   </div>
 
   <% @project.project_updates.reverse.each do |update| %>
-    <div class="comment clearfix">
+    <div class="comment clearfix" id="comment-<%=update.id%>">
       <div class="comment_thum">
         <%= link_to image_tag(update.user.image, alt: update.user.name), user_path(id: update.user.id) %>
       </div>
       <div class="comment_text">
         <p><%= description_text(update.description) %></p>
-        <p class="comment_author"><%= update.created_at.strftime("%Y-%m-%d %H:%M") %> <%= t 'dic.posted_on' %></p>
+        <p class="comment_author">
+          <%= link_to update.created_at.strftime("%Y-%m-%d %H:%M"), project_path(id: @project.id, anchor: "comment-#{update.id}") %>
+          <%= update.created_at.strftime("%Y-%m-%d %H:%M") %> <%= t 'dic.posted_on' %>
+        </p>
       </div>
     </div>
   <% end %>

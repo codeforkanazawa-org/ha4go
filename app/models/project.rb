@@ -11,6 +11,10 @@ class Project < ActiveRecord::Base
     joins(:project_updates).where('project_updates.created_at > ?', before).group(:project_id)
   }
 
+  scope :recruiting, lambda {
+    where.not(stage_id: 13)
+  }
+
   scope :hot_rank, lambda { |before|
     keys = joins(:project_updates).where(ProjectUpdate.arel_table[:created_at].gt(before)).group(ProjectUpdate.arel_table[:project_id]).order('count_project_updates_project_id desc').count('project_updates.project_id').keys
     records = Project.find(keys).index_by(&:id)

@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  before_action :authorized?, :check_use_https, :set_quick_link, :set_ranking_link, :set_all_link
+  before_action :authorized?, :check_use_https, :set_quick_link_counts, :save_current_url, :set_rss_url
 
   helper_method :authorized?
 
@@ -22,15 +22,23 @@ class ApplicationController < ActionController::Base
     request.env['HTTP_X_FORWARDED_SSL'] = 'on' if ENV['USE_HTTPS'].to_i >= 1
   end
 
-  def set_quick_link
+  def set_quick_link_counts
     @projects_recent_count = Project.recent(default_duration).length
-  end
-
-  def set_ranking_link
     @projects_hot_rank_count = Project.hot_rank(default_duration).length
+    @projects_all_count = Project.all.count
+    @projects_recruiting_count = Project.recruiting.length
   end
 
-  def set_all_link
-    @projects_all_count = Project.all.count
+  def save_current_url
+    session[:current_url] = request.fullpath
+  end
+
+  def add_rss_urls(url)
+    @rss_urls = Array(@rss_urls) << url
+    @rss_urls.uniq!
+  end
+
+  def set_rss_url
+    @rss_urls = ['/feed.rss/']
   end
 end

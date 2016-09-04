@@ -3,21 +3,21 @@
 xml.instruct! :xml, version: '1.0'
 xml.rss version: '2.0' do
   xml.channel do
-    xml.title 'ha4go RSS Title'
-    xml.author 'Code for Kanazawa'
-    xml.description 'Code for Kanazawa .'
+    xml.title   @project.subject
+    xml.author  @project.user.name
+    xml.description @project.description
     protocol = 'http'
     protocol + 's' if ENV['USE_HTTPS'].to_i > 0
-    url =  "#{protocol}://#{ENV['APP_HOST']}"
+    url =  "#{protocol}://#{ENV['APP_HOST']}/projects/#{@project.id}"
     xml.link url
     xml.language 'jp'
 
-    @projects.each do |article|
+    @project.project_updates.each do |article|
       xml.item do
-        xml.title article.subject || ''
+        xml.title article.created_at.to_s
         xml.author article.user.name
         xml.pubDate article.created_at.to_s(:rfc822)
-        xml.link "#{url}/projects/" + article.id.to_s
+        xml.link "#{url}#comment-" + article.id.to_s
         xml.guid article.id
 
         text = article.description

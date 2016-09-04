@@ -21,16 +21,11 @@ Skill.first_or_create(
   ]
 )
 
-Stage.first_or_create(
-  [
-    { name: '議論' },
-    { name: '企画・設計' },
-    { name: 'プロトタイプ作成' },
-    { name: 'ユーザテスト' },
-    { name: '運用' },
-    { name: '改善・改修' },
-    { name: '参加者募集' },
-    { name: 'デザイナー募集' },
-    { name: 'エンジニア募集' }
-  ]
-)
+[
+  { id: 10, name: '議論と調査' },
+  { id: 11, name: '企画と試作中' },
+  { id: 12, name: '運用中' },
+  { id: 13, name: '休止・終了' }
+].each do |r|
+  Stage.where(r).first_or_create
+end

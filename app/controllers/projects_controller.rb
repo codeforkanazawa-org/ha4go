@@ -10,6 +10,8 @@ class ProjectsController < ApplicationController
       @projects = Project.recent(default_duration)
     elsif type == 'hotrank'
       @projects = Project.hot_rank(default_duration)
+    elsif type == 'recruiting'
+      @projects = Project.recruiting
     else
       @projects = Project.all
     end
@@ -19,6 +21,11 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   def show
     @use_custom_ogp = true
+    add_rss_urls(request.fullpath + '.rss')
+    respond_to do |format|
+      format.any
+      format.rss { render layout: false }
+    end
   end
 
   # GET /projects/new
