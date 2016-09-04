@@ -4,13 +4,12 @@ xml.instruct! :xml, version: '1.0'
 xml.rss version: '2.0' do
   xml.channel do
     xml.title 'ha4go RSS Title'
-    xml.author 'Code for Kanazawa'
-    xml.description 'Code for Kanazawa .'
+    xml.description 'Code for Kanazawa.'
     protocol = 'http'
     protocol + 's' if ENV['USE_HTTPS'].to_i > 0
-    url =  "#{protocol}://#{ENV['APP_HOST']}"
+    url = "#{protocol}://#{ENV['APP_HOST']}"
     xml.link url
-    xml.language 'jp'
+    xml.language 'ja'
 
     @projects.each do |article|
       xml.item do
@@ -18,7 +17,7 @@ xml.rss version: '2.0' do
         xml.author article.user.name
         xml.pubDate article.created_at.to_s(:rfc822)
         xml.link "#{url}/projects/" + article.id.to_s
-        xml.guid article.id
+        xml.guid(article.id, isPermaLink: 'false')
 
         text = article.description
         # if you like, do something with your content text here e.g. insert image tags.
