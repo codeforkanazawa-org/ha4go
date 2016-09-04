@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  before_action :authorized?, :check_use_https, :set_quick_link_counts
+  before_action :authorized?, :check_use_https, :set_quick_link_counts, :save_current_url
 
   helper_method :authorized?
 
@@ -27,5 +27,9 @@ class ApplicationController < ActionController::Base
     @projects_hot_rank_count = Project.hot_rank(default_duration).length
     @projects_all_count = Project.all.count
     @projects_recruiting_count = Project.recruiting.length
+  end
+
+  def save_current_url
+    session[:current_url] = request.fullpath
   end
 end
