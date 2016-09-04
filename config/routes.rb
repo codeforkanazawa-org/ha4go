@@ -43,6 +43,8 @@ Rails.application.routes.draw do
 
   get 'projects/leave/:id', to: 'projects#leave'
 
+  get 'projects/posts/:id', to: 'projects#kakikomizu'
+
   get 'feed' => 'top#feed'
   root 'top#index', as: 'root'
 

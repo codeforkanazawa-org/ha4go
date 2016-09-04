@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  before_action :authorized?, :check_use_https, :set_quick_link_counts, :save_current_url
+  before_action :authorized?, :check_use_https, :set_quick_link_counts, :save_current_url, :set_rss_url
 
   helper_method :authorized?
 
@@ -31,5 +31,14 @@ class ApplicationController < ActionController::Base
 
   def save_current_url
     session[:current_url] = request.fullpath
+  end
+
+  def add_rss_urls(url)
+    @rss_urls = Array(@rss_urls) << url
+    @rss_urls.uniq!
+  end
+
+  def set_rss_url
+    @rss_urls = ['/feed.rss/']
   end
 end
