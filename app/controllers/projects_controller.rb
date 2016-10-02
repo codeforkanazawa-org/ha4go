@@ -50,10 +50,13 @@ class ProjectsController < ApplicationController
     @project.update_skill_ids_by_skill_names(skills) unless skills.empty?
 
     if @project.save
+
+      # mail to created
       @project.send_mail_users.pluck(:email).compact.each do |m|
         ProjectMailer.tell_create(m, @project).deliver_now unless m == ''
       end
 
+      # mail to skill matched
       User.joins(:skills).where(skills: { id: @project.skills }).pluck(:email).compact.each do |m|
         ProjectMailer.tell_skill_match(m, @project, true).deliver_now unless m == ''
       end
@@ -70,8 +73,15 @@ class ProjectsController < ApplicationController
     if @project.update(project_params)
       skills = Array(params[:skill_names][:skill_ids]) + params[:new_skills][:new_skills].split(' ')
       @project.update_skill_ids_by_skill_names(skills) unless skills.empty?
+
       current_skills = @project.skills.map(&:id)
       fue = current_skills - before_skills
+
+      # mail to skill matched
+      User.joins(:skills).where(skills: { id: fue }).pluck(:email).compact.each do |m|
+        ProjectMailer.tell_skill_match(m, @project).deliver_now unless m == ''
+      end
+
       redirect_to @project, notice: I18n.t('projects.banner.updated') + fue.to_s
     else
       render :edit
