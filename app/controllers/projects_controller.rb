@@ -47,12 +47,17 @@ class ProjectsController < ApplicationController
     @project = Project.new(project_params)
     @project.user_id = @my_user.id
     skills = Array(params[:skill_names][:skill_ids]) + params[:new_skills][:new_skills].split(' ')
-    @project.update_skill_ids_by_skill_names(skills) if skills.size > 0
+    @project.update_skill_ids_by_skill_names(skills) unless skills.empty?
 
     if @project.save
       @project.send_mail_users.pluck(:email).compact.each do |m|
         ProjectMailer.tell_create(m, @project).deliver_now unless m == ''
       end
+
+      User.joins(:skills).where(skills: { id: @project.skills }).pluck(:email).compact.each do |m|
+        ProjectMailer.tell_skill_match(m, @project, true).deliver_now unless m == ''
+      end
+
       redirect_to @project, notice: I18n.t('projects.banner.created')
     else
       render :new
@@ -61,10 +66,13 @@ class ProjectsController < ApplicationController
 
   # PATCH/PUT /projects/1
   def update
+    before_skills = @project.skills.map(&:id)
     if @project.update(project_params)
       skills = Array(params[:skill_names][:skill_ids]) + params[:new_skills][:new_skills].split(' ')
-      @project.update_skill_ids_by_skill_names(skills) if skills.size > 0
-      redirect_to @project, notice: I18n.t('projects.banner.updated')
+      @project.update_skill_ids_by_skill_names(skills) unless skills.empty?
+      current_skills = @project.skills.map(&:id)
+      fue = current_skills - before_skills
+      redirect_to @project, notice: I18n.t('projects.banner.updated') + fue.to_s
     else
       render :edit
     end

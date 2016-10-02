@@ -31,3 +31,10 @@ ja:
     project_all:     全ての課題
     member_list:     参加者一覧
     dev_url:         開発用URL
+  mail:
+    link_head:   詳細は
+    link_foot:   を参照してください。
+    dont_res:    このメールは送信専用メールアドレスから送信されています。返信できません。
+    footer:      Code for Kanazawa ha4go project team.
+    miss:        今後ha4goからこのようなメールを受けとりたくない場合は、ha4goにログインし、マイページよりメールアドレスを削除してください。
+    here:        こちら

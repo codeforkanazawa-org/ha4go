@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
 
   # 必要なスキルを更新
   # @param [Array] skill_names スキル名の配列
-  # @return [Boolean]
+  # @return 増えたSKILLのID一覧
   def update_skill_ids_by_skill_names(skill_names)
     @before_skill_ids = skills.map(&:id)
     @after_skill_ids  = []
@@ -36,7 +36,8 @@ class User < ActiveRecord::Base
     end
 
     # 追加
-    (@after_skill_ids - @before_skill_ids).each do |skill_id|
+    out = @after_skill_ids - @before_skill_ids
+    out.each do |skill_id|
       skills << Skill.find(skill_id)
     end
 
@@ -44,5 +45,7 @@ class User < ActiveRecord::Base
     (@before_skill_ids - @after_skill_ids).each do |skill_id|
       skills.delete(skill_id)
     end
+
+    return out
   end
 end

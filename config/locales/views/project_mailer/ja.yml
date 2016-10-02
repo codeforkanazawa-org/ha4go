@@ -2,20 +2,11 @@ ja:
   project_mailer:
     tell_create:
       create:      新しい課題「%{project}」ができました。
-      link_head:   詳細は
-      here:        こちら
-      link_foot:   を参照してください。
-      dont_res:    このメールは送信専用メールアドレスから送信されています。返信できません。
-      miss:        今後ha4goからこのようなメールを受けとりたくない場合は、ha4goにログインし、マイページよりメールアドレスを削除してください。
-      footer:      Code for Kanazawa ha4go project team.
+      created_by:  '%{name}さんによる作成です。'
     tell_update:
-      here:        こちら
       update:      課題「%{project}」に更新がありました。
       update_by:   '%{name}さんによる更新です。'
-      link_head:   詳細は
-      link_foot:   を参照してください。
-      dont_res:    このメールは送信専用メールアドレスから送信されています。返信できません。
-      miss:        今後ha4goからこのようなメールを受けとりたくない場合は、ha4goにログインし、マイページよりメールアドレスを削除してください。
-      footer:      Code for Kanazawa ha4go project team.
     sendmail_confirm:
       here:        こちら
+    tell_skill_match:
+      need:      課題「%{project}」があなたのスキルとマッチしました。
