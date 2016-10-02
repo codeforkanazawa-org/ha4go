@@ -15,6 +15,10 @@ class Project < ActiveRecord::Base
     where.not(stage_id: 13)
   }
 
+  scope :match_mine, lambda { |skills|
+    joins(:skills).where(skills: { id: skills }).where.not(stage_id: 13)
+  }
+
   scope :hot_rank, lambda { |before|
     keys = joins(:project_updates).where(ProjectUpdate.arel_table[:created_at].gt(before)).group(ProjectUpdate.arel_table[:project_id]).order('count_project_updates_project_id desc').count('project_updates.project_id').keys
     records = Project.find(keys).index_by(&:id)
@@ -71,5 +75,9 @@ class Project < ActiveRecord::Base
       send_users.push me
     end
     send_users
+  end
+
+  def send_mail_skill_matched_users
+    Users.find
   end
 end

@@ -26,7 +26,11 @@ class ApplicationController < ActionController::Base
     @projects_recent_count = Project.recent(default_duration).length
     @projects_hot_rank_count = Project.hot_rank(default_duration).length
     @projects_all_count = Project.all.count
-    @projects_recruiting_count = Project.recruiting.length
+    if authorized?
+      @projects_match = Project.match_mine(@my_user.skills).length
+    else
+      @projects_match = @projects_all_count
+    end
   end
 
   def save_current_url

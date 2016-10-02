@@ -118,12 +118,14 @@
                   <%= @projects_hot_rank_count %>
                 </div>
 
-                <div class="menu01">
-                  <%= link_to t('dic.project_recruiting'), projects_path(type: 'recruiting') %>
-                </div>
-                <div class="menu02">
-                  <%= @projects_recruiting_count %>
-                </div>
+                <% if authorized? %>
+                  <div class="menu01">
+                    <%= link_to t('dic.project_match_mine'), projects_path(type: 'match') %>
+                  </div>
+                  <div class="menu02">
+                    <%= @projects_match %>
+                  </div>
+                <% end %>
 
                 <div class="menu01">
                   <%= link_to t('dic.project_all'), projects_path %>

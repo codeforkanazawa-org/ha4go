@@ -27,7 +27,7 @@ ja:
     list_project_do: 課題一覧をみる
     project_recent:  最新の課題
     project_hot:        話題になっている課題
-    project_recruiting: スキル募集中の課題
+    project_match_mine: 自分のスキルとマッチする課題
     project_all:     全ての課題
     member_list:     参加者一覧
     dev_url:         開発用URL

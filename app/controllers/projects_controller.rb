@@ -10,8 +10,11 @@ class ProjectsController < ApplicationController
       @projects = Project.recent(default_duration)
     elsif type == 'hotrank'
       @projects = Project.hot_rank(default_duration)
-    elsif type == 'recruiting'
-      @projects = Project.recruiting
+    elsif type == 'match'
+      unless @my_user.nil?
+        @projects = Project.match_mine(@my_user.skills)
+      end
+      @projets = []
     else
       @projects = Project.all
     end
