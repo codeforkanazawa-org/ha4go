@@ -6,10 +6,11 @@
   <body>
     <h1><%= t('.update', project: @project_update.project.subject.truncate(25)) %></h1>
     <div>
-      <%= t('.update_by', name: @project_update.user.name)  %> <%= t('.link_head')%> <%= link_to( t('.here'), project_url(id: @project_update.project.id), only_path: false) %> <%= t('.link_foot')%>
+      <%= t('.update_by', name: @project_update.user.name)  %>
+      <%= t('mail.link_head')%> <%= link_to( t('mail.here'), project_url(id: @project_update.project.id), only_path: false) %> <%= t('mail.link_foot')%>
     </div>
     <div>
-      <%= t('.dont_res') %>
+      <%= t('mail.dont_res') %>
     </div>
     <hr/>
     <div>
@@ -17,10 +18,10 @@
     </div>
     <hr/>
     <div>
-      <%= t('.miss') %>
+      <%= t('mail.miss') %>
     </div>
     <div>
-      <%= t('.footer')%>
+      <%= t('mail.footer')%>
     </div>
   </body>
 </html>
