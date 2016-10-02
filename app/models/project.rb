@@ -11,7 +11,6 @@ class Project < ActiveRecord::Base
 
   scope :recent, lambda { |before|
     targets = ProjectUpdate.where('created_at > ?', before).group(:project_id).map(&:project_id)
-    targets = []
     where('created_at > ? or id in (?)', before, targets)
   }
 
