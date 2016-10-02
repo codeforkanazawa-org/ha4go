@@ -18,6 +18,7 @@ html {
 
 a {
   text-decoration: none;
+  color: #666666;
 }
 
 #wrapper {
@@ -107,6 +108,10 @@ header h1 {
   font-weight: normal;
   padding-top: 20px;
   float: left;
+  a{
+    color: #fff;
+    font-weight: bold;
+  }
 }
 
 #sp_header {
@@ -267,7 +272,7 @@ dd {
   line-height: 1.3em;
   float: left;
   a {
-    color: #218BBF;
+    color: #666666;
   }
 }
 
@@ -286,12 +291,19 @@ dd {
   font-size: 10px;
   float: left;
   line-height: 1.5em;
+  a{
+    color: #666666;
+  }
 }
 
 .content_box {
   padding: 15px;
   clear: both;
   font-size: 14px;
+  color: #444444;
+  a {
+    color: #999999;
+  }
 }
 
 .content_development_url {
@@ -371,8 +383,9 @@ dd {
   padding: 2px 10px;
   border-radius: 10px;
   margin-right: 5px;
-  border: 1px dotted #0071BC;
-  color: #0071BC;
+  border: 1px dotted #666666;
+  color: #666666;
+  font-weight: bold;
 }
 
 .skill_programming {
