@@ -3,7 +3,8 @@
     <div class="content_title"><%= link_to(project.subject, project_path(id: project.id)) %></div>
     <div class="content_member"><%= link_to (image_tag project.user.image, alt: project.user.name), user_path(id:project.user.id) %></div>
     <div class="content_time">
-      <%= name_and_link(project.user) %><% t('dic.title') %>&emsp;<%= project.created_at.strftime("%Y-%m-%d %H:%M") %><% t('dic.posted_on') %>
+      <%= name_and_link(project.user) %><% t('dic.title') %><br/>
+      <%= time_ago_in_words project.created_at %><% t('dic.posted_on') %>
     </div>
   </div>
   <div class="content_box">
