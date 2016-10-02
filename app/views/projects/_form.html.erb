@@ -11,11 +11,15 @@
   <% end %>
   <div class="project-detail__define">
     <div class="row">
+      <% if @parent_project.nil? %>
+      <% else %>
+        <%= f.hidden_field :project_id, value: @parent_project.id %>
+      <% end %>
       <div class="col-md-2">
         <%= t 'dic.title' %>
       </div>
       <div class="input_text">
-        <%= f.text_field :subject %>
+        <%= f.text_field :subject, placeholder: t('dic.ex_subject') %>
       </div>
     </div>
     <div class="row">
@@ -23,7 +27,7 @@
         URL
       </div>
       <div class="input_text">
-        <%= f.url_field :user_url, class: 'form-control' %>
+        <%= f.url_field :user_url, class: 'form-control', placeholder: t('dic.ex_url') %>
       </div>
     </div>
     <div class="row">
@@ -31,7 +35,7 @@
         <%= t '.dev_url' %>
       </div>
       <div class="input_text">
-        <%= f.url_field :development_url, class: 'form-control' %>
+        <%= f.url_field :development_url, class: 'form-control', placeholder: t('dic.ex_devurl') %>
       </div>
     </div>
     <div class="row">
@@ -39,7 +43,7 @@
         <%= t 'dic.detail' %>
       </div>
       <div class="input_text">
-          <%= f.text_area :description, class: 'form-control', rows: 5 %>
+        <%= f.text_area :description, class: 'form-control', rows: 5, placeholder: t('dic.ex_description') %>
       </div>
     </div>
     <div class="row">
@@ -57,7 +61,7 @@
         <%= t '.new_skill'%>
       </div>
       <div class="input_text">
-        <%= text_field :new_skills, :new_skills  %>
+        <%= text_field :new_skills, :new_skills, placeholder: t('dic.ex_skills') %>
       </div>
     </div>
     <% if (params[:action] == 'edit') then %>

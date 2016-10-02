@@ -6,9 +6,13 @@ class Project < ActiveRecord::Base
   has_and_belongs_to_many :users
   has_and_belongs_to_many :skills
   belongs_to :stage
+  belongs_to :project
+  has_many   :projects
 
   scope :recent, lambda { |before|
-    joins(:project_updates).where('project_updates.created_at > ?', before).group(:project_id)
+    targets = ProjectUpdate.where('created_at > ?', before).group(:project_id).map(&:project_id)
+    targets = []
+    where('created_at > ? or id in (?)', before, targets)
   }
 
   scope :recruiting, lambda {
