@@ -13,6 +13,8 @@ ja:
     joining:      参加中
     member:       メンバー
     status:       ステータス
+    parent_project: 元の課題
+    child_project:  関連課題
     wantskill:    募集スキル
     detail:       詳細
     title:        タイトル
@@ -31,6 +33,12 @@ ja:
     project_all:     全ての課題
     member_list:     参加者一覧
     dev_url:         開発用URL
+    sns:             SNSシェア
+    ex_subject:     '入力必須 (例) ゴミの日がわかりにくい'
+    ex_url:         '省略可 (例) http://5374.jp'
+    ex_devurl:      '省略可 (例) https://github.com/codeforkanazawa-org/5374'
+    ex_description: '入力必須 (例) 今日や直近のゴミの日がわかりにくいのをなんとかできないかな。'
+    ex_skills:      '省略可 (例) HTML CSS'
   mail:
     link_head:   詳細は
     link_foot:   を参照してください。

@@ -18,7 +18,6 @@ class ProjectsController < ApplicationController
     else
       @projects = Project.all
     end
-
   end
 
   # GET /projects/1
@@ -37,6 +36,8 @@ class ProjectsController < ApplicationController
     @skills    = Skill.all
     @users     = User.all
     @my_skills = []
+    @parent_project = nil
+    @parent_project = Project.find(params[:parent_id]) unless params[:parent_id].nil?
   end
 
   # GET /projects/1/edit
@@ -149,6 +150,6 @@ class ProjectsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def project_params
-    params.require(:project).permit(:user_id, :stage_id, :subject, :description, :user_url, :development_url)
+    params.require(:project).permit(:user_id, :stage_id, :subject, :description, :user_url, :development_url, :project_id)
   end
 end

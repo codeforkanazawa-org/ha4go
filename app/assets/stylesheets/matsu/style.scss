@@ -348,6 +348,42 @@ dd {
   width: 510px;
 }
 
+.content_parent_project {
+  padding: 0 15px;
+  clear: both;
+  font-size: 14px;
+}
+
+.content_parent_project_left {
+  float: left;
+  margin-right: 20px;
+  width: 70px;
+}
+
+.content_parent_project_right {
+  float: left;
+  font-size: 12px;
+  width: 510px;
+}
+
+.content_child_project {
+  padding: 0 15px;
+  clear: both;
+  font-size: 14px;
+}
+
+.content_child_project_left {
+  float: left;
+  margin-right: 20px;
+  width: 70px;
+}
+
+.content_child_project_right {
+  float: left;
+  font-size: 12px;
+  width: 510px;
+}
+
 .content_skill {
   padding: 0 15px 35px;
   clear: both;
@@ -520,6 +556,21 @@ dd {
 .btn a {
   padding: 3px;
   background-color: #333;
+  width: 100px;
+  color: #fff;
+  float: right;
+  margin-right: 10px;
+  font-size: 12px;
+  text-align: center;
+  border-radius: 15px;
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.btn2 a {
+  padding: 3px;
+  background-color: #F7931E;
   width: 100px;
   color: #fff;
   float: right;

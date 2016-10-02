@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160905094440) do
+ActiveRecord::Schema.define(version: 20161002065824) do
 
   create_table "project_updates", force: :cascade do |t|
     t.integer  "project_id",  limit: 4
@@ -30,7 +30,10 @@ ActiveRecord::Schema.define(version: 20160905094440) do
     t.string   "development_url", limit: 255
     t.datetime "created_at",                                 null: false
     t.datetime "updated_at",                                 null: false
+    t.integer  "project_id",      limit: 4
   end
+
+  add_index "projects", ["project_id"], name: "index_projects_on_project_id", using: :btree
 
   create_table "projects_skills", force: :cascade do |t|
     t.integer  "project_id", limit: 4
@@ -82,4 +85,5 @@ ActiveRecord::Schema.define(version: 20160905094440) do
     t.string   "image",            limit: 255
   end
 
+  add_foreign_key "projects", "projects"
 end

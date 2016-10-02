@@ -317,6 +317,37 @@
     font-size: 12px;
     width: 70%;
   }
+  .content_parent_project {
+    padding: 0 15px;
+    clear: both;
+    font-size: 14px;
+  }
+  .content_parent_project_left {
+    float: left;
+    margin-right: 0px;
+    width: 30%;
+  }
+  .content_parent_project_right {
+    float: left;
+    font-size: 12px;
+    width: 70%;
+  }
+  .content_child_project {
+    padding: 0 15px;
+    clear: both;
+    font-size: 14px;
+  }
+  .content_child_project_left {
+    float: left;
+    margin-right: 0px;
+    width: 30%;
+  }
+  .content_child_project_right {
+    float: left;
+    font-size: 12px;
+    width: 70%;
+  }
+
   .content_skill {
     height: auto;
     padding: 0 15px 15px;

@@ -4,5 +4,17 @@
       <%= notice %>
     </div>
   <% end %>
+  <div class="project-detail__define">
+    <% unless @parent_project.nil? %>
+      <div class="row">
+        <div class="col-md-2">
+          <%= t 'dic.parent_project' %>
+        </div>
+        <div class="input_text">
+          <%= @parent_project.subject %>
+        </div>
+      </div>
+    <% end %>
+  </div>
   <%= render 'form' %>
 </div>

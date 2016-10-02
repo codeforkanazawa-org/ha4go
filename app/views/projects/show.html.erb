@@ -15,32 +15,62 @@
       </div>
     </div>
     <div class="content_box">
-      <%=description_text(@project.description)%>
+      <%= description_text(@project.description) %>
     </div>
+
+    <!-- SNS SHARE -->
     <div class="content_sns_share clearfix">
       <div class="content_sns_share_left">
-        SNSシェア
+        <%= t('dic.sns')%>
       </div>
       <div class="content_sns_share_right">
         <%= facebook_share_btn(project_path(id: @project.id)) %>
       </div>
     </div>
+
+    <!-- 開発URL -->
     <div class="content_development_url clearfix">
       <div class="content_development_url_left"><%= t('dic.dev_url')  %></div>
       <div class="content_development_url_right"><%= link_to @project.development_url, @project.development_url %></div>
     </div>
+
+    <!-- ステータス -->
     <div class="content_status clearfix">
       <div class="content_status_left"><%= t('dic.status') %></div>
       <div class="content_status_right"><%= @project.stage.name %></div>
     </div>
-    <div class="content_skill clearfix">
-      <div class="content_status_left"><%= t('dic.wantskill') %></div>
-      <div class="content_status_right">
-        <% @project.skills.map{|skill|skill.name}.each do |s| %>
-          <span class="skill_web"><%= s%></span>
+
+    <!-- 元の課題 -->
+    <div class="content_parent_project clearfix">
+      <div class="content_parent_project_left"><%= t('dic.parent_project') %></div>
+      <div class="content_parent_project_right">
+        <% unless @project.project.nil? %>
+          <%= link_to @project.project.subject, project_path(id: @project.project.id) %>
         <% end %>
       </div>
     </div>
+
+    <!-- 関連課題(子) -->
+    <div class="content_child_project clearfix">
+      <div class="content_child_project_left"><%= t('dic.child_project') %></div>
+      <div class="content_child_project_right">
+        <% @project.projects.each do |p| %>
+          <%= link_to p.subject, project_path(id: p.id) %> <br/>
+        <% end %>
+      </div>
+    </div>
+
+    <!-- 募集スキル -->
+    <div class="content_skill clearfix">
+      <div class="content_skill_left"><%= t('dic.wantskill') %></div>
+      <div class="content_skill_right">
+        <% @project.skills.map{|skill|skill.name}.each do |s| %>
+          <span class="skill_web"><%= s %></span>
+        <% end %>
+      </div>
+    </div>
+
+    <!-- メンバーリスト -->
     <div class="content_join clearfix">
       <div class="content_join_left"><%= t('dic.member_list') %></div>
       <div class="content_join_right">
@@ -55,6 +85,9 @@
     <!-- <div class="btn"><a href="#">投稿を削除する</a></div> -->
     <% if authorized? %>
       <div class="btn"><%= link_to t('.write_comment'), new_project_update_path(project_id: @project.id) %></div>
+      <div class="btn">
+        <%= link_to '関連課題を投稿', new_project_path(parent_id: @project.id) %>
+      </div>
       <% if @project.user.id == @my_user.id %>
         <div class="btn"><%= link_to t('.edit'), edit_project_path, class: "btn btn-default btn-primary" %></div>
       <% end %>
@@ -85,8 +118,7 @@
       <div class="comment_text">
         <p><%= description_text(update.description) %></p>
         <p class="comment_author">
-          <%= link_to update.created_at.strftime("%Y-%m-%d %H:%M"), project_path(id: @project.id, anchor: "comment-#{update.id}") %>
-          <%= update.created_at.strftime("%Y-%m-%d %H:%M") %> <%= t 'dic.posted_on' %>
+          <%= link_to update.created_at.strftime("%Y-%m-%d %H:%M"), project_path(id: @project.id, anchor: "comment-#{update.id}") %> <%= t 'dic.posted_on' %>
         </p>
       </div>
     </div>

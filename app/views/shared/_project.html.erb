@@ -9,6 +9,8 @@
   <div class="content_box">
     <%=description_text(project.description)%>
   </div>
+
+  <!-- SNS SHARE -->
   <div class="content_sns_share clearfix">
     <div class="content_sns_share_left">
       SNSシェア
@@ -17,14 +19,40 @@
       <%= facebook_share_btn(project_path(id: project.id)) %>
     </div>
   </div>
+
+  <!-- 開発URL -->
   <div class="content_development_url clearfix">
     <div class="content_development_url_left"><%= t('dic.dev_url')  %></div>
     <div class="content_development_url_right"><%= link_to project.development_url, project.development_url %></div>
   </div>
+
+  <!-- ステータス -->
   <div class="content_status clearfix">
     <div class="content_status_left"><%= t('dic.status') %></div>
     <div class="content_status_right"><%= project.stage.name %></div>
   </div>
+
+  <!-- 元の課題 -->
+  <div class="content_parent_project clearfix">
+    <div class="content_parent_project_left"><%= t('dic.parent_project') %></div>
+    <div class="content_parent_project_right">
+      <% unless project.project.nil? %>
+        <%= link_to project.project.subject, project_path(id: project.project.id) %>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- 関連課題(子) -->
+  <div class="content_child_project clearfix">
+    <div class="content_child_project_left"><%= t('dic.child_project') %></div>
+    <div class="content_child_project_right">
+      <% project.projects.each do |p| %>
+        <%= link_to p.subject, project_path(id: p.id) %> <br/>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- 募集スキル -->
   <div class="content_skill clearfix">
     <div class="content_status_left"><%= t('dic.wantskill') %></div>
     <div class="content_status_right">
@@ -33,6 +61,8 @@
       <% end %>
     </div>
   </div>
+
+  <!-- 参加者 -->
   <div class="content_join clearfix">
     <div class="content_join_left">参加者一覧</div>
     <div class="content_join_right">
@@ -40,8 +70,5 @@
         <span class="join_thum"><%= link_to image_tag(user.image, alt: user.name), user_path(id: user.id) %></span>
       <% end %>
     </div>
-
-
-
   </div>
 </div>
