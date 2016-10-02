@@ -171,7 +171,7 @@
       </div>
     </div>
 
-    <%= javascript_include_tag :jquery, :bootstrap, :jquery_ujs, 'matsu/jquery.mobile-menu' %>
+    <%= javascript_include_tag :application, :jquery, :bootstrap, :jquery_ujs, 'matsu/jquery.mobile-menu' %>
     <%= render 'shared/facebook' %>
     <%= render 'shared/twitter' %>
     <%= analytics_init if Rails.env.production? %>
@@ -182,7 +182,6 @@
          menu_width: 260,
          prepend_button_to: '#mobile-bar',
          button_content: '<img src="<%= asset_path "matsu/nav.gif" %>" width="20px">'
-         //     button_content: '<img src="matsu/images/nav.gif" width="20px">'
        });
      });
     </script>

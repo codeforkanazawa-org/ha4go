@@ -82,7 +82,7 @@ class ProjectsController < ApplicationController
         ProjectMailer.tell_skill_match(m, @project).deliver_now unless m == ''
       end
 
-      redirect_to @project, notice: I18n.t('projects.banner.updated') + fue.to_s
+      redirect_to @project, notice: I18n.t('projects.banner.updated')
     else
       render :edit
     end

@@ -75,12 +75,22 @@
   </div>
 
   <% if (params[:action] == 'edit') then %>
-    <button type="submit" class="btn btn-default btn-primary" aria-label="Left Align">
-      <%= t 'dic.do_edit' %>
-    </button>
+    <div>
+      <button type="submit" class="btn btn-default btn-primary" aria-label="Left Align">
+        <%= t 'dic.do_edit' %>
+      </button>
+    </div>
   <% else %>
-  <button type="submit" class="btn btn-default btn-primary" aria-label="Left Align">
-    <%= t 'dic.do_create' %>
-  </button>
+    <div>
+      <label for="agree_message_check">
+        <input type="checkbox" id="agree_message_check" name="agreecheck" value="1">
+        当課題の成果物はコードフォーカナザワに帰属いたします。
+      </label>
+    </div>
+    <div>
+      <button type="submit" disabled id="need_agree_button" class="btn btn-default btn-primary" aria-label="Left Align">
+        <%= t 'dic.do_create' %>
+      </button>
+    </div>
   <% end %>
 <% end %>
