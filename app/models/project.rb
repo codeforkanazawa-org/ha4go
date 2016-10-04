@@ -11,7 +11,6 @@ class Project < ActiveRecord::Base
 
   scope :recent, lambda { |before|
     targets = ProjectUpdate.where('created_at > ?', before).group(:project_id).map(&:project_id)
-    targets = []
     where('created_at > ? or id in (?)', before, targets)
   }
 
@@ -20,7 +19,7 @@ class Project < ActiveRecord::Base
   }
 
   scope :match_mine, lambda { |skills|
-    joins(:skills).where(skills: { id: skills }).where.not(stage_id: 13)
+    joins(:skills).where('stage_id != 13', skills: { id: skills }).group(:id)
   }
 
   scope :hot_rank, lambda { |before|

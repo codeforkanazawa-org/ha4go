@@ -25,7 +25,7 @@ class ProjectsController < ApplicationController
     @use_custom_ogp = true
     add_rss_urls(@project.subject, request.fullpath + '.rss')
     respond_to do |format|
-      format.any
+      format.html
       format.rss { render layout: false }
     end
   end

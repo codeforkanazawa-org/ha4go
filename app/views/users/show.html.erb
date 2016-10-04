@@ -7,7 +7,7 @@
   <div class="content_inner">
     <div class="content_header clearfix">
       <div class="member"><%= image_tag(@user.image) %></div>
-      <div class="member_name"><%= @user.name %></div>
+      <div class="member_name"><%= link_to @user.name, "https://www.facebook.com/app_scoped_user_id/#{@user.uid}/" %></div>
     </div>
     <div class="content_box">
       <p class="mb20">
