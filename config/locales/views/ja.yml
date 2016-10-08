@@ -2,7 +2,10 @@ ja:
   dic:
     common: 共通辞書はここで t('dic.common') で参照
     title:        さんが
+    is:           さんが
     posted_on:    に投稿
+    edited_on:    に編集
+    deleted_on:   に削除
     back:         戻る
     name:         名前
     add:          追加
@@ -20,6 +23,7 @@ ja:
     title:        タイトル
     do_create:    作成する
     do_edit:      編集する
+    do_delete:    削除する
     login:        ログイン
     logout:       ログアウト
     mypage:       マイページ

@@ -120,6 +120,14 @@
         <p><%= description_text(update.description) %></p>
         <p class="comment_author">
           <%= link_to  time_ago_in_words(update.created_at), project_path(id: @project.id, anchor: "comment-#{update.id}") %> <%= t 'dic.posted_on' %>
+          <% if authorized? && update.freezing.to_s != 'true' && (update.user_id == @my_user.id || @project.user_id == @my_user.id) %>
+            <%= link_to t('dic.do_edit'),   edit_project_update_path(update, project_id: @project.id) %> -
+            <%= link_to t('dic.do_delete'), project_update_path(update, project_id: @project.id), method: :delete %>
+          <% end %>
+          <br/>
+          <% update.project_update_histories.order(created_at: :desc).each do |history| %>
+            <%= history.user.name %> <%= t('dic.is') %>  <%= time_ago_in_words(history.created_at) %> <%= t('dic.edited_on') %> <br/>
+          <% end %>
         </p>
       </div>
     </div>
