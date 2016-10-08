@@ -116,6 +116,7 @@ class ProjectsController < ApplicationController
         ProjectUpdate.new(
           project_id:  @project.id,
           description: "#{@my_user.name} さんは課題 #{@project.subject} への参加を辞めました。",
+          freezing:    true,
           user_id:     @my_user.id
         ).save
 

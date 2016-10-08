@@ -48,6 +48,7 @@ class ProjectUpdatesController < ApplicationController
   # DELETE /project_updates/1
   def destroy
     @project_update.description = "( #{@my_user.name} さんが削除しました )"
+    @project_update.freezing = true
     if @project_update.save
       history = ProjectUpdateHistory.new(
         user_id:           @my_user.id,
