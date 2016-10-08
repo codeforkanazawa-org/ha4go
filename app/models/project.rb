@@ -19,7 +19,8 @@ class Project < ActiveRecord::Base
   }
 
   scope :match_mine, lambda { |skills|
-    joins(:skills).where('stage_id != 13', skills: { id: skills }).group(:id)
+    targets = skills.map(&:id)
+    joins(:skills).where('stage_id != 13').where('projects_skills.skill_id = ?', targets).group(:id)
   }
 
   scope :hot_rank, lambda { |before|
