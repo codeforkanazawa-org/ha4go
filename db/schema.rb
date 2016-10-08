@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161002065824) do
+ActiveRecord::Schema.define(version: 20161008044105) do
+
+  create_table "project_update_histories", force: :cascade do |t|
+    t.integer  "project_update_id", limit: 4
+    t.integer  "user_id",           limit: 4
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  add_index "project_update_histories", ["project_update_id"], name: "index_project_update_histories_on_project_update_id", using: :btree
+  add_index "project_update_histories", ["user_id"], name: "index_project_update_histories_on_user_id", using: :btree
 
   create_table "project_updates", force: :cascade do |t|
     t.integer  "project_id",  limit: 4
@@ -85,5 +95,7 @@ ActiveRecord::Schema.define(version: 20161002065824) do
     t.string   "image",            limit: 255
   end
 
+  add_foreign_key "project_update_histories", "project_updates"
+  add_foreign_key "project_update_histories", "users"
   add_foreign_key "projects", "projects"
 end

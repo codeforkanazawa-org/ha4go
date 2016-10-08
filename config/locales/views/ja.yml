@@ -20,6 +20,7 @@ ja:
     title:        タイトル
     do_create:    作成する
     do_edit:      編集する
+    do_delete:    削除する
     login:        ログイン
     logout:       ログアウト
     mypage:       マイページ

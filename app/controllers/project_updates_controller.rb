@@ -28,8 +28,18 @@ class ProjectUpdatesController < ApplicationController
 
   # PATCH/PUT /project_updates/1
   def update
+    logger.fatal(params[:do_delete])
+    unless @project_update.user_id == @my_user.id || @project_update.Project.user_id == @my_user.id
+      redirect_to project_path(id: params[:project_update][:project_id]), notice: 'フォローを修正できませんでした'
+    end
+
     if @project_update.update(project_update_params)
-      redirect_to @project_update, notice: '投稿を修正しました。'
+      history = ProjectUpdateHistory.new(
+        user_id: @my_user.id,
+        project_update_id: @project_update.id
+      )
+      history.save
+      redirect_to project_path(id: params[:project_update][:project_id]), notice: 'フォローを修正しました。'
     else
       render :edit
     end
@@ -37,8 +47,15 @@ class ProjectUpdatesController < ApplicationController
 
   # DELETE /project_updates/1
   def destroy
-    @project_update.destroy
-    redirect_to project_url, notice: 'フォローを削除しました。'
+    @project_update.description = "( #{@my_user.name} さんが削除しました )"
+    if @project_update.save
+      history = ProjectUpdateHistory.new(
+        user_id:           @my_user.id,
+        project_update_id: @project_update.id
+      )
+      history.save
+    end
+    redirect_to project_path(id: @project_update.project_id), notice: 'フォローを削除しました。'
   end
 
   private
