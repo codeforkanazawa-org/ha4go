@@ -36,6 +36,7 @@ ja:
     project_match_mine: 自分のスキルとマッチする課題
     project_all:     全ての課題
     member_list:     参加者一覧
+    url:             URL
     dev_url:         開発用URL
     sns:             SNSシェア
     ex_subject:     '入力必須 (例) ゴミの日がわかりにくい'
