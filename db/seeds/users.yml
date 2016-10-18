@@ -1,0 +1,101 @@
+---
+- provider: facebook
+  uid: '108042236335534'
+  email: fiwvqfk_chaiwitz_1476796932@tfbnw.net
+  info:
+    name: Jennifer Alachibgcfibg Chaiwitz
+  extra:
+    raw_info:
+      name: Jennifer Alachibgcfibg Chaiwitz
+      id: '108042236335534'
+      birthday: 06/04/1953
+- provider: facebook
+  uid: '129490564185647'
+  email: elqpdwg_qinberg_1476796937@tfbnw.net
+  info:
+    name: Sharon Alacgdaabibjf Qinberg
+  extra:
+    raw_info:
+      name: Sharon Alacgdaabibjf Qinberg
+      id: '129490564185647'
+      birthday: 10/13/2000
+- provider: facebook
+  uid: '109065222899468'
+  email: btklslu_schrockescu_1476796941@tfbnw.net
+  info:
+    name: Dave Alachgigagcfi Schrockescu
+  extra:
+    raw_info:
+      name: Dave Alachgigagcfi Schrockescu
+      id: '109065222899468'
+      birthday: 07/20/1999
+- provider: facebook
+  uid: '107694676370654'
+  email: gtwcjdv_rosenthalsky_1476796946@tfbnw.net
+  info:
+    name: Tom Alacijcfefeii Rosenthalsky
+  extra:
+    raw_info:
+      name: Tom Alacijcfefeii Rosenthalsky
+      id: '107694676370654'
+      birthday: 11/07/1964
+- provider: facebook
+  uid: '113194775817938'
+  email: rzbhbio_lausen_1476796951@tfbnw.net
+  info:
+    name: Margaret Alachbbdhjbad Lausen
+  extra:
+    raw_info:
+      name: Margaret Alachbbdhjbad Lausen
+      id: '113194775817938'
+      birthday: 11/03/1962
+- provider: facebook
+  uid: '112430925894441'
+  email: gswviuq_fallerstein_1476796956@tfbnw.net
+  info:
+    name: Ruth Alachbfjaiiba Fallerstein
+  extra:
+    raw_info:
+      name: Ruth Alachbfjaiiba Fallerstein
+      id: '112430925894441'
+      birthday: 02/09/1987
+- provider: facebook
+  uid: '125899821212190'
+  email: larzgnz_valtchanovsen_1476796960@tfbnw.net
+  info:
+    name: John Alacgfeahgbaa Valtchanovsen
+  extra:
+    raw_info:
+      name: John Alacgfeahgbaa Valtchanovsen
+      id: '125899821212190'
+      birthday: 03/19/1956
+- provider: facebook
+  uid: '113020549168769'
+  email: ljnnwui_chaistein_1476796966@tfbnw.net
+  info:
+    name: James Alachbdgcjbjc Chaistein
+  extra:
+    raw_info:
+      name: James Alachbdgcjbjc Chaistein
+      id: '113020549168769'
+      birthday: 04/02/1992
+- provider: facebook
+  uid: '113219372482380'
+  email: yecaanr_huiescu_1476796970@tfbnw.net
+  info:
+    name: Maria Alachbiebiiib Huiescu
+  extra:
+    raw_info: !ruby/hash:OmniAuth::AuthHash
+      name: Maria Alachbiebiiib Huiescu
+      id: '113219372482380'
+      birthday: 12/17/1987
+- provider: facebook
+  uid: '120178591785317'
+  email: bfiecgd_laverdetberg_1476796975@tfbnw.net
+  info:
+    name: Barbara Alacgiecjdiah Laverdetberg
+  extra:
+    raw_info:
+      name: Barbara Alacgiecjdiah Laverdetberg
+      id: '120178591785317'
+      birthday: 07/04/2000
