@@ -59,7 +59,7 @@ ja:
         one: 約1時間前
         other: 約%{count}時間前
       about_x_months:
-        one: 約1ヶ月
+        one: 約1ヶ月前
         other: 約%{count}ヶ月前
       about_x_years:
         one: 約1年前
@@ -69,25 +69,25 @@ ja:
         other: "%{count}年弱前"
       half_a_minute: 30秒前後前
       less_than_x_minutes:
-        one: 1分以内
+        one: 1分以内前
         other: "%{count}分未満前"
       less_than_x_seconds:
-        one: 1秒以内
+        one: 1秒以内前
         other: "%{count}秒未満前"
       over_x_years:
-        one: 1年以上
+        one: 1年以上前
         other: "%{count}年以上前"
       x_days:
-        one: 1日
+        one: 1日前
         other: "%{count}日前"
       x_minutes:
-        one: 1分
+        one: 1分前
         other: "%{count}分前"
       x_months:
-        one: 1ヶ月
+        one: 1ヶ月前
         other: "%{count}ヶ月前"
       x_seconds:
-        one: 1秒
+        one: 1秒前
         other: "%{count}秒前"
     prompts:
       day: 日
