@@ -23,7 +23,8 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   def show
     @use_custom_ogp = true
-    add_rss_urls(@project.subject, request.fullpath + '.rss')
+    @project_rss_url = request.fullpath + '.rss'
+    add_rss_urls(@project.subject, @project_rss_url)
     respond_to do |format|
       format.html
       format.rss { render layout: false }

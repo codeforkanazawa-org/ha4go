@@ -88,6 +88,7 @@
     </div>
   </div>
 
+  <!-- 操作ボタン -->
   <div class="content_control clearfix">
     <!-- <div class="btn"><a href="#">投稿を削除する</a></div> -->
     <% if authorized? %>
@@ -158,4 +159,9 @@
       </div>
     </div>
   <% end %>
+
+  <div class="content_control clearfix">
+    <%= link_to( image_tag('Feed-icon.svg', size: '20x20', style: 'vertical-align:middle;'), @project_rss_url) %> この課題の更新を RSS で確認することもできます。
+  </div>
+
 </div>
