@@ -44,6 +44,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @skills = Skill.all
     @my_skills = @user.skills.all.map { |k| k[:name] }
+    @my_comments = ProjectUpdate.where(user_id: @user.id, freezing: [0, nil]).order(created_at: :desc).limit(10)
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

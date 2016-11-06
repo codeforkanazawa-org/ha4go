@@ -63,4 +63,16 @@
       <div class="btn"><%= link_to t('.edit'), edit_user_path(@user) %></div>
     <% end %>
   </div>
+
+  <!-- 最近のコメント -->
+  <div class="content_status">
+    <div class="content_status_left">直近コメント(10)</div>
+    <div class="content_status_right">
+      <% @my_comments.each do |comment| %>
+        <p>
+          <%= link_to comment.project.subject, project_path(comment.project.id, anchor: "comment-#{comment.id}") %> ( <%= time_ago_in_words comment.created_at %> )
+        </p>
+      <% end %>
+    </div>
+  </div>
 </div>
