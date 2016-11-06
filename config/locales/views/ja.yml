@@ -9,7 +9,7 @@ ja:
     back:         戻る
     name:         名前
     add:          追加
-    email:        メールアドレス
+    email:        メール
     update:       更新する
     able_to:      できること
     self_intro:   自己紹介
@@ -47,6 +47,7 @@ ja:
     ex_description: '入力必須 (例) 今日や直近のゴミの日がわかりにくいのをなんとかできないかな。'
     ex_skills:      '省略可 (例) HTML CSS'
     ex_comment:     '(例) どうすればプロジェクトに参加できますか?'
+    recommend:   なし(メールアドレスを登録するとコメントやスキルに応じてメールで連絡がきます。ぜひご登録ください。)
   mail:
     link_head:   詳細は
     link_foot:   を参照してください。

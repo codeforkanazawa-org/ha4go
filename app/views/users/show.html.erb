@@ -14,6 +14,27 @@
         <%= description_text(@user.description) %>
       </p>
     </div>
+
+    <!-- メールアドレス(本人しか表示しない) -->
+    <% if authorized? && @my_user.id == @user.id %>
+      <% if @my_user.email.to_s == '' %>
+        <div class="content_status">
+          <div class="content_status_left"> <%= t('dic.email') %></div>
+          <div class="content_status_right">
+            <%= t('dic.recommend')%>
+          </div>
+        </div>
+      <% else %>
+        <div class="content_status">
+          <div class="content_status_left"> <%= t('dic.email') %></div>
+          <div class="content_status_right">
+            <%= @my_user.email %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+
+    <!-- 参加中 -->
     <div class="content_status">
       <div class="content_status_left">参加中</div>
       <div class="content_status_right">
@@ -25,6 +46,8 @@
         <% end %>
       </div>
     </div>
+
+    <!-- スキル一覧 -->
     <div class="content_skill clearfix">
       <div class="content_status_left">スキル</div>
       <div class="content_status_right">
@@ -34,8 +57,6 @@
       </div>
     </div>
   </div>
-
-
   <div class="content_control clearfix">
     <!-- <div class="btn"><a href="#">投稿を削除する</a></div> -->
     <% if authorized? && @my_user.id == @user.id %>
