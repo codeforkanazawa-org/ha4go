@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161106071526) do
+ActiveRecord::Schema.define(version: 20161106085544) do
 
   create_table "app_informations", force: :cascade do |t|
     t.date     "release"
@@ -101,6 +101,7 @@ ActiveRecord::Schema.define(version: 20161106071526) do
     t.string   "oauth_token",      limit: 255
     t.datetime "oauth_expires_at"
     t.string   "image",            limit: 255
+    t.boolean  "receive_all",      limit: 1
   end
 
   add_foreign_key "project_update_histories", "project_updates"

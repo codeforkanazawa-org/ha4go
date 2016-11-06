@@ -48,6 +48,7 @@ ja:
     ex_skills:      '省略可 (例) HTML CSS'
     ex_comment:     '(例) どうすればプロジェクトに参加できますか?'
     recommend:   なし(メールアドレスを登録するとコメントやスキルに応じてメールで連絡がきます。ぜひご登録ください。)
+    receive_all: すべての課題の更新をメールで受け取る
   mail:
     link_head:   詳細は
     link_foot:   を参照してください。

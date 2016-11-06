@@ -54,10 +54,13 @@ class ProjectsController < ApplicationController
     skills = Array(params[:skill_names][:skill_ids]) + params[:new_skills][:new_skills].split(' ')
     @project.update_skill_ids_by_skill_names(skills) unless skills.empty?
 
+    # 作成時自分を参加させる
+    @project.users.push(@my_user)
+
     if @project.save
 
       # mail to created
-      @project.send_mail_users.pluck(:email).compact.each do |m|
+      @project.send_mail_addresses.each do |m|
         ProjectMailer.tell_create(m, @project).deliver_now unless m == ''
       end
 
