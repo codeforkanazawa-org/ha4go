@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161008063758) do
+ActiveRecord::Schema.define(version: 20161106085544) do
+
+  create_table "app_informations", force: :cascade do |t|
+    t.date     "release"
+    t.text     "description", limit: 65535
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
 
   create_table "project_update_histories", force: :cascade do |t|
     t.integer  "project_update_id", limit: 4
@@ -94,6 +101,7 @@ ActiveRecord::Schema.define(version: 20161008063758) do
     t.string   "oauth_token",      limit: 255
     t.datetime "oauth_expires_at"
     t.string   "image",            limit: 255
+    t.boolean  "receive_all",      limit: 1
   end
 
   add_foreign_key "project_update_histories", "project_updates"

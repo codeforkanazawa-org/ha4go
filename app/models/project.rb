@@ -78,7 +78,28 @@ class Project < ActiveRecord::Base
     if send_users.select { |u| u['user_id'] == me['user_id'] }.empty?
       send_users.push me
     end
+
+    # すべてを受け取るユーザーを追加
+    User.where(receive_all: 1).pluck(:email).compact each do |u|
+      send_users.push u
+    end
     send_users
+  end
+
+  def send_mail_addresses
+    send_targets = users.pluck(:email).compact
+    me = user.email
+
+    # 自分がいない場合には含める
+    if send_targets.include?(me)
+      send_targets.push me
+    end
+
+    # すべてを受け取るユーザーを追加
+    User.where(receive_all: 1).pluck(:email).compact.each do |u|
+      send_targets.push u
+    end
+    send_targets.uniq
   end
 
   def send_mail_skill_matched_users

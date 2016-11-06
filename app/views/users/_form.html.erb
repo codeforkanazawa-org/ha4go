@@ -38,6 +38,16 @@
     </div>
     <div class="row">
       <div class="col-md-2">
+        <%= t('dic.receive_all') %>
+      </div>
+      <div class="input_text">
+        <%= f.label(:receive_all) do %>
+          <%= f.check_box(:receive_all, checked: !@user.receive_all.nil? && @user.receive_all) %>
+        <% end %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2">
         <%= t('dic.able_to')%>
       </div>
       <div class="col-md-2">

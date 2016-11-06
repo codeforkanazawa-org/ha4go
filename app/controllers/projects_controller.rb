@@ -23,7 +23,8 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   def show
     @use_custom_ogp = true
-    add_rss_urls(@project.subject, request.fullpath + '.rss')
+    @project_rss_url = request.fullpath + '.rss'
+    add_rss_urls(@project.subject, @project_rss_url)
     respond_to do |format|
       format.html
       format.rss { render layout: false }
@@ -53,10 +54,13 @@ class ProjectsController < ApplicationController
     skills = Array(params[:skill_names][:skill_ids]) + params[:new_skills][:new_skills].split(' ')
     @project.update_skill_ids_by_skill_names(skills) unless skills.empty?
 
+    # 作成時自分を参加させる
+    @project.users.push(@my_user)
+
     if @project.save
 
       # mail to created
-      @project.send_mail_users.pluck(:email).compact.each do |m|
+      @project.send_mail_addresses.each do |m|
         ProjectMailer.tell_create(m, @project).deliver_now unless m == ''
       end
 

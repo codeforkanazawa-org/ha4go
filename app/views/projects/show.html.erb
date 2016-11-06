@@ -29,6 +29,12 @@
       </div>
     </div>
 
+    <!-- URL -->
+    <div class="content_development_url clearfix">
+      <div class="content_development_url_left"><%= t('dic.url')  %></div>
+      <div class="content_development_url_right"><%= link_to @project.user_url, @project.user_url %></div>
+    </div>
+
     <!-- 開発URL -->
     <div class="content_development_url clearfix">
       <div class="content_development_url_left"><%= t('dic.dev_url')  %></div>
@@ -82,12 +88,17 @@
     </div>
   </div>
 
+  <!-- 操作ボタン -->
   <div class="content_control clearfix">
     <!-- <div class="btn"><a href="#">投稿を削除する</a></div> -->
     <% if authorized? %>
-      <div class="btn"><%= link_to t('.write_comment'), new_project_update_path(project_id: @project.id) %></div>
+      <div class="btn" id="write_comment">
+        <a href="#">
+          <%= t('.write_comment') %>
+        </a>
+      </div>
       <div class="btn">
-        <%= link_to '関連課題を投稿', new_project_path(parent_id: @project.id) %>
+        <%= link_to t('dic.post_belong_project'), new_project_path(parent_id: @project.id) %>
       </div>
       <% if @project.user.id == @my_user.id %>
         <div class="btn"><%= link_to t('.edit'), edit_project_path, class: "btn btn-default btn-primary" %></div>
@@ -111,6 +122,22 @@
     <% end %>
   </div>
 
+  <!-- コメント記入欄(最初は非表示) -->
+  <div class="comment clearfix" id="add_comment" style="display:none;">
+    <div class="comment_thum">
+      <%= link_to image_tag(@my_user.image, alt: @my_user.name), user_path(id: @my_user.id) %>
+    </div>
+    <div class="comment_text input_text">
+      <%= form_for(ProjectUpdate.new) do |f| %>
+        <%= f.hidden_field :project_id, value: @project.id %>
+        <%= f.text_area :description, class: 'form-control', placeholder: t('dic.ex_comment'), rows: 5 %>
+        <button type="submit" class="btn btn-default btn-primary mt20" align="right">
+          <%= t 'dic.do_comment' %>
+        </button>
+      <% end %>
+    </div>
+  </div>
+
   <% @project.project_updates.reverse.each do |update| %>
     <div class="comment clearfix" id="comment-<%=update.id%>">
       <div class="comment_thum">
@@ -132,4 +159,9 @@
       </div>
     </div>
   <% end %>
+
+  <div class="content_control clearfix">
+    <%= link_to( image_tag('Feed-icon.svg', size: '20x20', style: 'vertical-align:middle;'), @project_rss_url) %> この課題の更新を RSS で確認することもできます。
+  </div>
+
 </div>

@@ -141,26 +141,12 @@
               <% end %>
               <section class="menu_news">
                 <h1>運営事務局からのお知らせ</h1>
-                <dl>
-                  <dt>2016-10-2</dt>
-                  <dd>バージョンアップ。</dd>
-                </dl>
-                <dl>
-                  <dt>2016-9-4</dt>
-                  <dd>RSSに対応など。</dd>
-                </dl>
-                <dl>
-                  <dt>2016-9-1</dt>
-                  <dd>少しバージョンアップ。Facebookシェアボタンを復活。</dd>
-                </dl>
-                <dl>
-                  <dt>2016-8-9</dt>
-                  <dd>少しバージョンアップ。</dd>
-                </dl>
-                <dl>
-                  <dt>2016-7-14</dt>
-                  <dd>パブリックベータ開始。</dd>
-                </dl>
+                <% @app_infors.each do |info| %>
+                  <dl>
+                    <dt><%= info.release %></dt>
+                    <dd><%= info.description %></dd>
+                  </dl>
+                <% end %>
               </section>
             </div>
           </div>

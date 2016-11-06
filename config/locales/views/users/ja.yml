@@ -3,5 +3,7 @@ ja:
     show:
       edit:    変更する
     edit:
-      edit:    プロフィールを編集する
-      
+      edit:        プロフィールを編集する
+      receive_all: すべての更新をメールで受け取る
+    form:
+      new_skill: 上記に無いスキルはスペース区切りでここに入力してください
