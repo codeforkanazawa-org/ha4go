@@ -123,20 +123,23 @@
   </div>
 
   <!-- コメント記入欄(最初は非表示) -->
-  <div class="comment clearfix" id="add_comment" style="display:none;">
-    <div class="comment_thum">
-      <%= link_to image_tag(@my_user.image, alt: @my_user.name), user_path(id: @my_user.id) %>
+  <% if authorized? %>
+    <div class="comment clearfix" id="add_comment" style="display:none;">
+      <div class="comment_thum">
+        <%= link_to image_tag(@my_user.image, alt: @my_user.name), user_path(id: @my_user.id) %>
+      </div>
+      <div class="comment_text input_text">
+        <%= form_for(ProjectUpdate.new) do |f| %>
+          <%= f.hidden_field :project_id, value: @project.id %>
+          <%= f.text_area :description, class: 'form-control', placeholder: t('dic.ex_comment'), rows: 5 %>
+          <button type="submit" class="btn btn-default btn-primary mt20" align="right">
+            <%= t 'dic.do_comment' %>
+          </button>
+        <% end %>
+      </div>
     </div>
-    <div class="comment_text input_text">
-      <%= form_for(ProjectUpdate.new) do |f| %>
-        <%= f.hidden_field :project_id, value: @project.id %>
-        <%= f.text_area :description, class: 'form-control', placeholder: t('dic.ex_comment'), rows: 5 %>
-        <button type="submit" class="btn btn-default btn-primary mt20" align="right">
-          <%= t 'dic.do_comment' %>
-        </button>
-      <% end %>
-    </div>
-  </div>
+  <% end %>
+
 
   <% @project.project_updates.reverse.each do |update| %>
     <div class="comment clearfix" id="comment-<%=update.id%>">
