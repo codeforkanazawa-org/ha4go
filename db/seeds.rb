@@ -29,3 +29,32 @@ Skill.first_or_create(
 ].each do |r|
   Stage.where(r).first_or_create
 end
+
+[
+  {
+    release:     '2016-11-06',
+    description: 'UIのバージョンアップ。解説などを増やした。'
+  },
+  {
+    release:     '2016-10-02',
+    description: 'バージョンアップ。'
+  },
+  {
+    release:     '2016-09-04',
+    description: 'RSSに対応など。'
+  },
+  {
+    release:     '2016-09-01',
+    description: '少しバージョンアップ。Facebookシェアボタンを復活。'
+  },
+  {
+    release:     '2016-08-09',
+    description: '少しバージョンアップ。'
+  },
+  {
+    release:     '2016-07-14',
+    description: 'パブリックベータ開始。'
+  }
+].each do |r|
+  AppInformation.where(r).first_or_create
+end

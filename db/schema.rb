@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161008063758) do
+ActiveRecord::Schema.define(version: 20161106071526) do
+
+  create_table "app_informations", force: :cascade do |t|
+    t.date     "release"
+    t.text     "description", limit: 65535
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
 
   create_table "project_update_histories", force: :cascade do |t|
     t.integer  "project_update_id", limit: 4

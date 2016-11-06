@@ -141,6 +141,12 @@
               <% end %>
               <section class="menu_news">
                 <h1>運営事務局からのお知らせ</h1>
+                <% @app_infors.each do |info| %>
+                  <dl>
+                    <dt><%= info.release %></dt>
+                    <dd><%= info.description %></dd>
+                  </dl>
+                <% end %>
                 <dl>
                   <dt>2016-10-2</dt>
                   <dd>バージョンアップ。</dd>
