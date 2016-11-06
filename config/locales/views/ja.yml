@@ -28,13 +28,14 @@ ja:
     login:        ログイン
     logout:       ログアウト
     mypage:       マイページ
-    post_project:    課題を投稿
-    post_project_do: 課題を投稿する
-    list_project:    課題一覧
-    list_project_do: 課題一覧をみる
-    project_recent:  最新の課題
-    project_hot:        話題になっている課題
-    project_match_mine: 自分のスキルとマッチする課題
+    post_project:        課題を投稿
+    post_project_do:     課題を投稿する
+    post_belong_project: 関連課題を投稿
+    list_project:        課題一覧
+    list_project_do:     課題一覧をみる
+    project_recent:      最新の課題
+    project_hot:         話題になっている課題
+    project_match_mine:  自分のスキルとマッチする課題
     project_all:     全ての課題
     member_list:     参加者一覧
     url:             URL
@@ -45,6 +46,7 @@ ja:
     ex_devurl:      '省略可 (例) https://github.com/codeforkanazawa-org/5374'
     ex_description: '入力必須 (例) 今日や直近のゴミの日がわかりにくいのをなんとかできないかな。'
     ex_skills:      '省略可 (例) HTML CSS'
+    ex_comment:     '(例) どうすればプロジェクトに参加できますか?'
   mail:
     link_head:   詳細は
     link_foot:   を参照してください。
