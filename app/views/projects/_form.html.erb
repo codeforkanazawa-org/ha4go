@@ -10,6 +10,7 @@
     </div>
   <% end %>
   <div class="project-detail__define">
+    <!-- タイトル -->
     <div class="row">
       <% if @parent_project.nil? %>
       <% else %>
@@ -22,6 +23,8 @@
         <%= f.text_field :subject, placeholder: t('dic.ex_subject') %>
       </div>
     </div>
+
+    <!-- URL -->
     <div class="row">
       <div class="col-md-2">
         URL
@@ -30,14 +33,23 @@
         <%= f.url_field :user_url, class: 'form-control', placeholder: t('dic.ex_url') %>
       </div>
     </div>
+
+    <!-- 開発URL -->
     <div class="row">
       <div class="col-md-2">
         <%= t '.dev_url' %>
       </div>
       <div class="input_text">
-        <%= f.url_field :development_url, class: 'form-control', placeholder: t('dic.ex_devurl') %>
+        <p>
+          <%= f.url_field :development_url, class: 'form-control', placeholder: t('dic.ex_devurl') %>
+        </p>
+        <p>
+          <%= t('.recommend_skill')%>
+        </p>
       </div>
     </div>
+
+    <!-- 詳細 -->
     <div class="row">
       <div class="col-md-2">
         <%= t 'dic.detail' %>
@@ -46,16 +58,25 @@
         <%= f.text_area :description, class: 'form-control', rows: 5, placeholder: t('dic.ex_description') %>
       </div>
     </div>
+
+    <!-- 必要なスキル -->
     <div class="row">
       <div class="col-md-2">
         <%= t '.skill'%>
       </div>
       <div class="col-md-2">
+        <p>
         <%= collection_check_boxes(:skill_names, :skill_ids, Skill.all, :name, :name) do |b| %>
           <%= b.label { b.check_box(checked: @my_skills.include?(b.text)) + b.text } %>
         <% end %>
+        </p>
+        <p>
+          <%= t('.recommend_dev_url')%>
+        </p>
       </div>
     </div>
+
+    <!-- 必要なスキル(まだ作られていない) -->
     <div class="row">
       <div class="col-md-2">
         <%= t '.new_skill'%>
@@ -78,6 +99,7 @@
     <% end %>
   </div>
 
+  <!-- 利用規約確認ボタン -->
   <% if (params[:action] == 'edit') then %>
     <div>
       <button type="submit" class="btn btn-default btn-primary" aria-label="Left Align">
