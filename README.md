@@ -12,7 +12,7 @@
 
 ## ご意見・ご要望・バグレポート
 
-本リポジトリの `issues` 経由でご連絡ください。
+本リポジトリの [`issues`](https://github.com/codeforkanazawa-org/ha4go/issues/new) 経由でご連絡ください。
 
 
 ## 実装
