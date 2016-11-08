@@ -11,6 +11,6 @@ YAML.load(read_relative('users.yml')).each do |user|
   user = User.from_omniauth(auth)
   user.update({
     email: auth.email,
-    description: "My name is #{user.name}"
+    description: "私の名前は #{user.name}"
   })
 end

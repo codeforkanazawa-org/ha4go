@@ -1,101 +1,101 @@
 ---
 - provider: facebook
   uid: '108042236335534'
-  email: fiwvqfk_chaiwitz_1476796932@tfbnw.net
+  email: user1@ha4go.net
   info:
-    name: Jennifer Alachibgcfibg Chaiwitz
+    name: 寺分 五郎太
   extra:
     raw_info:
-      name: Jennifer Alachibgcfibg Chaiwitz
+      name: 寺分 五郎太
       id: '108042236335534'
       birthday: 06/04/1953
 - provider: facebook
   uid: '129490564185647'
-  email: elqpdwg_qinberg_1476796937@tfbnw.net
+  email: user2@ha4go.net
   info:
-    name: Sharon Alacgdaabibjf Qinberg
+    name: 紺田 かをる
   extra:
     raw_info:
-      name: Sharon Alacgdaabibjf Qinberg
+      name: 紺田 かをる
       id: '129490564185647'
       birthday: 10/13/2000
 - provider: facebook
   uid: '109065222899468'
-  email: btklslu_schrockescu_1476796941@tfbnw.net
+  email: user3@ha4go.net
   info:
-    name: Dave Alachgigagcfi Schrockescu
+    name: 仲上 梅安
   extra:
     raw_info:
-      name: Dave Alachgigagcfi Schrockescu
+      name: 仲上 梅安
       id: '109065222899468'
       birthday: 07/20/1999
 - provider: facebook
   uid: '107694676370654'
-  email: gtwcjdv_rosenthalsky_1476796946@tfbnw.net
+  email: user4@ha4go.net
   info:
-    name: Tom Alacijcfefeii Rosenthalsky
+    name: 鶴間 親元
   extra:
     raw_info:
-      name: Tom Alacijcfefeii Rosenthalsky
+      name: 鶴間 親元
       id: '107694676370654'
       birthday: 11/07/1964
 - provider: facebook
   uid: '113194775817938'
-  email: rzbhbio_lausen_1476796951@tfbnw.net
+  email: user5@ha4go.net
   info:
-    name: Margaret Alachbbdhjbad Lausen
+    name: 常本 友紀
   extra:
     raw_info:
-      name: Margaret Alachbbdhjbad Lausen
+      name: 常本 友紀
       id: '113194775817938'
       birthday: 11/03/1962
 - provider: facebook
   uid: '112430925894441'
-  email: gswviuq_fallerstein_1476796956@tfbnw.net
+  email: user6@ha4go.net
   info:
-    name: Ruth Alachbfjaiiba Fallerstein
+    name: 石間 精二
   extra:
     raw_info:
-      name: Ruth Alachbfjaiiba Fallerstein
+      name: 石間 精二
       id: '112430925894441'
       birthday: 02/09/1987
 - provider: facebook
   uid: '125899821212190'
-  email: larzgnz_valtchanovsen_1476796960@tfbnw.net
+  email: user7@ha4go.net
   info:
-    name: John Alacgfeahgbaa Valtchanovsen
+    name: 仁志 浩寿
   extra:
     raw_info:
-      name: John Alacgfeahgbaa Valtchanovsen
+      name: 仁志 浩寿
       id: '125899821212190'
       birthday: 03/19/1956
 - provider: facebook
   uid: '113020549168769'
-  email: ljnnwui_chaistein_1476796966@tfbnw.net
+  email: user8@ha4go.net
   info:
-    name: James Alachbdgcjbjc Chaistein
+    name: 光明 沙都子
   extra:
     raw_info:
-      name: James Alachbdgcjbjc Chaistein
+      name: 光明 沙都子
       id: '113020549168769'
       birthday: 04/02/1992
 - provider: facebook
   uid: '113219372482380'
-  email: yecaanr_huiescu_1476796970@tfbnw.net
+  email: user9@ha4go.net
   info:
-    name: Maria Alachbiebiiib Huiescu
+    name: 大仁 たけお
   extra:
     raw_info: !ruby/hash:OmniAuth::AuthHash
-      name: Maria Alachbiebiiib Huiescu
+      name: 大仁 たけお
       id: '113219372482380'
       birthday: 12/17/1987
 - provider: facebook
   uid: '120178591785317'
-  email: bfiecgd_laverdetberg_1476796975@tfbnw.net
+  email: user10@ha4go.net
   info:
-    name: Barbara Alacgiecjdiah Laverdetberg
+    name: 伊野部 鶴代
   extra:
     raw_info:
-      name: Barbara Alacgiecjdiah Laverdetberg
+      name: 伊野部 鶴代
       id: '120178591785317'
       birthday: 07/04/2000
