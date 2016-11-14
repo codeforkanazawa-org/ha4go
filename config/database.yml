@@ -23,8 +23,8 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  # database: ha4go_test
-  # database: db/test.sqlite3
+  database: root
+  password:
 
 production:
   <<: *default
