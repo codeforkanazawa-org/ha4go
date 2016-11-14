@@ -23,9 +23,6 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  username: root
-  password:
-  database: ha4go_test
 
 production:
   <<: *default
