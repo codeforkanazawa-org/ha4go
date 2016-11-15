@@ -16,20 +16,13 @@ default: &default
 
 development:
   <<: *default
-  # database: ha4go_dev
 
-# Warning: The database defined as "test" will be erased and
-# re-generated from your development database when you run "rake".
-# Do not set this db to the same as development or production.
 test:
   <<: *default
+  database: <%= ENV['TEST_DATABASE_NAME'] %>
+  username: <%= ENV['TEST_MYSQL_USER'] %>
+  password: <%= ENV['TEST_MYSQL_PW'] %>
+  host:     <%= ENV['TEST_MYSQL_HOST'] %>
 
 production:
   <<: *default
-  # database: <%= ENV['PRODUCTION_DATABASE_NAME'] %>
-  # username: <%= ENV['MYSQL_PRODUCTION_USER'] %>
-  # host:     <%= ENV['MYSQL_PRODUCTION_HOST'] %>
-  # password: <%= ENV['MYSQL_PRODUCTION_PW'] %>
-  # adapter: postgresql
-  # encoding: unicode
-  # pool: 5

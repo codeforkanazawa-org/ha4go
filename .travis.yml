@@ -2,8 +2,7 @@ language: ruby
 rvm:
   - 2.2.4
 env:
-  - DATABASE_NAME=ha4go_test
-  - MYSQL_USER=travis
+  - TEST_DATABASE_NAME=ha4go_test TEST_MYSQL_USER=travis
 services:
   - mysql
 before_script:
