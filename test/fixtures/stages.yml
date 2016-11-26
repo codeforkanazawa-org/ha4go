@@ -1,7 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
+stage_one:
+  name: 議論と調査
 
-two:
-  name: MyString
+stage_two:
+  name: 企画と試作中
+
+stage_three:
+  name: 運用中
+
+stage_four:
+  name: 休止・終了

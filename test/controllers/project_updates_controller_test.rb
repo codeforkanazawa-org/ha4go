@@ -2,7 +2,7 @@ require 'test_helper'
 
 class ProjectUpdatesControllerTest < ActionController::TestCase
   setup do
-    @project_update = project_updates(:one)
+    @project_update = project_updates(:project_update_one)
   end
 
   test "should get index" do
