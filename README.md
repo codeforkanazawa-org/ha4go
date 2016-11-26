@@ -184,6 +184,20 @@ bundle exec rails s
 bundle exec rake jobs:work
 ```
 
+### ローカル環境にダミーデータを用意する
+
+開発をスムーズにするため、`db/seeds/モデル名.yml.sample` に記述されているダミーデータを開発用に利用することができます。
+
+以下のコマンドからダミーデータを入れることが可能です。
+
+```
+bundle exec rake db:seed:unlock_yml
+bundle exec rake db:seed
+```
+
+ha4goはFacebookログインを利用しているため, `uid`に問題がある可能性があります。
+初期データのファイル __db/seeds/users.yml.sample__ を利用するには注意してください
+
 
 ### Docker 上でアプリを動かす場合
 
