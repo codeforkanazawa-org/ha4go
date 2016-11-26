@@ -1,4 +1,5 @@
 ---
+# uidはアプリごとに固有のIDとして発行されるので利用できない可能性があります
 - provider: facebook
   uid: '108042236335534'
   email: user1@ha4go.net
