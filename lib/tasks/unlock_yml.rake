@@ -5,7 +5,7 @@ namespace :db do
       samples = Rails.root.join('db', 'seeds', '*.yml.sample')
       Dir.glob(samples).each do |sample|
         file_name = File.basename(sample, File.extname(sample))
-        FileUtils.mv(sample, Rails.root.join('db', 'seeds', file_name), verbose: true)
+        FileUtils.cp(sample, Rails.root.join('db', 'seeds', file_name), verbose: true)
       end
     end
   end
