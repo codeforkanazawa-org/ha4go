@@ -81,4 +81,5 @@ Project.all.each do |project|
   end
 end
 Project.record_timestamps = true
-load(Rails.root.join('db', 'seeds', "#{Rails.env.downcase}.rb"))
+seed_file = Rails.root.join('db', 'seeds', "#{Rails.env.downcase}.rb")
+load(seed_file) if File.exist? seed_file
