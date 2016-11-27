@@ -1,5 +1,5 @@
 def relative_path(path)
-  "#{File.dirname(__FILE__)}/#{path}"
+  File.join(File.dirname(__FILE__), path)
 end
 
 def read_relative(path)
