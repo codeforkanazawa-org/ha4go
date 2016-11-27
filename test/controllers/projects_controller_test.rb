@@ -38,12 +38,4 @@ class ProjectsControllerTest < ActionController::TestCase
     patch :update, id: @project, project: { description: @project.description, development_url: @project.development_url, stage_id: @project.stage_id, subject: @project.subject, user_id: @project.user_id, user_url: @project.user_url }
     assert_redirected_to project_path(assigns(:project))
   end
-
-  test "should destroy project" do
-    assert_difference('Project.count', -1) do
-      delete :destroy, id: @project
-    end
-
-    assert_redirected_to projects_path
-  end
 end
