@@ -195,8 +195,7 @@ bundle exec rake db:seed:unlock_yml
 bundle exec rake db:seed
 ```
 
-ha4goはFacebookログインを利用しているため, `uid`に問題がある可能性があります。
-初期データのファイル __db/seeds/users.yml.sample__ を利用するには注意してください
+ha4go は Facebook ログインを利用しているため、 `uid` はその Facebook が払い出したIDを本来用いないといけませんが、__db/seeds/users.yml.sample__ ではダミーの値を用いてます。この値を使っても Facebook と連携はとれません。
 
 
 ### Docker 上でアプリを動かす場合
