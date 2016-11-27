@@ -3,7 +3,9 @@
 project_update_one:
   project_id: 1
   description: フォロー1
+  user: user_one
 
 project_update_two:
   project_id: 2
   description: フォロー2
+  user: user_two
