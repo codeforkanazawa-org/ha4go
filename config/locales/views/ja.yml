@@ -10,6 +10,7 @@ ja:
     name:         名前
     add:          追加
     email:        メール
+    not_public:   (アドレスは他ユーザーには公開されません)
     update:       更新する
     able_to:      できること
     self_intro:   自己紹介
