@@ -22,7 +22,7 @@ class ProjectUpdatesControllerTest < ActionController::TestCase
       post :create, project_update: { description: @project_update.description, project_id: @project_update.project_id }
     end
 
-    assert_redirected_to project_update_path(assigns(:project_update))
+    assert_redirected_to project_path(@project_update.project)
   end
 
   test "should show project_update" do
@@ -37,7 +37,7 @@ class ProjectUpdatesControllerTest < ActionController::TestCase
 
   test "should update project_update" do
     patch :update, id: @project_update, project_update: { description: @project_update.description, project_id: @project_update.project_id }
-    assert_redirected_to project_update_path(assigns(:project_update))
+    assert_redirected_to project_path(@project_update.project)
   end
 
   test "should destroy project_update" do
@@ -45,6 +45,6 @@ class ProjectUpdatesControllerTest < ActionController::TestCase
       delete :destroy, id: @project_update
     end
 
-    assert_redirected_to project_updates_path
+    assert_redirected_to project_path(@project_update.project)
   end
 end
