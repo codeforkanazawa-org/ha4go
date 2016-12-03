@@ -10,8 +10,7 @@ class Project < ActiveRecord::Base
   has_many   :projects
 
   scope :recent, lambda { |before|
-    targets = ProjectUpdate.where('created_at > ?', before).group(:project_id).map(&:project_id)
-    where('created_at > ? or id in (?)', before, targets)
+    where('last_commented_at > ?', before).order(last_commented_at: 'desc')
   }
 
   scope :recruiting, lambda {

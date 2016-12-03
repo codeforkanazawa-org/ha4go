@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161106085544) do
+ActiveRecord::Schema.define(version: 20161203220548) do
 
   create_table "app_informations", force: :cascade do |t|
     t.date     "release"
@@ -40,15 +40,16 @@ ActiveRecord::Schema.define(version: 20161106085544) do
   end
 
   create_table "projects", force: :cascade do |t|
-    t.integer  "user_id",         limit: 4
-    t.integer  "stage_id",        limit: 4,     default: 10, null: false
-    t.string   "subject",         limit: 255
-    t.text     "description",     limit: 65535
-    t.string   "user_url",        limit: 255
-    t.string   "development_url", limit: 255
-    t.datetime "created_at",                                 null: false
-    t.datetime "updated_at",                                 null: false
-    t.integer  "project_id",      limit: 4
+    t.integer  "user_id",           limit: 4
+    t.integer  "stage_id",          limit: 4,     default: 10, null: false
+    t.string   "subject",           limit: 255
+    t.text     "description",       limit: 65535
+    t.string   "user_url",          limit: 255
+    t.string   "development_url",   limit: 255
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
+    t.integer  "project_id",        limit: 4
+    t.datetime "last_commented_at"
   end
 
   add_index "projects", ["project_id"], name: "index_projects_on_project_id", using: :btree

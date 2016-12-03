@@ -58,3 +58,12 @@ end
 ].each do |r|
   AppInformation.where(r).first_or_create
 end
+
+# バージョンアップのための処理。最終更新日を記録するようにした
+Project.all.each do |project|
+  if project.last_commented_at.nil?
+    comment_on = project.project_updates.order(id: :desc).first
+    project.last_commented_at = comment_on.nil? ? project.updated_at : comment_on.created_at
+    project.save!
+  end
+end
