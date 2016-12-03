@@ -51,6 +51,7 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
     @project.user_id = @my_user.id
+    @project.last_commented_at = Time.now
     skills = Array(params[:skill_names][:skill_ids]) + params[:new_skills][:new_skills].split(' ')
     @project.update_skill_ids_by_skill_names(skills) unless skills.empty?
 
