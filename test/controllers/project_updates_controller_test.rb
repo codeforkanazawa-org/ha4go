@@ -41,7 +41,7 @@ class ProjectUpdatesControllerTest < ActionController::TestCase
   end
 
   test "should destroy project_update" do
-    assert_difference('ProjectUpdate.count', -1) do
+    assert_no_difference('ProjectUpdate.count') do
       delete :destroy, id: @project_update
     end
 
