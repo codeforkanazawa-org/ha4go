@@ -29,6 +29,7 @@ ja:
     login:        ログイン
     logout:       ログアウト
     mypage:       マイページ
+    dashboard:    ダッシュボード
     post_project:        課題を投稿
     post_project_do:     課題を投稿する
     post_belong_project: 関連課題を投稿

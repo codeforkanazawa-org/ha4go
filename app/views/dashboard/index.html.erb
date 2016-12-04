@@ -1,0 +1,146 @@
+<div class="content">
+  <% if notice %>
+    <div class="alert alert-success" role="alert">
+      <%= notice %>
+    </div>
+  <% end %>
+  <% if authorized? %>
+    <div class="member_title"><%= t('.title')%></div>
+  <% else %>
+    <div class="member_title">ha4go へようこそ</div>
+  <% end %>
+  <div class="row">
+    <div class="col-md-4">
+
+      <% if authorized? %>
+        <%= link_to(edit_user_path(id: @my_user.id, from: 'dashboard')) do %>
+          <div class="register_user_title">
+            <%= image_tag('matsu/header_item1.png', class: 'large_button') %>
+            <%= t('.register_button')%>
+          </div>
+        <% end %>
+
+        <%= link_to(new_project_path(from: 'dashboard')) do %>
+          <div class="create_project_title">
+            <%= image_tag('matsu/header_item1.png', class: 'large_button') %>
+            <span class="large_button_text">
+              <%= t('.project_button')%>
+            </span>
+          </div>
+        <% end %>
+      <% else %>
+        <%= link_to('/auth/facebook', id: 'sign_in') do %>
+          <div class="register_user_title">
+            <%= image_tag('matsu/header_item1.png', class: 'large_button') %>
+            <%= t('.register_button')%>
+          </div>
+        <% end %>
+
+        <%= link_to('/auth/facebook', id: 'sign_in') do %>
+          <div class="create_project_title">
+            <%= image_tag('matsu/header_item1.png', class: 'large_button') %>
+            <span class="large_button_text">
+              <%= t('.project_button')%>
+            </span>
+          </div>
+        <% end %>
+      <% end %>
+
+      <% if authorized? %>
+
+        <!-- 自分の作成した課題の更新状況 -->
+        <div class="content_inner">
+          <div class="content_header clearfix">
+            <div class="content_title">
+              あなたの作成した課題の更新状況
+            </div>
+          </div>
+          <% @my_user.projects.order(updated_at: :desc).limit(10).each do |p| %>
+            <div class="content_header clearfix">
+              <div class="content_title_2nd_level">
+                <%= link_to(p.subject, project_path(id: p.id)) %> (最新10件)
+              </div>
+            </div>
+            <div class="dashboard_content_box">
+              <% p.project_updates.order(created_at: :desc).limit(10).each do |u| %>
+                <div>
+                  <%= user_with_face(u.user)%> さんが
+                  <%= updated_at_with_link(u, project_path_with_comment(u)) %>
+                  に コメント
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="content_inner">
+          <div class="content_header clearfix">
+            <div class="content_title">
+              あなたのコメント(最新20件)
+            </div>
+          </div>
+          <div class="dashboard_content_box">
+            <div>
+              <% @my_user.project_updates.order(created_at: :desc).limit(20).each do |pu| %>
+                <div>
+                  <%= pu.project.subject %> へ
+                  <%= updated_at_with_link(pu, project_path_with_comment(pu))%>
+                  に コメント
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+        <div class="content_inner">
+          <div class="content_header clearfix">
+            <div class="content_title">
+              あなたのスキルにマッチした課題
+            </div>
+          </div>
+          <% @my_user.skills.each do |s| %>
+            <div class="content_header clearfix">
+              <div class="content_title_2nd_level">
+                <%= s.name %>(最大20件)
+              </div>
+            </div>
+            <div class="dashboard_content_box">
+              <% s.projects.order(updated_at: :desc).limit(20).each do |p| %>
+                <div>
+                  <%= user_with_face(p.user)%> さんが課題
+                  <%= link_to(p.subject, project_path(id: p.id)) %> で募集中。
+                  <%= updated_at_with_link(p, project_path(id: p.id))%> に更新。
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <!-- 自分の作成した課題の更新状況 -->
+        <div class="content_inner">
+          <div class="content_header clearfix">
+            <div class="content_title">
+              全ての課題の更新状況(最新10件)
+            </div>
+          </div>
+          <% Project.order(updated_at: :desc).limit(10).each do |p| %>
+            <div class="content_header clearfix">
+              <div class="content_title_2nd_level">
+                <%= link_to(p.subject, project_path(id: p.id)) %> (最新10件)
+              </div>
+            </div>
+            <div class="dashboard_content_box">
+              <% p.project_updates.order(created_at: :desc).limit(10).each do |u| %>
+                <div>
+                  <%= user_with_face(u.user)%> さんが
+                  <%= updated_at_with_link(u, project_path_with_comment(u)) %>
+                  に コメント
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
