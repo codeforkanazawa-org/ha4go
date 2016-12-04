@@ -47,6 +47,11 @@ group :development, :test do
   gem 'rails-erd'
 end
 
+group :development do
+  gem 'letter_opener'
+  gem 'letter_opener_web'
+end
+
 group :production do
   # gem 'pg'
 end
