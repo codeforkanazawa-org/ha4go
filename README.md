@@ -69,6 +69,7 @@ $ vim .env
 ``` .env
 FACEBOOK_APP_ID=12341234
 FACEBOOK_APP_SECRET="hogehogehoge"
+DELIVERY_METHOD=letter_opener_web
 SMTP_SERVER='smtp.gmail.com'
 SMTP_PORT=587
 SMTP_DOMAIN='googleapps.domain'
@@ -119,7 +120,15 @@ USE_HTTPS=1
 
 ## SMTP の準備
 
-Gmailがそのまま使えるので、アカウントを取得して設定してください。(Gmailの場合の SMTP_DOMAINは `smtp.gmail.com` です)
+`DELIVERY_METHOD=` でメール送信方法を選択します。
+
+開発時には `letter_opener_web` が指定できます。これを指定するとメールは送信されず、サーバの用意も必要ありません。加えて `http://localhost:3000/letter_opener` で擬似的に送信したメールを確認することができます(開発時のみ有効なURLです)。この場合は `SMTP_` からはじまる全ての環境変数は無視されます。
+
+運用配置など実メールを用いる場合には `smtp` を指定して、メールサーバを用意してください。Gmailがそのまま使えるので、アカウントを取得して設定すると楽です。(Gmailの場合の SMTP_DOMAINは `smtp.gmail.com` です)
+
+```
+DELIVERY_METHOD=smtp
+```
 
 
 ## DBの準備
