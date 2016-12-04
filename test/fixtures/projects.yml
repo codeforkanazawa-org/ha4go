@@ -1,16 +1,16 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  user_id: 1
-  stage_id: 1
+project_one:
+  user: user_one
+  stage: stage_one
   subject: MyString
   description: MyString
   user_url: MyString
   development_url: MyString
 
-two:
-  user_id: 1
-  stage_id: 1
+project_two:
+  user: user_two
+  stage: stage_two
   subject: MyString
   description: MyString
   user_url: MyString

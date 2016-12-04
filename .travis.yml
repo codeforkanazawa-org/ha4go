@@ -1,9 +1,16 @@
 language: ruby
 rvm:
   - 2.2.4
-env:
-  - TEST_DATABASE_NAME=ha4go_test TEST_MYSQL_USER=travis
 services:
   - mysql
+bundler_args: "--without development --deployment"
+
+cache: bundler
+
 before_script:
-  - mysql -e 'create database ha4go_test;'
+  - mysql -e 'create database myapp_test;'
+  - cp config/database.travis.yml config/database.yml
+  - bundle exec rake db:create
+  - bundle exec rake db:migrate
+script:
+  - bundle exec rake test
