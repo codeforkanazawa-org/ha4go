@@ -45,8 +45,10 @@ Rails.application.routes.draw do
 
   get 'projects/posts/:id', to: 'projects#kakikomizu'
 
+  get 'dashboard', to: 'dashboard#index'
+
   get 'feed' => 'top#feed'
-  root 'top#index', as: 'root'
+  root 'dashboard#index', as: 'root'
 
   resources :projects
   resources :users

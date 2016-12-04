@@ -1,0 +1,50 @@
+@import "matsu/color";
+@import "matsu/font";
+
+.content_box {
+  padding: 15px;
+  clear: both;
+  font-size: 14px;
+}
+
+.dashboard_content_box {
+    @extend .content_box;
+    border-bottom: 1px solid $title_contents_separator_color;
+    font-size: $font_small_size;
+    img {
+        height: 20px;
+        border-radius: 10px;
+    }
+}
+
+.create_project_title {
+    padding: 10px 4%;
+    color: $font_color_on_button;
+    font-size: $font_large_size;
+    background-color: $button_color;
+    border: 1px solid $button_color;
+    border-radius: 10px;
+    vertical-align: middle;
+    margin: 20px;
+}
+
+.large_button {
+    vertical-align: middle;
+    margin-right: 15px;
+}
+
+.large_button_text {
+    vertical-align: middle;
+}
+
+.register_user_title {
+    @extend .create_project_title;
+    background-color: $button_color2;
+    border: 1px solid $button_color2;
+}
+
+.project_update_list {
+    width: 90%;
+    background-color: $contents_bg_color;
+    margin-bottom: 20px;
+}

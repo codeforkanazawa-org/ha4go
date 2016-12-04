@@ -4,6 +4,8 @@
       <%= notice %>
     </div>
   <% end %>
+  <div class="list_title"><%= @list_type %></div>
+
   <% @projects.each do |project| %>
     <%= render 'shared/project', project: project %>
   <% end %>
