@@ -44,7 +44,7 @@
     <!-- ステータス -->
     <div class="content_status clearfix">
       <div class="content_status_left"><%= t('dic.status') %></div>
-      <div class="content_status_right"><%= @project.stage.name %></div>
+      <div class="content_status_right"><%= link_to @project.stage.name, ENV['LINK_ABOUT_PROJECT_STATUS'], target: '_blank' %></div>
     </div>
 
     <!-- 元の課題 -->
