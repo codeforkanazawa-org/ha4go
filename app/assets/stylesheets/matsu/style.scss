@@ -300,16 +300,20 @@ dd {
   font-size: 14px;
 }
 
+$base_width: 580px;
+$content_left_width: 120px;
+$content_right_width: $base_width - $content_left_width;
+
 .content_development_url_left {
   float: left;
   margin-right: 20px;
-  width: 70px;
+  width: $content_left_width;
 }
 
 .content_development_url_right {
   float: left;
   font-size: 12px;
-  width: 510px;
+  width: $content_right_width;
 }
 
 .content_sns_share {
@@ -321,13 +325,13 @@ dd {
 .content_sns_share_left {
   float: left;
   margin-right: 20px;
-  width: 70px;
+  width: $content_left_width;
 }
 
 .content_sns_share_right {
   float: left;
   font-size: 12px;
-  width: 510px;
+  width: $content_right_width;
 }
 
 .content_status {
@@ -339,13 +343,31 @@ dd {
 .content_status_left {
   float: left;
   margin-right: 20px;
-  width: 70px;
+  width: $content_left_width;
 }
 
 .content_status_right {
   float: left;
   font-size: 12px;
-  width: 510px;
+  width: $content_right_width;
+}
+
+.content_property {
+  padding: 0 15px;
+  clear: both;
+  font-size: 14px;
+}
+
+.content_property_left {
+  float: left;
+  margin-right: 20px;
+  width: $content_left_width;
+}
+
+.content_property_right {
+  float: left;
+  font-size: 12px;
+  width: $content_right_width;
 }
 
 .content_parent_project {
@@ -357,13 +379,13 @@ dd {
 .content_parent_project_left {
   float: left;
   margin-right: 20px;
-  width: 70px;
+  width: $content_left_width;
 }
 
 .content_parent_project_right {
   float: left;
   font-size: 12px;
-  width: 510px;
+  width: $content_right_width;
 }
 
 .content_child_project {
@@ -375,13 +397,13 @@ dd {
 .content_child_project_left {
   float: left;
   margin-right: 20px;
-  width: 70px;
+  width: $content_left_width;
 }
 
 .content_child_project_right {
   float: left;
   font-size: 12px;
-  width: 510px;
+  width: $content_right_width;
 }
 
 .content_skill {
@@ -394,13 +416,13 @@ dd {
 .content_skill_left {
   float: left;
   margin-right: 20px;
-  width: 70px;
+  width: $content_left_width;
 }
 
 .content_skill_right {
   float: left;
   font-size: 11px;
-  width: 510px;
+  width: $content_right_width;
 }
 
 .skill_web {
@@ -445,14 +467,14 @@ dd {
   float: left;
   padding-top: 10px;
   margin-right: 20px;
-  width: 70px;
+  width: $content_left_width;
 }
 
 .content_join_right {
   float: left;
   font-size: 11px;
   padding-top: 9px;
-  width: 510px;
+  width: $content_right_width;
 }
 
 .join_thum {
