@@ -68,8 +68,10 @@
     <div class="content_skill clearfix">
       <div class="content_status_left">スキル</div>
       <div class="content_status_right">
-        <% @user.skills.map{|skill| skill.name}.each do |s| %>
-          <span class="skill_web"><%= s %></span>
+        <% @user.skills.each do |s| %>
+          <%= link_to users_path(skill_id: s.id) do %>
+            <span class="skill_web"><%= s.name %></span>
+          <% end %>
         <% end %>
       </div>
     </div>
