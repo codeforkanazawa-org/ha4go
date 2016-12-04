@@ -15,7 +15,7 @@ Rails.application.configure do
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.delivery_method = ENV['DELIVERY_METHOD'] ? ENV['DELIVERY_METHOD'].to_sym : :letter_opener_web
   config.action_mailer.smtp_settings = {
     address:               Rails.application.secrets.smtp_address,
     port:                  Rails.application.secrets.smtp_port,
@@ -25,7 +25,6 @@ Rails.application.configure do
     authentication:        'plain',
     enable_starttls_auto:  true
   }
-
   config.action_mailer.default_url_options = {
     host: ENV['APP_HOST'] || 'localhost:3000'
   }
