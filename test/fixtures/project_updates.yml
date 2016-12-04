@@ -1,9 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  project_id: 1
-  description: MyString
+project_update_one:
+  project: project_one
+  description: フォロー1
+  user: user_one
 
-two:
-  project_id: 1
-  description: MyString
+project_update_two:
+  project: project_two
+  description: フォロー2
+  user: user_two

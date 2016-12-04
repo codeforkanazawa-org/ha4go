@@ -5,9 +5,17 @@
     </div>
   <% end %>
   <%= render 'form' %>
-  <%= link_to @user do %>
-    <button type="submit" class="btn btn-default mt20" aria-label="Left Align">
-      <%= t('dic.back')%>
-    </button>
+  <% if @from == 'dashboard' %>
+    <%= link_to dashboard_path do %>
+      <button type="submit" class="btn btn-default mt20" aria-label="Left Align">
+        <%= t('dic.back')%>
+      </button>
+    <% end %>
+  <% else %>
+    <%= link_to @user do %>
+      <button type="submit" class="btn btn-default mt20" aria-label="Left Align">
+        <%= t('dic.back')%>
+      </button>
+    <% end %>
   <% end %>
 </div>

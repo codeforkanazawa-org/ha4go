@@ -1,0 +1,8 @@
+ja:
+  dashboard:
+    need_login: You Need to Login
+    index:
+      title: ダッシュボード
+      project_button:  課題を作成して募集・議論を開始する
+      register_button: 応募・議論のためにスキルを登録する
+      need_login: You Need to Login

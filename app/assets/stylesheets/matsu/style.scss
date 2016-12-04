@@ -1,6 +1,9 @@
 /*---基本CSS
 --------------*/
 
+@import "color";
+@import "font";
+
 body {
   width: 100%;
   height: 100%;
@@ -8,7 +11,7 @@ body {
   font-size: 14px;
   line-height: 24px;
   color: #333;
-  background-color: #f3f3f3;
+  background-color: $main_bg_color;
   overflow-wrap: break-word;
 }
 
@@ -49,7 +52,7 @@ a {
 #pc_header {
   width: 100%;
   height: 63px;
-  background-color: #F7931E;
+  background-color: $main_theme_color;
   color: #fff;
   margin-bottom: 40px;
 }
@@ -89,12 +92,6 @@ a {
 .user_name {
   height: 20px;
   padding-top: 5px;
-}
-
-/*ログイン後表示する*/
-
-.login_after, .user_name {
-  display: none;
 }
 
 .header_nav {
@@ -225,6 +222,11 @@ header h1 {
   }
 }
 
+.menu_search {
+    @extend .menu_news;
+    margin-top: 0px;
+}
+
 dl {
   padding-top: 6px;
 }
@@ -257,18 +259,24 @@ dd {
 .content_header {
   width: 600px;
   padding: 10px 15px;
-  border-bottom: 1px solid #e6e6e6;
+  border-bottom: 1px solid $title_contents_separator_color;
 }
 
 .content_title {
   width: 480px;
   margin-right: 20px;
-  font-size: 20px;
+  font-size: $font_size_title;
   line-height: 1.3em;
   float: left;
+  color: $font_color_content_title;
   a {
-    color: #218BBF;
+    color: $font_color_link;
   }
+}
+
+.content_title_2nd_level {
+    @extend .content_title;
+    font-size: $font_size_2nd_level_title;
 }
 
 .content_member {
@@ -300,16 +308,20 @@ dd {
   font-size: 14px;
 }
 
+$base_width: 580px;
+$content_left_width: 120px;
+$content_right_width: $base_width - $content_left_width;
+
 .content_development_url_left {
   float: left;
   margin-right: 20px;
-  width: 70px;
+  width: $content_left_width;
 }
 
 .content_development_url_right {
   float: left;
   font-size: 12px;
-  width: 510px;
+  width: $content_right_width;
 }
 
 .content_sns_share {
@@ -321,13 +333,13 @@ dd {
 .content_sns_share_left {
   float: left;
   margin-right: 20px;
-  width: 70px;
+  width: $content_left_width;
 }
 
 .content_sns_share_right {
   float: left;
   font-size: 12px;
-  width: 510px;
+  width: $content_right_width;
 }
 
 .content_status {
@@ -339,13 +351,31 @@ dd {
 .content_status_left {
   float: left;
   margin-right: 20px;
-  width: 70px;
+  width: $content_left_width;
 }
 
 .content_status_right {
   float: left;
   font-size: 12px;
-  width: 510px;
+  width: $content_right_width;
+}
+
+.content_property {
+  padding: 0 15px;
+  clear: both;
+  font-size: 14px;
+}
+
+.content_property_left {
+  float: left;
+  margin-right: 20px;
+  width: $content_left_width;
+}
+
+.content_property_right {
+  float: left;
+  font-size: 12px;
+  width: $content_right_width;
 }
 
 .content_parent_project {
@@ -357,13 +387,13 @@ dd {
 .content_parent_project_left {
   float: left;
   margin-right: 20px;
-  width: 70px;
+  width: $content_left_width;
 }
 
 .content_parent_project_right {
   float: left;
   font-size: 12px;
-  width: 510px;
+  width: $content_right_width;
 }
 
 .content_child_project {
@@ -375,13 +405,13 @@ dd {
 .content_child_project_left {
   float: left;
   margin-right: 20px;
-  width: 70px;
+  width: $content_left_width;
 }
 
 .content_child_project_right {
   float: left;
   font-size: 12px;
-  width: 510px;
+  width: $content_right_width;
 }
 
 .content_skill {
@@ -394,13 +424,13 @@ dd {
 .content_skill_left {
   float: left;
   margin-right: 20px;
-  width: 70px;
+  width: $content_left_width;
 }
 
 .content_skill_right {
   float: left;
   font-size: 11px;
-  width: 510px;
+  width: $content_right_width;
 }
 
 .skill_web {
@@ -445,14 +475,14 @@ dd {
   float: left;
   padding-top: 10px;
   margin-right: 20px;
-  width: 70px;
+  width: $content_left_width;
 }
 
 .content_join_right {
   float: left;
   font-size: 11px;
   padding-top: 9px;
-  width: 510px;
+  width: $content_right_width;
 }
 
 .join_thum {
@@ -510,6 +540,16 @@ dd {
   font-size: 18px;
   background-color: #333;
   border: 1px solid #333;
+}
+
+.list_title {
+  width: 92%;
+  padding: 10px 4%;
+  color: #fff;
+  font-size: 18px;
+  background-color: #333;
+  border: 1px solid #333;
+  margin-bottom: 15px;
 }
 
 /*-右カラムコメント
@@ -570,7 +610,7 @@ dd {
 
 .btn2 a {
   padding: 3px;
-  background-color: #F7931E;
+  background-color: $main_theme_color;
   width: 100px;
   color: #fff;
   float: right;

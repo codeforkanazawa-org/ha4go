@@ -10,6 +10,7 @@ ja:
     name:         名前
     add:          追加
     email:        メール
+    not_public:   (アドレスは他ユーザーには公開されません)
     update:       更新する
     able_to:      できること
     self_intro:   自己紹介
@@ -28,6 +29,7 @@ ja:
     login:        ログイン
     logout:       ログアウト
     mypage:       マイページ
+    dashboard:    ダッシュボード
     post_project:        課題を投稿
     post_project_do:     課題を投稿する
     post_belong_project: 関連課題を投稿

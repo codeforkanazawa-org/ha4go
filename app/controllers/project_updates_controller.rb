@@ -20,6 +20,9 @@ class ProjectUpdatesController < ApplicationController
     end
 
     if @project_update.save
+      @project_update.project.update_attributes!(
+        last_commented_at: @project_update.created_at
+      )
       redirect_to project_path(id: params[:project_update][:project_id]), notice: 'フォローを投稿しました。'
     else
       render :new

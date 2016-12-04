@@ -1,4 +1,6 @@
 <%= form_for(@project) do |f| %>
+  <%= hidden_field_tag :from, @from.to_s %>
+
   <% if @project.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
@@ -88,7 +90,7 @@
     <% if (params[:action] == 'edit') then %>
       <div class="row">
         <div class="col-md-2">
-          <%= t 'dic.status' %>
+          <%= t 'dic.status' %> <%= link_to t('dic.detail'), ENV['LINK_ABOUT_PROJECT_STATUS'], target: '_blank' %>
         </div>
         <div class="col-md-10">
           <div class="form-inline mt10">

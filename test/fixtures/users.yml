@@ -1,15 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  email: MyString
-  password: MyString
-  description: MyString
-  facebook_user_id: 1
+user_one:
+  name: ユーザ名1
+  email: sample@sample.com
+  description: 説明文です
+  provider: facebook
+  uid: 1
 
-two:
-  name: MyString
-  email: MyString
-  password: MyString
-  description: MyString
-  facebook_user_id: 1
+user_two:
+  name: ユーザ名2
+  email: sample@sample.com
+  description: 説明文です
+  provider: facebook
+  uid: 2

@@ -8,7 +8,7 @@
     <div class="content_header clearfix">
       <div class="content_title"><%= link_to(@project.subject, project_path(id: @project.id)) %></div>
       <div class="content_member">
-        <%= link_to (image_tag @project.user.image, alt: @project.user.name), user_path(id: @project.user.id) %>
+        <%= link_to (image_tag @project.user.image, alt: @project.user.name, title: @project.user.name), user_path(id: @project.user.id) %>
       </div>
       <div class="content_time">
         <%= name_and_link(@project.user) %><% t('dic.title') %><br/>
@@ -44,7 +44,7 @@
     <!-- ステータス -->
     <div class="content_status clearfix">
       <div class="content_status_left"><%= t('dic.status') %></div>
-      <div class="content_status_right"><%= @project.stage.name %></div>
+      <div class="content_status_right"><%= link_to @project.stage.name, ENV['LINK_ABOUT_PROJECT_STATUS'], target: '_blank' %></div>
     </div>
 
     <!-- 元の課題 -->
@@ -82,7 +82,7 @@
       <div class="content_join_left"><%= t('dic.member_list') %></div>
       <div class="content_join_right">
         <% @project.users.each do |user| %>
-          <span class="join_thum"><%= link_to image_tag(user.image, alt: user.name), user_path(id: user.id) %></span>
+          <span class="join_thum"><%= link_to image_tag(user.image, alt: user.name, title: user.name), user_path(id: user.id) %></span>
         <% end %>
       </div>
     </div>
@@ -126,7 +126,7 @@
   <% if authorized? %>
     <div class="comment clearfix" id="add_comment" style="display:none;">
       <div class="comment_thum">
-        <%= link_to image_tag(@my_user.image, alt: @my_user.name), user_path(id: @my_user.id) %>
+        <%= link_to image_tag(@my_user.image, alt: @my_user.name, title: @my_user.name), user_path(id: @my_user.id) %>
       </div>
       <div class="comment_text input_text">
         <%= form_for(ProjectUpdate.new) do |f| %>
@@ -144,7 +144,7 @@
   <% @project.project_updates.reverse.each do |update| %>
     <div class="comment clearfix" id="comment-<%=update.id%>">
       <div class="comment_thum">
-        <%= link_to image_tag(update.user.image, alt: update.user.name), user_path(id: update.user.id) %>
+        <%= link_to image_tag(update.user.image, alt: update.user.name, title: update.user.name), user_path(id: update.user.id) %>
       </div>
       <div class="comment_text">
         <p><%= description_text(update.description) %></p>

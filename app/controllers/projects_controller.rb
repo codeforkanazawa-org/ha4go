@@ -7,15 +7,19 @@ class ProjectsController < ApplicationController
   def index
     type = params[:type]
     if type == 'recent'
+      @list_type = I18n.t('dic.project_recent')
       @projects = Project.recent(default_duration)
     elsif type == 'hotrank'
+      @list_type = I18n.t('dic.project_hot')
       @projects = Project.hot_rank(default_duration)
     elsif type == 'match'
+      @projects = []
       unless @my_user.nil?
+        @list_type = I18n.t('dic.project_match_mine')
         @projects = Project.match_mine(@my_user.skills)
       end
-      @projets = []
     else
+      @list_type = I18n.t('dic.project_all')
       @projects = Project.all
     end
   end
@@ -39,6 +43,7 @@ class ProjectsController < ApplicationController
     @my_skills = []
     @parent_project = nil
     @parent_project = Project.find(params[:parent_id]) unless params[:parent_id].nil?
+    @from = params[:from]
   end
 
   # GET /projects/1/edit
@@ -51,6 +56,7 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
     @project.user_id = @my_user.id
+    @project.last_commented_at = Time.now
     skills = Array(params[:skill_names][:skill_ids]) + params[:new_skills][:new_skills].split(' ')
     @project.update_skill_ids_by_skill_names(skills) unless skills.empty?
 
@@ -69,7 +75,8 @@ class ProjectsController < ApplicationController
         ProjectMailer.tell_skill_match(m, @project, true).deliver_now unless m == ''
       end
 
-      redirect_to @project, notice: I18n.t('projects.banner.created')
+      redirect_target = params[:from].nil? ? @project : '/dashboard'
+      redirect_to redirect_target, notice: I18n.t('projects.banner.created')
     else
       render :new
     end

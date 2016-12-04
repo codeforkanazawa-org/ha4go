@@ -47,12 +47,31 @@
       </div>
     </div>
 
+    <!-- 作成した課題の数 -->
+    <div class="content_property">
+      <div class="content_property_left">作成した課題の数</div>
+      <div class="content_property_right">
+        <%= @user.projects.count %>
+      </div>
+    </div>
+
+    <!-- コメントの数 -->
+    <div class="content_property">
+      <div class="content_property_left">コメントした数</div>
+      <div class="content_property_right">
+        <%= @user.project_updates.count %>
+      </div>
+    </div>
+
+
     <!-- スキル一覧 -->
     <div class="content_skill clearfix">
       <div class="content_status_left">スキル</div>
       <div class="content_status_right">
-        <% @user.skills.map{|skill| skill.name}.each do |s| %>
-        <span class="skill_web"><%= s %></span>
+        <% @user.skills.each do |s| %>
+          <%= link_to users_path(skill_id: s.id) do %>
+            <span class="skill_web"><%= s.name %></span>
+          <% end %>
         <% end %>
       </div>
     </div>
@@ -65,7 +84,7 @@
   </div>
 
   <!-- 最近のコメント -->
-  <div class="content_status">
+  <div class="content_status clearfix">
     <div class="content_status_left">直近コメント(10)</div>
     <div class="content_status_right">
       <% @my_comments.each do |comment| %>

@@ -1,4 +1,6 @@
 <%= form_for(@user) do |f| %>
+  <%= hidden_field_tag :from, @from.to_s %>
+
   <% if @user.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@user.errors.count, "error") %>入力に誤りがあります</h2>
@@ -30,7 +32,7 @@
     </div>
     <div class="row">
       <div class="col-md-2">
-        <%= t('dic.email')%>
+        <%= t('dic.email')%><%= t('dic.not_public')%>
       </div>
       <div class="input_text">
         <%= f.text_field :email, :class => 'form-control' %>
@@ -61,7 +63,7 @@
         <%= t '.new_skill'%>
       </div>
       <div class="input_text">
-        <%= text_field :new_skills, :new_skills  %>
+        <%= text_field :new_skills, :new_skills %>
       </div>
     </div>
   </div>

@@ -24,6 +24,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    @from = params['from']
   end
 
   # PATCH/PUT /users/1
@@ -31,7 +32,11 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       skills = Array(params[:skill_names][:skill_ids]) + params[:new_skills][:new_skills].split(' ')
       @user.update_skill_ids_by_skill_names(skills) if skills.size > 0
-      redirect_to @user, notice: 'プロフィールを更新しました。'
+      if params[:from].to_s == 'dashboard'
+        redirect_to '/dashboard', notice: 'プロフィールを更新しました。'
+      else
+        redirect_to @user, notice: 'プロフィールを更新しました。'
+      end
     else
       render :edit
     end
