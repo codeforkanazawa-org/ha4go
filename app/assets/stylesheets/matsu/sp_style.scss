@@ -234,6 +234,10 @@
       font-weight: normal;
     }
   }
+  .menu_search {
+      @extend .menu_news;
+    margin-top: 0px;
+  }
   dl {
     padding-top: 6px;
   }
