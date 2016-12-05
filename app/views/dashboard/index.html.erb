@@ -55,6 +55,31 @@
               あなたの作成した課題の更新状況
             </div>
           </div>
+          <% Project.where(user_id: @my_user.id).order(updated_at: :desc).limit(10).each do |p| %>
+            <div class="content_header clearfix">
+              <div class="content_title_2nd_level">
+                <%= link_to(p.subject, project_path(id: p.id)) %> (最新10件)
+              </div>
+            </div>
+            <div class="dashboard_content_box">
+              <% p.project_updates.order(created_at: :desc).limit(10).each do |u| %>
+                <div>
+                  <%= user_with_face(u.user)%> さんが
+                  <%= updated_at_with_link(u, project_path_with_comment(u)) %>
+                  に コメント
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+
+        <!-- 自分の作成した課題の更新状況 -->
+        <div class="content_inner">
+          <div class="content_header clearfix">
+            <div class="content_title">
+              あなたの参加している課題の更新状況
+            </div>
+          </div>
           <% @my_user.projects.order(updated_at: :desc).limit(10).each do |p| %>
             <div class="content_header clearfix">
               <div class="content_title_2nd_level">
@@ -116,7 +141,7 @@
           <% end %>
         </div>
       <% else %>
-        <!-- 自分の作成した課題の更新状況 -->
+        <!-- 全ての課題の更新状況 -->
         <div class="content_inner">
           <div class="content_header clearfix">
             <div class="content_title">

@@ -51,6 +51,14 @@
     <div class="content_property">
       <div class="content_property_left">作成した課題の数</div>
       <div class="content_property_right">
+        <%= Project.where(user_id: @user.id).count %>
+      </div>
+    </div>
+
+    <!-- 参加している課題の数 -->
+    <div class="content_property">
+      <div class="content_property_left">参加している課題の数</div>
+      <div class="content_property_right">
         <%= @user.projects.count %>
       </div>
     </div>
