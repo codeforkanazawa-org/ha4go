@@ -263,6 +263,7 @@ $ heroku config:set SMTP_PORT=587
 $ heroku config:set SMTP_DOMAIN=googleapps.domain
 $ heroku config:set SMTP_USER=notifier_user@googleapps.domain
 $ heroku config:set SMTP_PASSWORD=password_of_notifier_user
+$ heroku config:set DELIVERY_METHOD=smtp
 ```
 
 ## デプロイ
