@@ -1,5 +1,6 @@
 # coding: utf-8
 class ProjectUpdatesController < ApplicationController
+  include SnsPublisher
   before_action :set_project_update, only: [:show, :edit, :update, :destroy]
 
   # GET /project_updates/new
@@ -23,6 +24,12 @@ class ProjectUpdatesController < ApplicationController
       @project_update.project.update_attributes!(
         last_commented_at: @project_update.created_at
       )
+
+      publish_to_sns_page(
+        "#{@my_user.name} さんが課題 #{@project_update.project.subject} にフォローを投稿しました。",
+        project_path(id: params[:project_update][:project_id])
+      )
+
       redirect_to project_path(id: params[:project_update][:project_id]), notice: 'フォローを投稿しました。'
     else
       render :new

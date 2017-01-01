@@ -1,6 +1,6 @@
 # coding: utf-8
 class ProjectsController < ApplicationController
-  helper SnsHelper
+  include SnsPublisher
   before_action :set_project, only: [:show, :edit, :update, :destroy, :join, :leave]
 
   # GET /projects
@@ -64,11 +64,15 @@ class ProjectsController < ApplicationController
     @project.users.push(@my_user)
 
     if @project.save
-
       # mail to created
       @project.send_mail_addresses.each do |m|
         ProjectMailer.tell_create(m, @project).deliver_now unless m == ''
       end
+
+      publish_to_sns_page(
+        "#{@my_user.name} さんが課題 #{@project.subject} を作成しました。",
+        project_path(id: @project.id)
+      )
 
       # mail to skill matched
       User.joins(:skills).where(skills: { id: @project.skills }).pluck(:email).compact.each do |m|
@@ -91,6 +95,11 @@ class ProjectsController < ApplicationController
 
       current_skills = @project.skills.map(&:id)
       fue = current_skills - before_skills
+
+      publish_to_sns_page(
+        "#{@my_user.name} さんが課題 #{@project.subject} を更新しました。",
+        project_path(id: @project.id)
+      )
 
       # mail to skill matched
       User.joins(:skills).where(skills: { id: fue }).pluck(:email).compact.each do |m|
