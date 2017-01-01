@@ -46,7 +46,7 @@
           <%= f.url_field :development_url, class: 'form-control', placeholder: t('dic.ex_devurl') %>
         </p>
         <p>
-          <%= t('.recommend_skill')%>
+          <%= t('.recommend_dev_url')%>
         </p>
       </div>
     </div>
@@ -73,7 +73,7 @@
         <% end %>
         </p>
         <p>
-          <%= t('.recommend_dev_url')%>
+          <%= t('.recommend_skill')%>
         </p>
       </div>
     </div>
@@ -112,7 +112,7 @@
     <div>
       <label for="agree_message_check">
         <input type="checkbox" id="agree_message_check" name="agreecheck" value="1">
-        当課題の成果物はコードフォーカナザワに帰属いたします。
+        <%= link_to t('dic.user_term'), ENV['LINK_USER_TERMS'], target: '_blank' %><%= t('dic.user_term_check')%>
       </label>
     </div>
     <div>
