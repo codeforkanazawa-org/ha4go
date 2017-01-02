@@ -32,6 +32,10 @@ end
 
 [
   {
+    release:     '2017-01-02',
+    description: '更新通知をFacebookページに投稿するようにした。'
+  },
+  {
     release:     '2016-12-04',
     description: 'UIのバージョンアップ、ダッシュボードの作成。'
   },
