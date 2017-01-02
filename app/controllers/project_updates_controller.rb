@@ -38,7 +38,7 @@ class ProjectUpdatesController < ApplicationController
 
   # PATCH/PUT /project_updates/1
   def update
-    unless @project_update.user_id == @my_user.id || @project_update.Project.user_id == @my_user.id
+    unless @project_update.user_id == @my_user.id || @project_update.project.user_id == @my_user.id
       redirect_to project_path(id: params[:project_update][:project_id]), notice: 'フォローを修正できませんでした'
     end
 

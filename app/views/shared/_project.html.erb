@@ -4,7 +4,7 @@
     <div class="content_member"><%= link_to (image_tag project.user.image, alt: project.user.name, title: project.user.name), user_path(id:project.user.id) %></div>
     <div class="content_time">
       <%= name_and_link(project.user) %><% t('dic.title') %><br/>
-      <%= time_ago_in_words project.created_at %><% t('dic.posted_on') %>
+      <%= created_at_ago(project) %> <% t('dic.posted_on') %>
     </div>
   </div>
   <div class="content_box">
