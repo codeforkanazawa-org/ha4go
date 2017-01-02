@@ -134,7 +134,7 @@ header h1 {
   text-align: left;
   &::after {
     position: absolute;
-    top: -10%;
+    top: -10px;
     left: 13px;
     content: '';
     width: 0;
