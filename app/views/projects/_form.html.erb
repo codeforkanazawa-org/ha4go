@@ -1,4 +1,4 @@
-<%= form_for(@project) do |f| %>
+<%= form_for(@project, html: { multipart: true }) do |f| %>
   <%= hidden_field_tag :from, @from.to_s %>
 
   <% if @project.errors.any? %>
@@ -60,6 +60,42 @@
         <%= f.text_area :description, class: 'form-control', rows: 5, placeholder: t('dic.ex_description') %>
       </div>
     </div>
+
+    <!-- 画像一覧(編集時には表示しない) -->
+    <% if (params[:action] == 'edit') %>
+      <div class="row">
+        <div class="col-md-2">
+          画像一覧
+        </div>
+        <div class="col-md-2">
+          <% if @project.images.size == 0 %>
+            なし
+          <% else %>
+            <%= f.label "remove_images" do %>
+              <%= f.check_box(:remove_images) + "添付画像を全て削除する" %>
+            <% end %>
+            <% @project.images.each_with_index do |img, index| %>
+              <div class="content_box">
+                <p class="image_all">
+                  <%= image_tag(img.url) %>
+                </p>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+
+    <!-- 画像投稿ボタン -->
+    <div class="row">
+      <div class="col-md-2">
+        画像添付
+      </div>
+      <div class="col-md-2">
+        <%= f.file_field :images, multiple: true %>
+      </div>
+    </div>
+
 
     <!-- 必要なスキル -->
     <div class="row">

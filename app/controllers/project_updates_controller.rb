@@ -56,6 +56,7 @@ class ProjectUpdatesController < ApplicationController
   # DELETE /project_updates/1
   def destroy
     @project_update.description = "( #{@my_user.name} さんが削除しました )"
+    @project_update.comment_image = nil
     @project_update.freezing = true
     if @project_update.save
       history = ProjectUpdateHistory.new(
@@ -76,6 +77,6 @@ class ProjectUpdatesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def project_update_params
-    params.require(:project_update).permit(:project_id, :description)
+    params.require(:project_update).permit(:project_id, :description, :comment_image)
   end
 end

@@ -7,6 +7,15 @@ GIT
       sass-rails (< 5.1)
       sprockets (< 4.0)
 
+GIT
+  remote: git://github.com/carrierwaveuploader/carrierwave.git
+  revision: 9ef68325dd5ea465b4d340af9a9def10934cd677
+  specs:
+    carrierwave (1.0.0)
+      activemodel (>= 4.0.0)
+      activesupport (>= 4.0.0)
+      mime-types (>= 1.16)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -204,6 +213,7 @@ GEM
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
     rdoc (4.3.0)
+    rmagick (2.16.0)
     ruby-graphviz (1.2.2)
     sass (3.4.22)
     sass-rails (5.0.6)
@@ -244,6 +254,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap-sass (~> 3.3.4)
+  carrierwave!
   coffee-rails (~> 4.1.0)
   compass
   compass-rails!
@@ -263,6 +274,7 @@ DEPENDENCIES
   rails (= 4.2.1)
   rails-erd
   rails_12factor
+  rmagick
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   spring
@@ -270,4 +282,4 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 BUNDLED WITH
-   1.11.2
+   1.14.3

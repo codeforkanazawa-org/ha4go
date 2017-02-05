@@ -88,8 +88,25 @@ class ProjectsController < ApplicationController
 
   # PATCH/PUT /projects/1
   def update
+    param_cache = project_params
+    unless param_cache[:images].nil?
+      images = @project.images
+      images += param_cache[:images]
+      param_cache[:images] = images
+    end
     before_skills = @project.skills.map(&:id)
-    if @project.update(project_params)
+    if @project.update(param_cache)
+
+      if params[:project][:remove_images].to_i > 0
+        remain_images = @project.images
+        remain_images.each_with_index do |_v, i|
+          _deleted_image = remain_images.delete_at(i)
+          # _deleted_image.try(:remove!)
+        end
+        @project.images = remain_images
+        @project.update!(images: remain_images)
+      end
+
       skills = Array(params[:skill_names][:skill_ids]) + params[:new_skills][:new_skills].split(' ')
       @project.update_skill_ids_by_skill_names(skills) unless skills.empty?
 
@@ -171,6 +188,6 @@ class ProjectsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def project_params
-    params.require(:project).permit(:user_id, :stage_id, :subject, :description, :user_url, :development_url, :project_id)
+    params.require(:project).permit(:user_id, :stage_id, :subject, :description, :user_url, :development_url, :project_id, { images: [] }, :remove_images)
   end
 end
