@@ -24,10 +24,9 @@ class ProjectUpdatesController < ApplicationController
       @project_update.project.update_attributes!(
         last_commented_at: @project_update.created_at
       )
-
-      publish_to_sns_page(
+      project_publish_to_sns_page(
         "#{@my_user.name} さんが課題 #{@project_update.project.subject} にフォローを投稿しました。",
-        project_path(id: params[:project_update][:project_id])
+        @project_update.project
       )
 
       redirect_to project_path(id: params[:project_update][:project_id]), notice: 'フォローを投稿しました。'

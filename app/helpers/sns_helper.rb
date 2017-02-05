@@ -7,14 +7,4 @@ module SnsHelper
   def twitter_share_btn(url)
     %(<a class="twitter-share-button" href="#{url}" data-dnt="true">Tweet</a>).html_safe
   end
-
-  def publish_to_sns_page(text)
-    return if ENV['FACEBOOK_PAGE_SECRET_TOKEN'].nil?
-    fb_page = Koala::Facebook::API.new(ENV['FACEBOOK_PAGE_SECRET_TOKEN'])
-    fb_page.put_wall_post(text)
-    true
-  rescue => e
-    logger.fatal(e.to_s)
-    false
-  end
 end

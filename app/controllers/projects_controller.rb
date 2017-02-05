@@ -69,9 +69,9 @@ class ProjectsController < ApplicationController
         ProjectMailer.tell_create(m, @project).deliver_now unless m == ''
       end
 
-      publish_to_sns_page(
+      project_publish_to_sns_page(
         "#{@my_user.name} さんが課題 #{@project.subject} を作成しました。",
-        project_path(id: @project.id)
+        @project
       )
 
       # mail to skill matched
@@ -96,9 +96,9 @@ class ProjectsController < ApplicationController
       current_skills = @project.skills.map(&:id)
       fue = current_skills - before_skills
 
-      publish_to_sns_page(
+      project_publish_to_sns_page(
         "#{@my_user.name} さんが課題 #{@project.subject} を更新しました。",
-        project_path(id: @project.id)
+        @project
       )
 
       # mail to skill matched
