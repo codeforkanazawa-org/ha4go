@@ -16,7 +16,8 @@ ENV RAILS_ENV  production
 ENV MYSQL_HOST 192.168.3.1
 ENV MYSQL_USER ha4go
 ENV MYSQL_PW ha4goha4go
-ENV DATABASE_NAME ha4goRUN bundle exec rake db:create
+ENV DATABASE_NAME ha4go
+RUN bundle exec rake db:create
 RUN bundle exec rake db:migrate
 RUN bundle exec rake db:seed
 RUN bundle exec rake assets:precompile
