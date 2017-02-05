@@ -71,8 +71,10 @@
     <div class="content_skill clearfix">
       <div class="content_skill_left"><%= t('dic.wantskill') %></div>
       <div class="content_skill_right">
-        <% @project.skills.map{|skill|skill.name}.each do |s| %>
-          <span class="skill_web"><%= s %></span>
+        <% @project.skills.each do |s| %>
+          <%= link_to users_path(skill_id: s.id) do %>
+            <span class="skill_web"><%= s.name %></span>
+          <% end %>
         <% end %>
       </div>
     </div>
