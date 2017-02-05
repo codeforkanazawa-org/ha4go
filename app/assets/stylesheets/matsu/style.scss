@@ -62,6 +62,10 @@ a {
   width: 420px;
 }
 
+.header_left a {
+    color: $font_color_on_button;
+}
+
 .header_center {
   float: left;
   width: 120px;
