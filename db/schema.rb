@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170205014850) do
+ActiveRecord::Schema.define(version: 20170205093033) do
 
   create_table "app_informations", force: :cascade do |t|
     t.date     "release"
@@ -31,12 +31,13 @@ ActiveRecord::Schema.define(version: 20170205014850) do
   add_index "project_update_histories", ["user_id"], name: "index_project_update_histories_on_user_id", using: :btree
 
   create_table "project_updates", force: :cascade do |t|
-    t.integer  "project_id",  limit: 4
-    t.text     "description", limit: 65535
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.integer  "user_id",     limit: 4
-    t.boolean  "freezing",    limit: 1
+    t.integer  "project_id",    limit: 4
+    t.text     "description",   limit: 65535
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.integer  "user_id",       limit: 4
+    t.boolean  "freezing",      limit: 1
+    t.string   "comment_image", limit: 255
   end
 
   create_table "projects", force: :cascade do |t|

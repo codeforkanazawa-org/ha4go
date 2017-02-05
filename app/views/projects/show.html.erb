@@ -25,7 +25,6 @@
     <% @project.images.each_with_index do |img, index| %>
       <div class="content_box">
         <p class="image_all">
-          <%= index %>
           <%= image_tag(img.url) %>
         </p>
       </div>
@@ -146,6 +145,7 @@
         <%= form_for(ProjectUpdate.new) do |f| %>
           <%= f.hidden_field :project_id, value: @project.id %>
           <%= f.text_area :description, class: 'form-control', placeholder: t('dic.ex_comment'), rows: 5 %>
+          <%= f.file_field :comment_image %>
           <button type="submit" class="btn btn-default btn-primary mt20" align="right">
             <%= t 'dic.do_comment' %>
           </button>
@@ -154,7 +154,7 @@
     </div>
   <% end %>
 
-
+  <!-- コメント一覧(古いのが下、新しいのは上) -->
   <% @project.project_updates.reverse.each do |update| %>
     <div class="comment clearfix" id="comment-<%=update.id%>">
       <div class="comment_thum">
@@ -162,6 +162,9 @@
       </div>
       <div class="comment_text">
         <p><%= description_text(update.description) %></p>
+        <p class="image_all">
+          <%= image_tag(update.comment_image) if update.comment_image? %>
+        </p>
         <p class="comment_author">
           <%= created_at_ago(update, project_path(id: @project.id, anchor: "comment-#{update.id}"))%> <%= t 'dic.posted_on' %>
           <% if authorized? && update.freezing.to_s != 'true' && (update.user_id == @my_user.id || @project.user_id == @my_user.id) %>
