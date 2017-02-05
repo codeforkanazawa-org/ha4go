@@ -16,15 +16,20 @@
       </div>
     </div>
 
-    <% @project.images.each_with_index do |img, index| %>
-      <div class="content_box">
-        <%= image_tag(img.url) %>
-      </div>
-    <% end %>
-
+    <!-- Description -->
     <div class="content_box">
       <%= description_text(@project.description) %>
     </div>
+
+    <!-- Image -->
+    <% @project.images.each_with_index do |img, index| %>
+      <div class="content_box">
+        <p class="image_all">
+          <%= index %>
+          <%= image_tag(img.url) %>
+        </p>
+      </div>
+    <% end %>
 
     <!-- SNS SHARE -->
     <div class="content_sns_share clearfix">

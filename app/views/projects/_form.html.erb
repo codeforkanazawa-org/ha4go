@@ -61,6 +61,42 @@
       </div>
     </div>
 
+    <!-- 画像一覧(編集時には表示しない) -->
+    <% if (params[:action] == 'edit') %>
+      <div class="row">
+        <div class="col-md-2">
+          画像一覧
+        </div>
+        <div class="col-md-2">
+          <% if @project.images.size == 0 %>
+            なし
+          <% else %>
+            <%= f.label "remove_images" do %>
+              <%= f.check_box(:remove_images) + "添付画像を全て削除する" %>
+            <% end %>
+            <% @project.images.each_with_index do |img, index| %>
+              <div class="content_box">
+                <p class="image_all">
+                  <%= image_tag(img.url) %>
+                </p>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+
+    <!-- 画像投稿ボタン -->
+    <div class="row">
+      <div class="col-md-2">
+        画像添付
+      </div>
+      <div class="col-md-2">
+        <%= f.file_field :images, multiple: true %>
+      </div>
+    </div>
+
+
     <!-- 必要なスキル -->
     <div class="row">
       <div class="col-md-2">
@@ -100,9 +136,6 @@
       </div>
     <% end %>
   </div>
-
-  <!-- 画像投稿ボタン -->
-  <%= f.file_field :images, multiple: true %>
 
   <!-- 利用規約確認ボタン -->
   <% if (params[:action] == 'edit') then %>
