@@ -2,7 +2,7 @@
 <html lang="ja" class="build-menu-close">
   <head>
     <meta charset="utf-8">
-    <title>ha4go</title>
+    <title><%= full_title(yield(:title)) %></title>
     <meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1,initial-scale=1" />
     <% unless Array(@rss_urls).length == 0 %>
       <% @rss_urls.each do |rss| %>
