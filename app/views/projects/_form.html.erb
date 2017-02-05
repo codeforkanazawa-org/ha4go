@@ -1,4 +1,4 @@
-<%= form_for(@project) do |f| %>
+<%= form_for(@project, html: { multipart: true }) do |f| %>
   <%= hidden_field_tag :from, @from.to_s %>
 
   <% if @project.errors.any? %>
@@ -100,6 +100,9 @@
       </div>
     <% end %>
   </div>
+
+  <!-- 画像投稿ボタン -->
+  <%= f.file_field :images, multiple: true %>
 
   <!-- 利用規約確認ボタン -->
   <% if (params[:action] == 'edit') then %>

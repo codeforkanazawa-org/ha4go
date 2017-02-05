@@ -68,5 +68,5 @@ gem 'google-analytics-rails'
 gem 'koala', '~> 2.2'
 
 # for Image upload
-gem 'carrierwave'
+gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 gem 'rmagick'

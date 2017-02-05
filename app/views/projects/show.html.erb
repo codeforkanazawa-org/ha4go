@@ -15,6 +15,13 @@
         <%= created_at_ago(@project) %> <% t('dic.posted_on') %>
       </div>
     </div>
+
+    <% @project.images.each_with_index do |img, index| %>
+      <div class="content_box">
+        <%= image_tag(img.url) %>
+      </div>
+    <% end %>
+
     <div class="content_box">
       <%= description_text(@project.description) %>
     </div>

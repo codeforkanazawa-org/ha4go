@@ -1,5 +1,8 @@
 # coding: utf-8
 class Project < ActiveRecord::Base
+  attribute :images, ArrayType.new
+  # mount_uploaders :images, GeneralUploader
+  mount_uploaders :images, ImageUploader
   validates :subject, presence: true
   has_many :project_updates
   belongs_to :user
