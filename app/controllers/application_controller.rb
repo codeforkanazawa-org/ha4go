@@ -43,7 +43,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_rss_url
-    @rss_urls = [{ name: 'ha4go Project List', url: '/feed.rss' }]
+    @rss_urls = [{ name: 'Ha4go Project List', url: '/feed.rss' }]
   end
 
   def set_app_information
