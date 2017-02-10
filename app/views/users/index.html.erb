@@ -1,4 +1,4 @@
-<% provide(:title, '登録メンバー一覧') %>
+<%= provide(:title, t('title.users.index')) %>
 
 <div class="content">
   <% if notice %>
@@ -6,12 +6,12 @@
       <%= notice %>
     </div>
   <% end %>
-  <div class="member_title">登録メンバー一覧</div>
+  <div class="member_title"><%= t('.members') %></div>
   <div class="row">
     <div class="col-md-4">
       <%= form_tag users_path, :method => 'GET' do %>
         <%= select_tag 'skill_id', options_for_select(@options, :selected => params[:skill_id]), :class => 'form-control' %>
-        <button class="btn btn-default user-search__button" type="submit">条件を指定して検索</button>
+        <button class="btn btn-default user-search__button" type="submit"><%= t('.query')%></button>
       <% end %>
     </div>
   </div>

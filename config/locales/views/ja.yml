@@ -60,3 +60,16 @@ ja:
     footer:      Code for Kanazawa Ha4go project team.
     miss:        今後 Ha4go からこのようなメールを受けとりたくない場合は、Ha4go にログインし、マイページよりメールアドレスを削除してください。
     here:        こちら
+  title:
+    users:
+      index: メンバー一覧
+      edit:  登録情報の編集
+      show:  '%{name}さんの詳細'
+    dashboard:
+      index:  ダッシュボード
+      index2: トップページ
+    projects:
+      index:  プロジェクト一覧
+      show:  '%{name}の詳細'
+      edit:  '%{name}の編集'
+      new:   課題の作成

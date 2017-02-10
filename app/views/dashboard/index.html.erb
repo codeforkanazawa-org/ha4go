@@ -1,3 +1,9 @@
+<% if authorized? %>
+  <%= provide(:title, t('title.dashboard.index')) %>
+<% else %>
+  <%= provide(:title, t('title.dashboard.index2')) %>
+<% end %>
+
 <div class="content">
   <% if notice %>
     <div class="alert alert-success" role="alert">
@@ -5,9 +11,9 @@
     </div>
   <% end %>
   <% if authorized? %>
-    <div class="member_title"><%= t('.title')%></div>
+    <div class="member_title"><%= t('.dashboard')%></div>
   <% else %>
-    <div class="member_title">ha4go へようこそ</div>
+    <div class="member_title"><%= t('.title')%></div>
   <% end %>
   <div class="row">
     <div class="col-md-4">
