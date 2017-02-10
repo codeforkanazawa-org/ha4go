@@ -1,6 +1,6 @@
-# ha4go とは
+# Ha4go とは
 
-[ha4go](http://codeforkanazawa-org.github.io/ha4go/) を参照してください。
+[Ha4go](http://codeforkanazawa-org.github.io/ha4go/) を参照してください。
 
 
 # ライセンス
@@ -28,7 +28,7 @@
 |:----------------|:-----------------------------------------------------------------|
 | `master`        | デプロイ可能な状態のものです                                     |
 | `release`       | Code for Kanazawa 向けにデプロイした際、ここにマージします       |
-| `gh-pages`      | コードとは独立した ha4go についてのドキュメント(`orphan branch`) |
+| `gh-pages`      | コードとは独立した Ha4go についてのドキュメント(`orphan branch`) |
 | `heroku_master` | `master` へのマージ前にデザイナ確認用ブランチ                    |
 
 上記以外は各自にまかせます。
@@ -57,7 +57,7 @@ $ bundle install --path vendor/bundle
 
 ## .env ファイルの準備
 
-ha4goをカスタムするデータのいくつかは環境変数を経由して指定します。 `dotenv` を採用しているので開発には `cp .env.sample .env` し、内容を変更して使って下さい。現時点では全ての値を設定する必要があります(省略できません、実際に存在するsmtpサーバなどを指定する必要があります)
+Ha4goをカスタムするデータのいくつかは環境変数を経由して指定します。 `dotenv` を採用しているので開発には `cp .env.sample .env` し、内容を変更して使って下さい。現時点では全ての値を設定する必要があります(省略できません、実際に存在するsmtpサーバなどを指定する必要があります)
 
 ``` bash
 $ cp .env.sample .env
@@ -138,7 +138,7 @@ DELIVERY_METHOD=smtp
 
 ### 直接 MySQL を用いる場合
 
-MySQLをインストールし、 `init.sql` を参考にして db と ha4go用ユーザーを 作成してください。下記は OSX で一番簡単な例です。
+MySQLをインストールし、 `init.sql` を参考にして db と Ha4go用ユーザーを 作成してください。下記は OSX で一番簡単な例です。
 
 ``` shell
 mysql.server start          # start mysql
