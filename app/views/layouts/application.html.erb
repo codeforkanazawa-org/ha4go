@@ -109,7 +109,7 @@
             <div class="menu">
               <div class="clearfix">
                 <section class="menu_search">
-                  <h1>課題の検索</h1>
+                  <h1><%= t('dic.find_project') %></h1>
                 </section>
                 <div class="menu01">
                   <%= link_to t('dic.project_recent'), projects_path(type: 'recent', order: 'desc') %>
@@ -146,6 +146,30 @@
                   <%= link_to image_tag('matsu/menu_item01.png'), new_project_path %>
                 </div>
               <% end %>
+
+              <div class="clearfix">
+                <section class="menu_user_search">
+                  <h1><%= t('dic.member_search') %></h1>
+                </section>
+                <div class="menu01">
+                  <%= link_to( t('dic.member_all'), users_path) %>
+                </div>
+                <div class="menu02">
+                  <%= User.all.count %>
+                </div>
+
+                <% Skill.all.each do |s| %>
+                  <% if s.users.count > 0 %>
+                    <div class="menu01">
+                      <%= link_to( s.name, users_path(skill_id: s.id)) %>
+                    </div>
+                    <div class="menu02">
+                      <%= s.users.count %>
+                    </div>
+                  <% end %>
+                <% end %>
+              </div>
+
               <section class="menu_news">
                 <h1><%= t('dic.admin_msg') %></h1>
                 <% @app_infors.each do |info| %>
