@@ -56,6 +56,7 @@ ja:
     receive_all:    すべての課題の更新をメールで受け取る
     user_term:        利用規約
     user_term_check:  を確認・同意して、チェックを入れてください。
+    admin_msg:        運営事務局からのお知らせ
   mail:
     link_head:   詳細は
     link_foot:   を参照してください。

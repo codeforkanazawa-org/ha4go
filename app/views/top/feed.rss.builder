@@ -3,7 +3,7 @@
 xml.instruct! :xml, version: '1.0'
 xml.rss version: '2.0' do
   xml.channel do
-    xml.title 'ha4go RSS Title'
+    xml.title 'Ha4go RSS Title'
     xml.description 'Code for Kanazawa.'
     protocol = 'http'
     protocol + 's' if ENV['USE_HTTPS'].to_i > 0
