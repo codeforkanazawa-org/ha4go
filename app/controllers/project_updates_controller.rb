@@ -26,7 +26,8 @@ class ProjectUpdatesController < ApplicationController
       )
       project_publish_to_sns_page(
         "#{@my_user.name} さんが課題 #{@project_update.project.subject} にフォローを投稿しました。",
-        @project_update.project
+        @project_update.project,
+        @my_user
       )
 
       redirect_to project_path(id: params[:project_update][:project_id]), notice: 'フォローを投稿しました。'

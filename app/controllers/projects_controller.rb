@@ -71,7 +71,8 @@ class ProjectsController < ApplicationController
 
       project_publish_to_sns_page(
         "#{@my_user.name} さんが課題 #{@project.subject} を作成しました。",
-        @project
+        @project,
+        @my_user
       )
 
       # mail to skill matched
@@ -115,7 +116,8 @@ class ProjectsController < ApplicationController
 
       project_publish_to_sns_page(
         "#{@my_user.name} さんが課題 #{@project.subject} を更新しました。",
-        @project
+        @project,
+        @my_user
       )
 
       # mail to skill matched
