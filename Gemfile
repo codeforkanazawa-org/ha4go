@@ -64,3 +64,9 @@ gem 'compass'
 gem 'compass-rails', :git => 'git://github.com/Compass/compass-rails.git'
 
 gem 'google-analytics-rails'
+
+gem 'koala', '~> 2.2'
+
+# for Image upload
+gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
+gem 'rmagick'

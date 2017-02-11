@@ -1,4 +1,9 @@
 module ApplicationHelper
+  def full_title(page_title)
+    base_title = "Ha4go"
+    page_title.blank? ? base_title : "#{page_title} | #{base_title}"
+  end
+
   def br(text)
     return text if text.nil?
     text = h text
@@ -18,9 +23,22 @@ module ApplicationHelper
     out.gsub(/\r\n|\r|\n/, '<br/>')[0..(length - 1)].html_safe
   end
 
+  def ago_with_title(target_datetime, link)
+    if link.nil?
+      %(<span title="#{target_datetime}">#{time_ago_in_words(target_datetime)}</span>).html_safe
+    else
+      %(<span title="#{target_datetime}">#{link_to(time_ago_in_words(target_datetime), link)}</span>).html_safe
+    end
+  end
+
   def updated_at_with_link(record_with_updated_at, link)
-    r = record_with_updated_at
-    "<span title=\"#{r.updated_at}\">#{link_to(time_ago_in_words(r.updated_at), link)}</span>".html_safe
+    ago_with_title(record_with_updated_at.updated_at, link)
+  end
+
+  alias updated_at_ago updated_at_with_link
+
+  def created_at_ago(record_with_created_at, link = nil)
+    ago_with_title(record_with_created_at.created_at, link)
   end
 
   def user_with_face(user_record)

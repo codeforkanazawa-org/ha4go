@@ -1,5 +1,6 @@
 # coding: utf-8
 class ProjectUpdatesController < ApplicationController
+  include SnsPublisher
   before_action :set_project_update, only: [:show, :edit, :update, :destroy]
 
   # GET /project_updates/new
@@ -23,6 +24,12 @@ class ProjectUpdatesController < ApplicationController
       @project_update.project.update_attributes!(
         last_commented_at: @project_update.created_at
       )
+      project_publish_to_sns_page(
+        "#{@my_user.name} さんが課題 #{@project_update.project.subject} にフォローを投稿しました。",
+        @project_update.project,
+        @my_user
+      )
+
       redirect_to project_path(id: params[:project_update][:project_id]), notice: 'フォローを投稿しました。'
     else
       render :new
@@ -31,7 +38,7 @@ class ProjectUpdatesController < ApplicationController
 
   # PATCH/PUT /project_updates/1
   def update
-    unless @project_update.user_id == @my_user.id || @project_update.Project.user_id == @my_user.id
+    unless @project_update.user_id == @my_user.id || @project_update.project.user_id == @my_user.id
       redirect_to project_path(id: params[:project_update][:project_id]), notice: 'フォローを修正できませんでした'
     end
 
@@ -50,6 +57,7 @@ class ProjectUpdatesController < ApplicationController
   # DELETE /project_updates/1
   def destroy
     @project_update.description = "( #{@my_user.name} さんが削除しました )"
+    @project_update.comment_image = nil
     @project_update.freezing = true
     if @project_update.save
       history = ProjectUpdateHistory.new(
@@ -70,6 +78,6 @@ class ProjectUpdatesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def project_update_params
-    params.require(:project_update).permit(:project_id, :description)
+    params.require(:project_update).permit(:project_id, :description, :comment_image)
   end
 end

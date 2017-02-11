@@ -1,3 +1,5 @@
+<%= provide(:title, t('title.projects.show', name: @project.subject)) %>
+
 <div class="content">
   <% if notice %>
     <div class="alert alert-success" role="alert">
@@ -12,12 +14,23 @@
       </div>
       <div class="content_time">
         <%= name_and_link(@project.user) %><% t('dic.title') %><br/>
-        <%= time_ago_in_words @project.created_at %> <%= t('dic.posted_on') %>
+        <%= created_at_ago(@project) %> <% t('dic.posted_on') %>
       </div>
     </div>
+
+    <!-- Description -->
     <div class="content_box">
       <%= description_text(@project.description) %>
     </div>
+
+    <!-- Image -->
+    <% @project.images.each_with_index do |img, index| %>
+      <div class="content_box">
+        <p class="image_all">
+          <%= image_tag(img.url) %>
+        </p>
+      </div>
+    <% end %>
 
     <!-- SNS SHARE -->
     <div class="content_sns_share clearfix">
@@ -71,8 +84,10 @@
     <div class="content_skill clearfix">
       <div class="content_skill_left"><%= t('dic.wantskill') %></div>
       <div class="content_skill_right">
-        <% @project.skills.map{|skill|skill.name}.each do |s| %>
-          <span class="skill_web"><%= s %></span>
+        <% @project.skills.each do |s| %>
+          <%= link_to users_path(skill_id: s.id) do %>
+            <span class="skill_web"><%= s.name %></span>
+          <% end %>
         <% end %>
       </div>
     </div>
@@ -132,6 +147,7 @@
         <%= form_for(ProjectUpdate.new) do |f| %>
           <%= f.hidden_field :project_id, value: @project.id %>
           <%= f.text_area :description, class: 'form-control', placeholder: t('dic.ex_comment'), rows: 5 %>
+          <%= f.file_field :comment_image %>
           <button type="submit" class="btn btn-default btn-primary mt20" align="right">
             <%= t 'dic.do_comment' %>
           </button>
@@ -140,7 +156,7 @@
     </div>
   <% end %>
 
-
+  <!-- コメント一覧(古いのが下、新しいのは上) -->
   <% @project.project_updates.reverse.each do |update| %>
     <div class="comment clearfix" id="comment-<%=update.id%>">
       <div class="comment_thum">
@@ -148,15 +164,18 @@
       </div>
       <div class="comment_text">
         <p><%= description_text(update.description) %></p>
+        <p class="image_all">
+          <%= image_tag(update.comment_image) if update.comment_image? %>
+        </p>
         <p class="comment_author">
-          <%= link_to  time_ago_in_words(update.created_at), project_path(id: @project.id, anchor: "comment-#{update.id}") %> <%= t 'dic.posted_on' %>
+          <%= created_at_ago(update, project_path(id: @project.id, anchor: "comment-#{update.id}"))%> <%= t 'dic.posted_on' %>
           <% if authorized? && update.freezing.to_s != 'true' && (update.user_id == @my_user.id || @project.user_id == @my_user.id) %>
             <%= link_to t('dic.do_edit'),   edit_project_update_path(update, project_id: @project.id) %> -
             <%= link_to t('dic.do_delete'), project_update_path(update, project_id: @project.id), method: :delete %>
           <% end %>
           <br/>
           <% update.project_update_histories.order(created_at: :desc).each do |history| %>
-            <%= history.user.name %> <%= t('dic.is') %>  <%= time_ago_in_words(history.created_at) %> <%= t('dic.edited_on') %> <br/>
+            <%= history.user.name %> <%= t('dic.is') %> <%= created_at_ago(history) %> <%= t('dic.edited_on') %> <br/>
           <% end %>
         </p>
       </div>

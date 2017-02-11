@@ -32,6 +32,14 @@ end
 
 [
   {
+    release:     '2017-02-05',
+    description: '画像添付機能を追加。細かいバージョンアップ。'
+  },
+  {
+    release:     '2017-01-02',
+    description: '更新通知をFacebookページに投稿するようにした。'
+  },
+  {
     release:     '2016-12-04',
     description: 'UIのバージョンアップ、ダッシュボードの作成。'
   },
