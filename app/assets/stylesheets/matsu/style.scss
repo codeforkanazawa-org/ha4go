@@ -544,19 +544,19 @@ $content_right_width: $base_width - $content_left_width;
 .member_title {
   width: 92%;
   padding: 10px 4%;
-  color: #fff;
+  color: $title_font_color;
   font-size: 18px;
-  background-color: #333;
-  border: 1px solid #333;
+  background-color: $title_bg_color;
+  border: 1px solid $title_bg_color;
 }
 
 .list_title {
   width: 92%;
   padding: 10px 4%;
-  color: #fff;
+  color: $title_font_color;
   font-size: 18px;
-  background-color: #333;
-  border: 1px solid #333;
+  background-color: $title_bg_color;
+  border: 1px solid $title_bg_color;
   margin-bottom: 15px;
 }
 

@@ -71,9 +71,10 @@
             <div class="dashboard_content_box">
               <% p.project_updates.order(created_at: :desc).limit(10).each do |u| %>
                 <div>
-                  <%= user_with_face(u.user)%> さんが
+                  <%= user_with_face(u.user)%>
+                  <%= t('dic.is') %>
                   <%= updated_at_with_link(u, project_path_with_comment(u)) %>
-                  に コメント
+                  <%= t('dic.commented_on') %>
                 </div>
               <% end %>
             </div>
