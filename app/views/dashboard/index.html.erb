@@ -58,13 +58,14 @@
         <div class="content_inner">
           <div class="content_header clearfix">
             <div class="content_title">
-              あなたの作成した課題の更新状況
+              <%= t('.created_by_you')%>
             </div>
           </div>
           <% Project.where(user_id: @my_user.id).order(updated_at: :desc).limit(10).each do |p| %>
             <div class="content_header clearfix">
               <div class="content_title_2nd_level">
-                <%= link_to(p.subject, project_path(id: p.id)) %> (最新10件)
+                <%= link_to(p.subject, project_path(id: p.id)) %>
+                <%= t('.max', count: 10) %>
               </div>
             </div>
             <div class="dashboard_content_box">
@@ -83,21 +84,23 @@
         <div class="content_inner">
           <div class="content_header clearfix">
             <div class="content_title">
-              あなたの参加している課題の更新状況
+              <%= t('.you_joined')%>
             </div>
           </div>
           <% @my_user.projects.order(updated_at: :desc).limit(10).each do |p| %>
             <div class="content_header clearfix">
               <div class="content_title_2nd_level">
-                <%= link_to(p.subject, project_path(id: p.id)) %> (最新10件)
+                <%= link_to(p.subject, project_path(id: p.id)) %>
+                <%= t('.max', count: 10) %>
               </div>
             </div>
             <div class="dashboard_content_box">
               <% p.project_updates.order(created_at: :desc).limit(10).each do |u| %>
                 <div>
-                  <%= user_with_face(u.user)%> さんが
+                  <%= user_with_face(u.user)%>
+                  <%= t('dic.is') %>
                   <%= updated_at_with_link(u, project_path_with_comment(u)) %>
-                  に コメント
+                  <%= t('dic.commented_on') %>
                 </div>
               <% end %>
             </div>
@@ -107,16 +110,18 @@
         <div class="content_inner">
           <div class="content_header clearfix">
             <div class="content_title">
-              あなたのコメント(最新20件)
+              <%= t('.your_comment') %>
+              <%= t('.max', count: 20) %>
             </div>
           </div>
           <div class="dashboard_content_box">
             <div>
               <% @my_user.project_updates.order(created_at: :desc).limit(20).each do |pu| %>
                 <div>
-                  <%= pu.project.subject %> へ
+                  <%= pu.project.subject %>
+                  <%= t('dic.to') %>
                   <%= updated_at_with_link(pu, project_path_with_comment(pu))%>
-                  に コメント
+                  <%= t('dic.commented_on') %>
                 </div>
               <% end %>
             </div>
@@ -126,21 +131,26 @@
         <div class="content_inner">
           <div class="content_header clearfix">
             <div class="content_title">
-              あなたのスキルにマッチした課題
+              <%= t('.match_your_skill') %>
             </div>
           </div>
           <% @my_user.skills.each do |s| %>
             <div class="content_header clearfix">
               <div class="content_title_2nd_level">
-                <%= s.name %>(最大20件)
+                <%= s.name %>
+                <%= t('.max', count: 20) %>
               </div>
             </div>
             <div class="dashboard_content_box">
               <% s.projects.order(updated_at: :desc).limit(20).each do |p| %>
                 <div>
-                  <%= user_with_face(p.user)%> さんが課題
-                  <%= link_to(p.subject, project_path(id: p.id)) %> で募集中。
-                  <%= updated_at_with_link(p, project_path(id: p.id))%> に更新。
+                  <%= user_with_face(p.user)%>
+                  <%= t('.is') %>
+                  <%= t('dic.project') %>
+                  <%= link_to(p.subject, project_path(id: p.id)) %>
+                  <%= t('.inviting') %>
+                  <%= updated_at_with_link(p, project_path(id: p.id)) %>
+                  <%= t('dic.edited_on') %>
                 </div>
               <% end %>
             </div>
@@ -151,21 +161,24 @@
         <div class="content_inner">
           <div class="content_header clearfix">
             <div class="content_title">
-              全ての課題の更新状況(最新10件)
+              <%= t('.all_project') %>
+              <%= t('.max', count: 10) %>
             </div>
           </div>
           <% Project.order(updated_at: :desc).limit(10).each do |p| %>
             <div class="content_header clearfix">
               <div class="content_title_2nd_level">
-                <%= link_to(p.subject, project_path(id: p.id)) %> (最新10件)
+                <%= link_to(p.subject, project_path(id: p.id)) %>
+                <%= t('.max', count: 10) %>
               </div>
             </div>
             <div class="dashboard_content_box">
               <% p.project_updates.order(created_at: :desc).limit(10).each do |u| %>
                 <div>
-                  <%= user_with_face(u.user)%> さんが
+                  <%= user_with_face(u.user) %>
+                  <%= t('dic.is') %>
                   <%= updated_at_with_link(u, project_path_with_comment(u)) %>
-                  に コメント
+                  <%= t('dic.commented_on') %>
                 </div>
               <% end %>
             </div>

@@ -3,9 +3,11 @@ ja:
     common: 共通辞書はここで t('dic.common') で参照
     title:        さんが
     is:           さんが
-    posted_on:    に投稿
-    edited_on:    に編集
-    deleted_on:   に削除
+    to:           へ
+    posted_on:    に 投稿
+    commented_on: に コメント
+    edited_on:    に 更新
+    deleted_on:   に 削除
     back:         戻る
     name:         名前
     add:          追加
@@ -17,6 +19,7 @@ ja:
     joining:      参加中
     member:       メンバー
     status:       ステータス
+    project:      課題
     parent_project: 元の課題
     child_project:  関連課題
     wantskill:    募集スキル
