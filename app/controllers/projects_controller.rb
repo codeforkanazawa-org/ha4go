@@ -26,7 +26,6 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1
   def show
-    @use_custom_ogp = true
     @project_rss_url = request.fullpath + '.rss'
     add_rss_urls(@project.subject, @project_rss_url)
     respond_to do |format|
@@ -185,7 +184,6 @@ class ProjectsController < ApplicationController
     else
       @joined = false
     end
-    @use_custom_ogp = false
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

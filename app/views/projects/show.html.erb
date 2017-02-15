@@ -1,5 +1,5 @@
 <%= provide(:title, t('title.projects.show', name: @project.subject)) %>
-
+<% set_meta_tags og: { title: @project.subject, description: @project.description }  %>
 <div class="content">
   <% if notice %>
     <div class="alert alert-success" role="alert">
