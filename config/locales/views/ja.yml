@@ -3,39 +3,49 @@ ja:
     common: 共通辞書はここで t('dic.common') で参照
     title:        さんが
     is:           さんが
-    posted_on:    に投稿
-    edited_on:    に編集
-    deleted_on:   に削除
+    to:           へ
+    posted_on:    に 投稿
+    commented_on: に コメント
+    edited_on:    に 更新
+    deleted_on:   に 削除
     back:         戻る
     name:         名前
     add:          追加
-    email:        メールアドレス
+    email:        メール
+    not_public:   (アドレスは他ユーザーには公開されません)
     update:       更新する
     able_to:      できること
     self_intro:   自己紹介
     joining:      参加中
     member:       メンバー
     status:       ステータス
+    project:      課題
     parent_project: 元の課題
     child_project:  関連課題
     wantskill:    募集スキル
     detail:       詳細
     title:        タイトル
     do_create:    作成する
+    do_comment:   フォローを投稿
     do_edit:      編集する
     do_delete:    削除する
     login:        ログイン
     logout:       ログアウト
     mypage:       マイページ
-    post_project:    課題を投稿
-    post_project_do: 課題を投稿する
-    list_project:    課題一覧
-    list_project_do: 課題一覧をみる
-    project_recent:  最新の課題
-    project_hot:        話題になっている課題
-    project_match_mine: 自分のスキルとマッチする課題
+    dashboard:    ダッシュボード
+    post_project:        課題を投稿
+    post_project_do:     課題を投稿する
+    post_belong_project: 関連課題を投稿
+    list_project:        課題一覧
+    list_project_do:     課題一覧をみる
+    project_recent:      最新の課題
+    find_project:        課題の検索
+    project_hot:         話題になっている課題
+    project_match_mine:  自分のスキルとマッチする課題
     project_all:     全ての課題
+    member_all:      全てのメンバー
     member_list:     参加者一覧
+    member_search:   メンバーの検索
     url:             URL
     dev_url:         開発用URL
     sns:             SNSシェア
@@ -44,10 +54,29 @@ ja:
     ex_devurl:      '省略可 (例) https://github.com/codeforkanazawa-org/5374'
     ex_description: '入力必須 (例) 今日や直近のゴミの日がわかりにくいのをなんとかできないかな。'
     ex_skills:      '省略可 (例) HTML CSS'
+    ex_comment:     '(例) どうすればプロジェクトに参加できますか?'
+    recommend:      なし(メールアドレスを登録するとコメントやスキルに応じてメールで連絡がきます。ぜひご登録ください。)
+    receive_all:    すべての課題の更新をメールで受け取る
+    user_term:        利用規約
+    user_term_check:  を確認・同意して、チェックを入れてください。
+    admin_msg:        運営事務局からのお知らせ
   mail:
     link_head:   詳細は
     link_foot:   を参照してください。
     dont_res:    このメールは送信専用メールアドレスから送信されています。返信できません。
-    footer:      Code for Kanazawa ha4go project team.
-    miss:        今後ha4goからこのようなメールを受けとりたくない場合は、ha4goにログインし、マイページよりメールアドレスを削除してください。
+    footer:      Code for Kanazawa Ha4go project team.
+    miss:        今後 Ha4go からこのようなメールを受けとりたくない場合は、Ha4go にログインし、マイページよりメールアドレスを削除してください。
     here:        こちら
+  title:
+    users:
+      index: メンバー一覧
+      edit:  登録情報の編集
+      show:  '%{name}さんの詳細'
+    dashboard:
+      index:  ダッシュボード
+      index2: トップページ
+    projects:
+      index:  プロジェクト一覧
+      show:  '%{name}の詳細'
+      edit:  '%{name}の編集'
+      new:   課題の作成

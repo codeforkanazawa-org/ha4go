@@ -1,4 +1,5 @@
 SUDO = ENV['SUDO'] || ''
+NOCACHE = ENV['NOCACHE'] || ''
 
 DOCKER   = [SUDO, 'docker'].join(' ')
 APP_NAME = 'ha4go'.freeze
@@ -27,7 +28,7 @@ RELEASE_TAG = "release".freeze
 DOCKER_OPTIONS = {
   'PRODUCT' => {
     ROLE_BASE  => '',
-    ROLE_FRONT => '-d -p 3000:3000 --env-file=.env',
+    ROLE_FRONT => "-d -p 3000:3000 --env-file=.env -v `pwd`/public/uploads:/myapp/public/uploads",
     ROLE_DB    => "-d -v `pwd`/mysql:/var/lib/mysql -p 3306:3306"
   },
   'DEBUG'   => {
@@ -49,6 +50,7 @@ task :build, [:role] do |_t, a|
        [
          DOCKER,
          'build',
+         NOCACHE,
          "-t #{NAMES[r]}:#{TAGS[r]}",
          "-f #{FILES[r]}",
          './'

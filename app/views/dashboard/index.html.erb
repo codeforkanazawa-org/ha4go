@@ -1,0 +1,191 @@
+<% if authorized? %>
+  <%= provide(:title, t('title.dashboard.index')) %>
+<% else %>
+  <%= provide(:title, t('title.dashboard.index2')) %>
+<% end %>
+
+<div class="content">
+  <% if notice %>
+    <div class="alert alert-success" role="alert">
+      <%= notice %>
+    </div>
+  <% end %>
+  <% if authorized? %>
+    <div class="member_title"><%= t('.dashboard')%></div>
+  <% else %>
+    <div class="member_title"><%= t('.title')%></div>
+  <% end %>
+  <div class="row">
+    <div class="col-md-4">
+
+      <% if authorized? %>
+        <%= link_to(edit_user_path(id: @my_user.id, from: 'dashboard')) do %>
+          <div class="register_user_title">
+            <%= image_tag('matsu/header_item1.png', class: 'large_button') %>
+            <%= t('.register_button')%>
+          </div>
+        <% end %>
+
+        <%= link_to(new_project_path(from: 'dashboard')) do %>
+          <div class="create_project_title">
+            <%= image_tag('matsu/header_item1.png', class: 'large_button') %>
+            <span class="large_button_text">
+              <%= t('.project_button')%>
+            </span>
+          </div>
+        <% end %>
+      <% else %>
+        <%= link_to('/auth/facebook', id: 'sign_in') do %>
+          <div class="register_user_title">
+            <%= image_tag('matsu/header_item1.png', class: 'large_button') %>
+            <%= t('.register_button')%>
+          </div>
+        <% end %>
+
+        <%= link_to('/auth/facebook', id: 'sign_in') do %>
+          <div class="create_project_title">
+            <%= image_tag('matsu/header_item1.png', class: 'large_button') %>
+            <span class="large_button_text">
+              <%= t('.project_button')%>
+            </span>
+          </div>
+        <% end %>
+      <% end %>
+
+      <% if authorized? %>
+
+        <!-- 自分の作成した課題の更新状況 -->
+        <div class="content_inner">
+          <div class="content_header clearfix">
+            <div class="content_title">
+              <%= t('.created_by_you')%>
+            </div>
+          </div>
+          <% Project.where(user_id: @my_user.id).order(updated_at: :desc).limit(10).each do |p| %>
+            <div class="content_header clearfix">
+              <div class="content_title_2nd_level">
+                <%= link_to(p.subject, project_path(id: p.id)) %>
+                <%= t('.max', count: 10) %>
+              </div>
+            </div>
+            <div class="dashboard_content_box">
+              <% p.project_updates.order(created_at: :desc).limit(10).each do |u| %>
+                <div>
+                  <%= user_with_face(u.user)%>
+                  <%= t('dic.is') %>
+                  <%= updated_at_with_link(u, project_path_with_comment(u)) %>
+                  <%= t('dic.commented_on') %>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+
+        <!-- 自分の作成した課題の更新状況 -->
+        <div class="content_inner">
+          <div class="content_header clearfix">
+            <div class="content_title">
+              <%= t('.you_joined')%>
+            </div>
+          </div>
+          <% @my_user.projects.order(updated_at: :desc).limit(10).each do |p| %>
+            <div class="content_header clearfix">
+              <div class="content_title_2nd_level">
+                <%= link_to(p.subject, project_path(id: p.id)) %>
+                <%= t('.max', count: 10) %>
+              </div>
+            </div>
+            <div class="dashboard_content_box">
+              <% p.project_updates.order(created_at: :desc).limit(10).each do |u| %>
+                <div>
+                  <%= user_with_face(u.user)%>
+                  <%= t('dic.is') %>
+                  <%= updated_at_with_link(u, project_path_with_comment(u)) %>
+                  <%= t('dic.commented_on') %>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="content_inner">
+          <div class="content_header clearfix">
+            <div class="content_title">
+              <%= t('.your_comment') %>
+              <%= t('.max', count: 20) %>
+            </div>
+          </div>
+          <div class="dashboard_content_box">
+            <div>
+              <% @my_user.project_updates.order(created_at: :desc).limit(20).each do |pu| %>
+                <div>
+                  <%= pu.project.subject %>
+                  <%= t('dic.to') %>
+                  <%= updated_at_with_link(pu, project_path_with_comment(pu))%>
+                  <%= t('dic.commented_on') %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+        <div class="content_inner">
+          <div class="content_header clearfix">
+            <div class="content_title">
+              <%= t('.match_your_skill') %>
+            </div>
+          </div>
+          <% @my_user.skills.each do |s| %>
+            <div class="content_header clearfix">
+              <div class="content_title_2nd_level">
+                <%= s.name %>
+                <%= t('.max', count: 20) %>
+              </div>
+            </div>
+            <div class="dashboard_content_box">
+              <% s.projects.order(updated_at: :desc).limit(20).each do |p| %>
+                <div>
+                  <%= user_with_face(p.user)%>
+                  <%= t('.is') %>
+                  <%= t('dic.project') %>
+                  <%= link_to(p.subject, project_path(id: p.id)) %>
+                  <%= t('.inviting') %>
+                  <%= updated_at_with_link(p, project_path(id: p.id)) %>
+                  <%= t('dic.edited_on') %>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <!-- 全ての課題の更新状況 -->
+        <div class="content_inner">
+          <div class="content_header clearfix">
+            <div class="content_title">
+              <%= t('.all_project') %>
+              <%= t('.max', count: 10) %>
+            </div>
+          </div>
+          <% Project.order(updated_at: :desc).limit(10).each do |p| %>
+            <div class="content_header clearfix">
+              <div class="content_title_2nd_level">
+                <%= link_to(p.subject, project_path(id: p.id)) %>
+                <%= t('.max', count: 10) %>
+              </div>
+            </div>
+            <div class="dashboard_content_box">
+              <% p.project_updates.order(created_at: :desc).limit(10).each do |u| %>
+                <div>
+                  <%= user_with_face(u.user) %>
+                  <%= t('dic.is') %>
+                  <%= updated_at_with_link(u, project_path_with_comment(u)) %>
+                  <%= t('dic.commented_on') %>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,9 +1,13 @@
+<%= provide(:title, t('title.projects.index')) %>
+
 <div class="content">
   <% if notice %>
     <div class="alert alert-success" role="alert">
       <%= notice %>
     </div>
   <% end %>
+  <div class="list_title"><%= @list_type %></div>
+
   <% @projects.each do |project| %>
     <%= render 'shared/project', project: project %>
   <% end %>

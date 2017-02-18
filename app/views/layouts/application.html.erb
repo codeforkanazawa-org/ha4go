@@ -2,7 +2,7 @@
 <html lang="ja" class="build-menu-close">
   <head>
     <meta charset="utf-8">
-    <title>ha4go</title>
+    <title><%= full_title(yield(:title)) %></title>
     <meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1,initial-scale=1" />
     <% unless Array(@rss_urls).length == 0 %>
       <% @rss_urls.each do |rss| %>
@@ -11,11 +11,7 @@
     <% end %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= csrf_meta_tags %>
-    <% if @use_custom_ogp %>
-      <%= render 'shared/ogp_project', project: @project %>
-    <% else %>
-      <%= render partial: "shared/ogp_common" %>
-    <% end %>
+    <%= display_meta_tags default_meta_tags %>
     <%= yield :twitter_card %>
     <%= %>
   </head>
@@ -24,10 +20,10 @@
       <header id="pc_header">
         <section class="container clearfix">
           <div class="header_left">
-            <h1><%= link_to( "Code for Kanazawa", '/' ) %></h1>
+            <h1><%= link_to( "Code for Kanazawa", root_path ) %></h1>
           </div>
           <div class="header_center">
-            <h2><%= link_to( image_tag('matsu/logo.png'), '/') %></h2>
+            <h2><%= link_to( image_tag('matsu/logo.png'), root_path) %></h2>
           </div>
           <div class="header_right">
             <div class="header_nav">
@@ -37,9 +33,10 @@
                   <!--プルダウンメニュー-->
                   <ul class="sub_nav">
                     <% if authorized? %>
+                      <li><%= link_to( t('dic.dashboard'), dashboard_path) %></li>
                       <li><%= link_to( t('dic.mypage'), user_path(id: @my_user.id)) %></li>
                       <li><%= link_to( t('dic.logout'), signout_path, id: 'sign_out') %></li>
-                      <li><%= link_to( t('dic.post_project_do'), new_project_path , class: "btn btn-default btn-primary") %></li>
+                      <li><%= link_to( t('dic.post_project_do'), new_project_path) %></li>
                     <% else %>
                       <li><%= link_to( t('dic.login'), '/auth/facebook', id: 'sign_in') %></li>
                     <% end %>
@@ -82,6 +79,9 @@
 
                   </li>
                   <li class="li_sub">
+                    <%= link_to( t('dic.dashboard'), dashboard_path) %>
+                  </li>
+                  <li class="li_sub">
                     <%= link_to( t('dic.mypage'), user_path(id: @my_user.id)) %>
                   </li>
                   <li class="li_sub">
@@ -104,6 +104,9 @@
             <%= yield %>
             <div class="menu">
               <div class="clearfix">
+                <section class="menu_search">
+                  <h1><%= t('dic.find_project') %></h1>
+                </section>
                 <div class="menu01">
                   <%= link_to t('dic.project_recent'), projects_path(type: 'recent', order: 'desc') %>
                 </div>
@@ -139,28 +142,38 @@
                   <%= link_to image_tag('matsu/menu_item01.png'), new_project_path %>
                 </div>
               <% end %>
+
+              <div class="clearfix">
+                <section class="menu_user_search">
+                  <h1><%= t('dic.member_search') %></h1>
+                </section>
+                <div class="menu01">
+                  <%= link_to( t('dic.member_all'), users_path) %>
+                </div>
+                <div class="menu02">
+                  <%= User.all.count %>
+                </div>
+
+                <% Skill.all.each do |s| %>
+                  <% if s.users.count > 0 %>
+                    <div class="menu01">
+                      <%= link_to( s.name, users_path(skill_id: s.id)) %>
+                    </div>
+                    <div class="menu02">
+                      <%= s.users.count %>
+                    </div>
+                  <% end %>
+                <% end %>
+              </div>
+
               <section class="menu_news">
-                <h1>運営事務局からのお知らせ</h1>
-                <dl>
-                  <dt>2016-10-2</dt>
-                  <dd>バージョンアップ。</dd>
-                </dl>
-                <dl>
-                  <dt>2016-9-4</dt>
-                  <dd>RSSに対応など。</dd>
-                </dl>
-                <dl>
-                  <dt>2016-9-1</dt>
-                  <dd>少しバージョンアップ。Facebookシェアボタンを復活。</dd>
-                </dl>
-                <dl>
-                  <dt>2016-8-9</dt>
-                  <dd>少しバージョンアップ。</dd>
-                </dl>
-                <dl>
-                  <dt>2016-7-14</dt>
-                  <dd>パブリックベータ開始。</dd>
-                </dl>
+                <h1><%= t('dic.admin_msg') %></h1>
+                <% @app_infors.each do |info| %>
+                  <dl>
+                    <dt><%= info.release %></dt>
+                    <dd><%= info.description %></dd>
+                  </dl>
+                <% end %>
               </section>
             </div>
           </div>
@@ -173,7 +186,7 @@
         </div>
       </footer>
       <div class="copyright">
-        copyright(c) 2016 ha4go All Right Reserved.
+        copyright(c) 2016 Ha4go All Right Reserved.
       </div>
     </div>
 

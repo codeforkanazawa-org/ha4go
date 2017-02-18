@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  before_action :authorized?, :check_use_https, :set_quick_link_counts, :save_current_url, :set_rss_url
+  before_action :authorized?, :check_use_https, :set_quick_link_counts, :save_current_url, :set_rss_url, :set_app_information
 
   helper_method :authorized?
 
@@ -43,6 +43,10 @@ class ApplicationController < ActionController::Base
   end
 
   def set_rss_url
-    @rss_urls = [{ name: 'ha4go Project List', url:  '/feed.rss' }]
+    @rss_urls = [{ name: 'Ha4go Project List', url: '/feed.rss' }]
+  end
+
+  def set_app_information
+    @app_infors = AppInformation.order(release: :desc).limit(10)
   end
 end

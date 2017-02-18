@@ -1,3 +1,5 @@
+<%= provide(:title, t('title.projects.show', name: @project.subject)) %>
+<% set_meta_tags og: { title: @project.subject, description: @project.description }  %>
 <div class="content">
   <% if notice %>
     <div class="alert alert-success" role="alert">
@@ -8,16 +10,27 @@
     <div class="content_header clearfix">
       <div class="content_title"><%= link_to(@project.subject, project_path(id: @project.id)) %></div>
       <div class="content_member">
-        <%= link_to (image_tag @project.user.image, alt: @project.user.name), user_path(id: @project.user.id) %>
+        <%= link_to (image_tag @project.user.image, alt: @project.user.name, title: @project.user.name), user_path(id: @project.user.id) %>
       </div>
       <div class="content_time">
         <%= name_and_link(@project.user) %><% t('dic.title') %><br/>
-        <%= time_ago_in_words @project.created_at %> <%= t('dic.posted_on') %>
+        <%= created_at_ago(@project) %> <% t('dic.posted_on') %>
       </div>
     </div>
+
+    <!-- Description -->
     <div class="content_box">
       <%= description_text(@project.description) %>
     </div>
+
+    <!-- Image -->
+    <% @project.images.each_with_index do |img, index| %>
+      <div class="content_box">
+        <p class="image_all">
+          <%= image_tag(img.url) %>
+        </p>
+      </div>
+    <% end %>
 
     <!-- SNS SHARE -->
     <div class="content_sns_share clearfix">
@@ -44,7 +57,7 @@
     <!-- ステータス -->
     <div class="content_status clearfix">
       <div class="content_status_left"><%= t('dic.status') %></div>
-      <div class="content_status_right"><%= @project.stage.name %></div>
+      <div class="content_status_right"><%= link_to @project.stage.name, ENV['LINK_ABOUT_PROJECT_STATUS'], target: '_blank' %></div>
     </div>
 
     <!-- 元の課題 -->
@@ -71,8 +84,10 @@
     <div class="content_skill clearfix">
       <div class="content_skill_left"><%= t('dic.wantskill') %></div>
       <div class="content_skill_right">
-        <% @project.skills.map{|skill|skill.name}.each do |s| %>
-          <span class="skill_web"><%= s %></span>
+        <% @project.skills.each do |s| %>
+          <%= link_to users_path(skill_id: s.id) do %>
+            <span class="skill_web"><%= s.name %></span>
+          <% end %>
         <% end %>
       </div>
     </div>
@@ -82,18 +97,23 @@
       <div class="content_join_left"><%= t('dic.member_list') %></div>
       <div class="content_join_right">
         <% @project.users.each do |user| %>
-          <span class="join_thum"><%= link_to image_tag(user.image, alt: user.name), user_path(id: user.id) %></span>
+          <span class="join_thum"><%= link_to image_tag(user.image, alt: user.name, title: user.name), user_path(id: user.id) %></span>
         <% end %>
       </div>
     </div>
   </div>
 
+  <!-- 操作ボタン -->
   <div class="content_control clearfix">
     <!-- <div class="btn"><a href="#">投稿を削除する</a></div> -->
     <% if authorized? %>
-      <div class="btn"><%= link_to t('.write_comment'), new_project_update_path(project_id: @project.id) %></div>
+      <div class="btn" id="write_comment">
+        <a href="#">
+          <%= t('.write_comment') %>
+        </a>
+      </div>
       <div class="btn">
-        <%= link_to '関連課題を投稿', new_project_path(parent_id: @project.id) %>
+        <%= link_to t('dic.post_belong_project'), new_project_path(parent_id: @project.id) %>
       </div>
       <% if @project.user.id == @my_user.id %>
         <div class="btn"><%= link_to t('.edit'), edit_project_path, class: "btn btn-default btn-primary" %></div>
@@ -117,25 +137,53 @@
     <% end %>
   </div>
 
+  <!-- コメント記入欄(最初は非表示) -->
+  <% if authorized? %>
+    <div class="comment clearfix" id="add_comment" style="display:none;">
+      <div class="comment_thum">
+        <%= link_to image_tag(@my_user.image, alt: @my_user.name, title: @my_user.name), user_path(id: @my_user.id) %>
+      </div>
+      <div class="comment_text input_text">
+        <%= form_for(ProjectUpdate.new) do |f| %>
+          <%= f.hidden_field :project_id, value: @project.id %>
+          <%= f.text_area :description, class: 'form-control', placeholder: t('dic.ex_comment'), rows: 5 %>
+          <%= f.file_field :comment_image %>
+          <button type="submit" class="btn btn-default btn-primary mt20" align="right">
+            <%= t 'dic.do_comment' %>
+          </button>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <!-- コメント一覧(古いのが下、新しいのは上) -->
   <% @project.project_updates.reverse.each do |update| %>
     <div class="comment clearfix" id="comment-<%=update.id%>">
       <div class="comment_thum">
-        <%= link_to image_tag(update.user.image, alt: update.user.name), user_path(id: update.user.id) %>
+        <%= link_to image_tag(update.user.image, alt: update.user.name, title: update.user.name), user_path(id: update.user.id) %>
       </div>
       <div class="comment_text">
         <p><%= description_text(update.description) %></p>
+        <p class="image_all">
+          <%= image_tag(update.comment_image) if update.comment_image? %>
+        </p>
         <p class="comment_author">
-          <%= link_to  time_ago_in_words(update.created_at), project_path(id: @project.id, anchor: "comment-#{update.id}") %> <%= t 'dic.posted_on' %>
+          <%= created_at_ago(update, project_path(id: @project.id, anchor: "comment-#{update.id}"))%> <%= t 'dic.posted_on' %>
           <% if authorized? && update.freezing.to_s != 'true' && (update.user_id == @my_user.id || @project.user_id == @my_user.id) %>
             <%= link_to t('dic.do_edit'),   edit_project_update_path(update, project_id: @project.id) %> -
             <%= link_to t('dic.do_delete'), project_update_path(update, project_id: @project.id), method: :delete %>
           <% end %>
           <br/>
           <% update.project_update_histories.order(created_at: :desc).each do |history| %>
-            <%= history.user.name %> <%= t('dic.is') %>  <%= time_ago_in_words(history.created_at) %> <%= t('dic.edited_on') %> <br/>
+            <%= history.user.name %> <%= t('dic.is') %> <%= created_at_ago(history) %> <%= t('dic.edited_on') %> <br/>
           <% end %>
         </p>
       </div>
     </div>
   <% end %>
+
+  <div class="content_control clearfix">
+    <%= link_to( image_tag('Feed-icon.svg', size: '20x20', style: 'vertical-align:middle;'), @project_rss_url) %> この課題の更新を RSS で確認することもできます。
+  </div>
+
 </div>

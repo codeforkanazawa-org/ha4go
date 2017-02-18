@@ -1,0 +1,8 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+app_information_one:
+  release:     2016-11-06
+  description: UIのバージョンアップ、RSSがあることを明示、全更新通知をメールで受け取る設定追加。
+app_information_two:
+  release:     2016-10-02
+  description: バージョンアップ。

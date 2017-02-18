@@ -1,0 +1,16 @@
+ja:
+  dashboard:
+    need_login: You Need to Login
+    index:
+      dashboard: ダッシュボード
+      title:     Ha4go へようこそ
+      project_button:   課題を作成して募集・議論を開始する
+      register_button:  応募・議論のためにスキルを登録する
+      need_login:       You Need to Login
+      created_by_you:   あなたの作成した課題の更新状況
+      you_joined:       あなたの参加している課題の更新状況
+      your_comment:     あなたのコメント
+      max:              '(最新%{count}件)'
+      match_your_skill: あなたのスキルにマッチした課題
+      inviting:         で募集中
+      all_project:      全ての課題の更新状況

@@ -1,3 +1,5 @@
+<%= provide(:title, t('title.users.show', name: @user.name)) %>
+
 <div class="content">
   <% if notice %>
     <div class="alert alert-success" role="alert">
@@ -14,6 +16,27 @@
         <%= description_text(@user.description) %>
       </p>
     </div>
+
+    <!-- メールアドレス(本人しか表示しない) -->
+    <% if authorized? && @my_user.id == @user.id %>
+      <% if @my_user.email.to_s == '' %>
+        <div class="content_status">
+          <div class="content_status_left"> <%= t('dic.email') %></div>
+          <div class="content_status_right">
+            <%= t('dic.recommend')%>
+          </div>
+        </div>
+      <% else %>
+        <div class="content_status">
+          <div class="content_status_left"> <%= t('dic.email') %></div>
+          <div class="content_status_right">
+            <%= @my_user.email %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+
+    <!-- 参加中 -->
     <div class="content_status">
       <div class="content_status_left">参加中</div>
       <div class="content_status_right">
@@ -25,21 +48,60 @@
         <% end %>
       </div>
     </div>
+
+    <!-- 作成した課題の数 -->
+    <div class="content_property">
+      <div class="content_property_left">作成した課題の数</div>
+      <div class="content_property_right">
+        <%= Project.where(user_id: @user.id).count %>
+      </div>
+    </div>
+
+    <!-- 参加している課題の数 -->
+    <div class="content_property">
+      <div class="content_property_left">参加している課題の数</div>
+      <div class="content_property_right">
+        <%= @user.projects.count %>
+      </div>
+    </div>
+
+    <!-- コメントの数 -->
+    <div class="content_property">
+      <div class="content_property_left">コメントした数</div>
+      <div class="content_property_right">
+        <%= @user.project_updates.count %>
+      </div>
+    </div>
+
+
+    <!-- スキル一覧 -->
     <div class="content_skill clearfix">
       <div class="content_status_left">スキル</div>
       <div class="content_status_right">
-        <% @user.skills.map{|skill| skill.name}.each do |s| %>
-        <span class="skill_web"><%= s %></span>
+        <% @user.skills.each do |s| %>
+          <%= link_to users_path(skill_id: s.id) do %>
+            <span class="skill_web"><%= s.name %></span>
+          <% end %>
         <% end %>
       </div>
     </div>
   </div>
-
-
   <div class="content_control clearfix">
     <!-- <div class="btn"><a href="#">投稿を削除する</a></div> -->
     <% if authorized? && @my_user.id == @user.id %>
       <div class="btn"><%= link_to t('.edit'), edit_user_path(@user) %></div>
     <% end %>
+  </div>
+
+  <!-- 最近のコメント -->
+  <div class="content_status clearfix">
+    <div class="content_status_left">直近コメント(10)</div>
+    <div class="content_status_right">
+      <% @my_comments.each do |comment| %>
+        <p>
+          <%= link_to comment.project.subject, project_path(comment.project.id, anchor: "comment-#{comment.id}") %> ( <%= time_ago_in_words comment.created_at %> )
+        </p>
+      <% end %>
+    </div>
   </div>
 </div>

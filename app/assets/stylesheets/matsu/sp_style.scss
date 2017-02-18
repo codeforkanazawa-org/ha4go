@@ -1,3 +1,5 @@
+@import "color";
+
 @media (max-width: 960px) {
   /*---基本CSS
   --------------*/
@@ -8,12 +10,12 @@
     font-size: 14px;
     line-height: 24px;
     color: #333;
-    background-color: #f3f3f3;
+    background-color: $main_bg_color;
     overflow-wrap: break-word;
   }
   html {
     width: 100%;
-    background-color: #f3f3f3;
+    background-color: $main_bg_color;
   }
   a {
     text-decoration: none;
@@ -21,10 +23,10 @@
   #wrapper {
     width: 100%;
     margin: 0 auto;
-    background-color: #f3f3f3;
+    background-color: $main_bg_color;
   }
   .all {
-    background-color: #f3f3f3;
+    background-color: $main_bg_color;
   }
   /*--イメージ
   --------------*/
@@ -46,7 +48,7 @@
     display: none;
     width: 100%;
     height: auto;
-    background-color: #F7931E;
+    background-color: $main_theme_color;
     color: #fff;
     margin-bottom: 40px;
   }
@@ -157,7 +159,7 @@
     display: inherit;
     width: 96%;
     padding: 2%;
-    background-color: #F7931E;
+    background-color: $main_theme_color;
     height: 40px;
     margin-bottom: 20px;
     .container {
@@ -174,6 +176,9 @@
       font-size: 12px;
       padding: 0;
       color: #fff;
+    }
+    a {
+        color: $font_color_on_button;
     }
   }
   .sp_header_logo {
@@ -231,6 +236,10 @@
       padding: 13px;
       font-weight: normal;
     }
+  }
+  .menu_search {
+      @extend .menu_news;
+    margin-top: 0px;
   }
   dl {
     padding-top: 6px;
@@ -313,6 +322,21 @@
     width: 30%;
   }
   .content_status_right {
+    float: left;
+    font-size: 12px;
+    width: 70%;
+  }
+  .content_property {
+    padding: 0 15px;
+    clear: both;
+    font-size: 14px;
+  }
+  .content_property_left {
+    float: left;
+    margin-right: 0px;
+    width: 30%;
+  }
+  .content_property_right {
     float: left;
     font-size: 12px;
     width: 70%;
@@ -421,7 +445,7 @@
   --------------*/
   article {
     width: 100%;
-    background-color: #f3f3f3;
+    background-color: $main_bg_color;
   }
   /*---ナビゲーション
   -------------------*/

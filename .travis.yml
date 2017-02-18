@@ -1,4 +1,16 @@
 language: ruby
 rvm:
   - 2.2.4
-# before_install: gem install bundler -v 1.11.2
+services:
+  - mysql
+bundler_args: "--without development --deployment"
+
+cache: bundler
+
+before_script:
+  - mysql -e 'create database myapp_test;'
+  - cp config/database.travis.yml config/database.yml
+  - bundle exec rake db:create
+  - bundle exec rake db:migrate
+script:
+  - bundle exec rake test

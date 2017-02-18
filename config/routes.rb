@@ -45,11 +45,15 @@ Rails.application.routes.draw do
 
   get 'projects/posts/:id', to: 'projects#kakikomizu'
 
+  get 'dashboard', to: 'dashboard#index'
+
   get 'feed' => 'top#feed'
-  root 'top#index', as: 'root'
+  root 'dashboard#index', as: 'root'
 
   resources :projects
   resources :users
+
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -2,7 +2,8 @@ require 'test_helper'
 
 class ProjectsControllerTest < ActionController::TestCase
   setup do
-    @project = projects(:one)
+    @project = projects(:project_one)
+    @controller.session[:user_id] = @project.user.id
   end
 
   test "should get index" do
@@ -18,7 +19,7 @@ class ProjectsControllerTest < ActionController::TestCase
 
   test "should create project" do
     assert_difference('Project.count') do
-      post :create, project: { description: @project.description, development_url: @project.development_url, stage_id: @project.stage_id, subject: @project.subject, user_id: @project.user_id, user_url: @project.user_url }
+      post :create, project: { description: @project.description, development_url: @project.development_url, stage_id: @project.stage_id, subject: @project.subject, user_id: @project.user_id, user_url: @project.user_url }, skill_names: { skill_ids: [] }, new_skills: { new_skills: '' }
     end
 
     assert_redirected_to project_path(assigns(:project))
@@ -35,15 +36,7 @@ class ProjectsControllerTest < ActionController::TestCase
   end
 
   test "should update project" do
-    patch :update, id: @project, project: { description: @project.description, development_url: @project.development_url, stage_id: @project.stage_id, subject: @project.subject, user_id: @project.user_id, user_url: @project.user_url }
+    patch :update, id: @project, project: { description: @project.description, development_url: @project.development_url, stage_id: @project.stage_id, subject: @project.subject, user_id: @project.user_id, user_url: @project.user_url }, skill_names: { skill_ids: [] }, new_skills: { new_skills: '' }
     assert_redirected_to project_path(assigns(:project))
-  end
-
-  test "should destroy project" do
-    assert_difference('Project.count', -1) do
-      delete :destroy, id: @project
-    end
-
-    assert_redirected_to projects_path
   end
 end

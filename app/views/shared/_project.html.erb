@@ -1,10 +1,10 @@
 <div class="content_inner">
   <div class="content_header clearfix">
     <div class="content_title"><%= link_to(project.subject, project_path(id: project.id)) %></div>
-    <div class="content_member"><%= link_to (image_tag project.user.image, alt: project.user.name), user_path(id:project.user.id) %></div>
+    <div class="content_member"><%= link_to (image_tag project.user.image, alt: project.user.name, title: project.user.name), user_path(id:project.user.id) %></div>
     <div class="content_time">
       <%= name_and_link(project.user) %><% t('dic.title') %><br/>
-      <%= time_ago_in_words project.created_at %><% t('dic.posted_on') %>
+      <%= created_at_ago(project) %> <% t('dic.posted_on') %>
     </div>
   </div>
   <div class="content_box">
@@ -36,7 +36,7 @@
   <!-- ステータス -->
   <div class="content_status clearfix">
     <div class="content_status_left"><%= t('dic.status') %></div>
-    <div class="content_status_right"><%= project.stage.name %></div>
+    <div class="content_status_right"><%= link_to project.stage.name, ENV['LINK_ABOUT_PROJECT_STATUS'], target: '_blank' %></div>
   </div>
 
   <!-- 元の課題 -->
@@ -63,8 +63,10 @@
   <div class="content_skill clearfix">
     <div class="content_status_left"><%= t('dic.wantskill') %></div>
     <div class="content_status_right">
-      <% project.skills.map{|skill|skill.name}.each do |s| %>
-        <span class="skill_web"><%= s%></span>
+      <% project.skills.each do |s| %>
+        <%= link_to users_path(skill_id: s.id) do %>
+          <span class="skill_web"><%= s.name %></span>
+        <% end %>
       <% end %>
     </div>
   </div>
@@ -74,7 +76,7 @@
     <div class="content_join_left">参加者一覧</div>
     <div class="content_join_right">
       <% project.users.each do |user| %>
-        <span class="join_thum"><%= link_to image_tag(user.image, alt: user.name), user_path(id: user.id) %></span>
+        <span class="join_thum"><%= link_to image_tag(user.image, alt: user.name, title: user.name), user_path(id: user.id) %></span>
       <% end %>
     </div>
   </div>
