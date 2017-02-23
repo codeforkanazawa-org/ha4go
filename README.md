@@ -283,7 +283,7 @@ $ heroku run rake db:migrate # 以降イテレーション時に必要あれば
 
 運用時にはSSL証明書を用いることを強く推奨します。
 
-`<団体名>.ha4go.net` で運用したい場合にはDNSを設定しますので[Issues · codeforkanazawa-org/ha4go](https://github.com/codeforkanazawa-org/ha4go/issues)経由で書きを明記の上連絡ください。確認でき次第設定いたします。
+`<団体名>.ha4go.net` で運用したい場合にはDNSを設定しますので[Issues · codeforkanazawa-org/ha4go](https://github.com/codeforkanazawa-org/ha4go/issues)経由で下記を明記の上連絡ください。確認でき次第設定いたします。
 
 - 団体名と連絡先
 - 設定したい団体名( `<団体名>.ha4go.net` となります)
