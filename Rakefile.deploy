@@ -12,7 +12,7 @@ ROLE_BASE  = 'base'
 NAMES = {
   ROLE_BASE  => "#{APP_NAME}-#{ROLE_BASE}",
   ROLE_FRONT => "#{APP_NAME}-#{ROLE_FRONT}",
-  ROLE_JOB   => "#{APP_NAME}-#{ROLE_JOB}", # FRONTと同じ
+  ROLE_JOB   => "#{APP_NAME}-#{ROLE_FRONT}", # FRONTと同じ
   ROLE_DB    => "#{APP_NAME}-#{ROLE_DB}"
 }.freeze
 TAGS = {
