@@ -5,12 +5,14 @@ DOCKER   = [SUDO, 'docker'].join(' ')
 APP_NAME = 'ha4go'.freeze
 
 ROLE_FRONT = 'front'
+ROLE_JOB   = 'job'
 ROLE_DB    = 'db'
 ROLE_BASE  = 'base'
 
 NAMES = {
   ROLE_BASE  => "#{APP_NAME}-#{ROLE_BASE}",
   ROLE_FRONT => "#{APP_NAME}-#{ROLE_FRONT}",
+  ROLE_JOB   => "#{APP_NAME}-#{ROLE_JOB}", # FRONTと同じ
   ROLE_DB    => "#{APP_NAME}-#{ROLE_DB}"
 }.freeze
 TAGS = {
@@ -21,6 +23,7 @@ TAGS = {
 FILES = {
   ROLE_BASE  => "Dockerfile.#{ROLE_BASE}",
   ROLE_FRONT => "Dockerfile.#{ROLE_FRONT}",
+  ROLE_JOB   => "Dockerfile.#{ROLE_FRONT}", # FRONTと同じ
   ROLE_DB    => "Dockerfile.#{ROLE_DB}"
 }
 RELEASE_TAG = "release".freeze
@@ -29,11 +32,22 @@ DOCKER_OPTIONS = {
   'PRODUCT' => {
     ROLE_BASE  => '',
     ROLE_FRONT => "-d -p 3000:3000 --env-file=.env -v `pwd`/public/uploads:/myapp/public/uploads",
+    ROLE_JOB   => '-d --env-file=.env',
     ROLE_DB    => "-d -v `pwd`/mysql:/var/lib/mysql -p 3306:3306"
   },
   'DEBUG'   => {
     ROLE_FRONT => '-d -p 3000:3000 --env-file=.env',
+    ROLE_JOB   => '',
     ROLE_DB    => "-d -v `pwd`/mysql:/var/lib/mysql -p 3306:3306"
+  }
+}
+
+DOCKER_COMMAND = {
+  'PRODUCT' => {
+    ROLE_JOB   => 'bundle exec rake jobs:work'
+  },
+  'DEBUG'   => {
+    ROLE_JOB   => 'bundle exec rake jobs:work'
   }
 }
 
@@ -43,7 +57,7 @@ class Cmd
   end
 end
 
-desc "build[base/db/front]"
+desc "build[base/db/front/job]"
 task :build, [:role] do |_t, a|
   r = a[:role]
   sh Cmd.gen(
@@ -66,6 +80,7 @@ task :run, [:role, :local, :docker_ip] do |_t, a|
                DOCKER,
                'run',
                "#{DOCKER_OPTIONS[e][r]}",
-               "#{NAMES[r]}:#{TAGS[r]}"
+               "#{NAMES[r]}:#{TAGS[r]}",
+               "#{DOCKER_COMMAND[e][r]}"
              ])
 end
