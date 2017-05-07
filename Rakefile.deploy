@@ -18,6 +18,7 @@ NAMES = {
 TAGS = {
   ROLE_BASE  => '1.0',
   ROLE_FRONT => '1.0',
+  ROLE_JOB   => '1.0',
   ROLE_DB    => '1.0'
 }.freeze
 FILES = {
