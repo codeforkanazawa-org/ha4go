@@ -31,7 +31,7 @@ RELEASE_TAG = "release".freeze
 DOCKER_OPTIONS = {
   'PRODUCT' => {
     ROLE_BASE  => '',
-    ROLE_FRONT => "-d -p 3000:3000 --env-file=.env -v `pwd`/public/uploads:/myapp/public/uploads",
+    ROLE_FRONT => "-d -p 3000:3000 --env-file=.env --log-opt max-size=100m --log-opt max-file=3 -v `pwd`/public/uploads:/myapp/public/uploads",
     ROLE_JOB   => '-d --env-file=.env',
     ROLE_DB    => "-d -v `pwd`/mysql:/var/lib/mysql -p 3306:3306"
   },
