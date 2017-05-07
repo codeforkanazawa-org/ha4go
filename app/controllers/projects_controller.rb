@@ -65,7 +65,7 @@ class ProjectsController < ApplicationController
     if @project.save
       # mail to created
       @project.send_mail_addresses.each do |m|
-        ProjectMailer.tell_create(m, @project).deliver_now unless m == ''
+        ProjectMailer.tell_create(m, @project).deliver_later unless m == ''
       end
 
       project_publish_to_sns_page(
@@ -76,7 +76,7 @@ class ProjectsController < ApplicationController
 
       # mail to skill matched
       User.joins(:skills).where(skills: { id: @project.skills }).pluck(:email).compact.each do |m|
-        ProjectMailer.tell_skill_match(m, @project, true).deliver_now unless m == ''
+        ProjectMailer.tell_skill_match(m, @project, true).deliver_later unless m == ''
       end
 
       redirect_target = params[:from].nil? ? @project : '/dashboard'

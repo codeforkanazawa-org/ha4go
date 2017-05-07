@@ -178,7 +178,11 @@ bundle exec rake db:setup
 bundle exec rails s
 ```
 
-その後、ブラウザで `http://localhost:3000` で画面が見えれば成功。
+その後、ブラウザで `http://localhost:3000` で画面が見えれば成功。メール送信・SNSへポストなど非同期実行するものは以下のコマンドでActive Jobを動かしてください。
+
+```
+bundle exec rake jobs:work
+```
 
 
 ### Docker 上でアプリを動かす場合
