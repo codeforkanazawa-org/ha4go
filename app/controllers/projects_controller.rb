@@ -121,7 +121,7 @@ class ProjectsController < ApplicationController
 
       # mail to skill matched
       User.joins(:skills).where(skills: { id: fue }).pluck(:email).compact.each do |m|
-        ProjectMailer.tell_skill_match(m, @project).deliver_now unless m == ''
+        ProjectMailer.tell_skill_match(m, @project).deliver_later unless m == ''
       end
 
       redirect_to @project, notice: I18n.t('projects.banner.updated')
