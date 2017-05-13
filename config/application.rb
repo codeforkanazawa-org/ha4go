@@ -35,5 +35,7 @@ module Ha4go
 
     # https://coderwall.com/p/nnjrlq/multifile-uploads-with-carrierwave
     config.autoload_paths << Rails.root.join('app', 'field_types')
+
+    config.active_job.queue_adapter = :delayed_job
   end
 end

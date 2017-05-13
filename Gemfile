@@ -72,3 +72,6 @@ gem 'koala', '~> 2.2'
 # for Image upload
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 gem 'rmagick'
+
+# backgroud job
+gem 'delayed_job_active_record'
