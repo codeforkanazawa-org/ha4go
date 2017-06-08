@@ -2,6 +2,7 @@
 module SeoHelper
   def default_meta_tags
     {
+      description: "課題を深く知る市民とシビックテックの情報交換サイト、はじめました。",
       og: {
         title: 'Ha4go',
         site_name: 'Ha4go',
