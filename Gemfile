@@ -8,7 +8,7 @@ gem 'rails', '~> 5.0.5'
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3', groups: %w(test development), require: false
 # gem 'pg', groups: %w(production), require: false
-gem 'mysql2', '~> 0.3.20'
+gem 'mysql2'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -17,7 +17,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-gem 'bootstrap-sass', '~> 3.3.4'
+gem 'bootstrap-sass', '~> 3.3.7'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
