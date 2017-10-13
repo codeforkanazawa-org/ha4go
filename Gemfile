@@ -57,6 +57,8 @@ group :development do
   gem 'letter_opener_web'
 end
 
+gem 'rails-controller-testing', group: :test
+
 group :production do
   # gem 'pg'
 end
