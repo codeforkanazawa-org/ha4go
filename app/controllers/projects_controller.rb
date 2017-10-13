@@ -56,7 +56,7 @@ class ProjectsController < ApplicationController
     @project = Project.new(project_params)
     @project.user_id = @my_user.id
     @project.last_commented_at = Time.now
-    skills = Array(params[:skill_names][:skill_ids]) + params[:new_skills][:new_skills].split(' ')
+    skills = Array(params.dig(:skill_names, :skill_ids)) + params.dig(:new_skills, :new_skills).split(' ')
     @project.update_skill_ids_by_skill_names(skills) unless skills.empty?
 
     # 作成時自分を参加させる
@@ -107,7 +107,7 @@ class ProjectsController < ApplicationController
         @project.update!(images: remain_images)
       end
 
-      skills = Array(params[:skill_names][:skill_ids]) + params[:new_skills][:new_skills].split(' ')
+      skills = Array(params.dig(:skill_names, :skill_ids)) + params.dig(:new_skills, :new_skills).split(' ')
       @project.update_skill_ids_by_skill_names(skills) unless skills.empty?
 
       current_skills = @project.skills.map(&:id)

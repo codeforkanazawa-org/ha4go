@@ -30,7 +30,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   def update
     if @user.update(user_params)
-      skills = Array(params[:skill_names][:skill_ids]) + params[:new_skills][:new_skills].split(' ')
+      skills = Array(params.dig(:skill_names, :skill_ids)) + params.dig(:new_skills, :new_skills).split(' ')
       @user.update_skill_ids_by_skill_names(skills) if skills.size > 0
       if params[:from].to_s == 'dashboard'
         redirect_to '/dashboard', notice: 'プロフィールを更新しました。'
