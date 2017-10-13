@@ -20,8 +20,6 @@ module Ha4go
     I18n.enforce_available_locales = true
     I18n.default_locale = :ja
     config.i18n.default_locale = :ja
-    # Do not swallow errors in after_commit/after_rollback callbacks.
-    config.active_record.raise_in_transactional_callbacks = true
 
     # https://coderwall.com/p/nnjrlq/multifile-uploads-with-carrierwave
     config.autoload_paths << Rails.root.join('app', 'field_types')
