@@ -12,17 +12,17 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should show user" do
-    get :show, id: @user
+    get :show, params: { id: @user }
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, id: @user
+    get :edit, params: { id: @user }
     assert_response :success
   end
 
   test "should update user" do
-    patch :update, id: @user, user: { description: @user.description, email: @user.email, name: @user.name }, skill_names: { skill_ids: [] }, new_skills: { new_skills: '' }
+    patch :update, params: { id: @user, user: { description: @user.description, email: @user.email, name: @user.name }, skill_names: { skill_ids: [] }, new_skills: { new_skills: '' } }
     assert_redirected_to user_path(assigns(:user))
   end
 end

@@ -3,14 +3,15 @@ rvm:
   - 2.3.3
 services:
   - mysql
+
 bundler_args: "--without development --deployment"
 
 cache: bundler
 
 before_script:
-  - mysql -e 'create database myapp_test;'
+  - mysql -e 'create database myapp_test character set utf8;'
   - cp config/database.travis.yml config/database.yml
-  - bundle exec rake db:create
-  - bundle exec rake db:migrate
+  - bundle exec rails db:create
+  - bundle exec rails db:migrate
 script:
-  - bundle exec rake test
+  - bundle exec rails test
