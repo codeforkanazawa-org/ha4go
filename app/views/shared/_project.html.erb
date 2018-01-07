@@ -25,7 +25,7 @@
   <div class="content_development_url clearfix">
     <div class="content_development_url_left"><%= t('dic.url')  %></div>
     <div class="content_development_url_right">
-      <%= link_to_if project.user_url, project.user_url, project.user_url do %>
+      <%= link_to_if project.user_url.present?, project.user_url, project.user_url do %>
         <span><%= t('dic.url') %>はありません</span>
       <% end %>
     </div>
@@ -35,7 +35,7 @@
   <div class="content_development_url clearfix">
     <div class="content_development_url_left"><%= t('dic.dev_url')  %></div>
     <div class="content_development_url_right">
-      <%= link_to_if project.development_url,  project.development_url, project.development_url do %>
+      <%= link_to_if project.development_url.present?,  project.development_url, project.development_url do %>
         <span><%= t('dic.dev_url') %>はありません</span>
       <% end %>
     </div>
