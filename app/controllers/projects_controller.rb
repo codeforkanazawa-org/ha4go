@@ -26,7 +26,6 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1
   def show
-    @use_custom_ogp = true
     @project_rss_url = request.fullpath + '.rss'
     add_rss_urls(@project.subject, @project_rss_url)
     respond_to do |format|
@@ -57,7 +56,7 @@ class ProjectsController < ApplicationController
     @project = Project.new(project_params)
     @project.user_id = @my_user.id
     @project.last_commented_at = Time.now
-    skills = Array(params[:skill_names][:skill_ids]) + params[:new_skills][:new_skills].split(' ')
+    skills = Array(params.dig(:skill_names, :skill_ids)) + params.dig(:new_skills, :new_skills).split(' ')
     @project.update_skill_ids_by_skill_names(skills) unless skills.empty?
 
     # 作成時自分を参加させる
@@ -66,7 +65,7 @@ class ProjectsController < ApplicationController
     if @project.save
       # mail to created
       @project.send_mail_addresses.each do |m|
-        ProjectMailer.tell_create(m, @project).deliver_now unless m == ''
+        ProjectMailer.tell_create(m, @project).deliver_later unless m == ''
       end
 
       project_publish_to_sns_page(
@@ -77,7 +76,7 @@ class ProjectsController < ApplicationController
 
       # mail to skill matched
       User.joins(:skills).where(skills: { id: @project.skills }).pluck(:email).compact.each do |m|
-        ProjectMailer.tell_skill_match(m, @project, true).deliver_now unless m == ''
+        ProjectMailer.tell_skill_match(m, @project, true).deliver_later unless m == ''
       end
 
       redirect_target = params[:from].nil? ? @project : '/dashboard'
@@ -108,7 +107,7 @@ class ProjectsController < ApplicationController
         @project.update!(images: remain_images)
       end
 
-      skills = Array(params[:skill_names][:skill_ids]) + params[:new_skills][:new_skills].split(' ')
+      skills = Array(params.dig(:skill_names, :skill_ids)) + params.dig(:new_skills, :new_skills).split(' ')
       @project.update_skill_ids_by_skill_names(skills) unless skills.empty?
 
       current_skills = @project.skills.map(&:id)
@@ -122,7 +121,7 @@ class ProjectsController < ApplicationController
 
       # mail to skill matched
       User.joins(:skills).where(skills: { id: fue }).pluck(:email).compact.each do |m|
-        ProjectMailer.tell_skill_match(m, @project).deliver_now unless m == ''
+        ProjectMailer.tell_skill_match(m, @project).deliver_later unless m == ''
       end
 
       redirect_to @project, notice: I18n.t('projects.banner.updated')
@@ -185,7 +184,6 @@ class ProjectsController < ApplicationController
     else
       @joined = false
     end
-    @use_custom_ogp = false
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

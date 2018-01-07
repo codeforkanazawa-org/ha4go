@@ -15,14 +15,14 @@ RUN apt-get update && \
     libxslt1-dev \
     libyaml-dev \
     zlib1g-dev && \
-    curl -O http://ftp.ruby-lang.org/pub/ruby/2.1/ruby-2.1.2.tar.gz && \
-    tar -zxvf ruby-2.1.2.tar.gz && \
-    cd ruby-2.1.2 && \
+    curl -O http://ftp.ruby-lang.org/pub/ruby/2.3/ruby-2.3.3.tar.gz && \
+    tar -zxvf ruby-2.3.3.tar.gz && \
+    cd ruby-2.3.3 && \
     ./configure --disable-install-doc && \
     make && \
     make install && \
     cd .. && \
-    rm -r ruby-2.1.2 ruby-2.1.2.tar.gz && \
+    rm -r ruby-2.3.3 ruby-2.3.3.tar.gz && \
     echo 'gem: --no-document' > /usr/local/etc/gemrc
 
 # Install Bundler for each version of ruby

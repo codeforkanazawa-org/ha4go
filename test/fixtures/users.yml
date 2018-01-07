@@ -6,6 +6,7 @@ user_one:
   description: 説明文です
   provider: facebook
   uid: 1
+  image: ''
 
 user_two:
   name: ユーザ名2
@@ -13,3 +14,4 @@ user_two:
   description: 説明文です
   provider: facebook
   uid: 2
+  image: ''

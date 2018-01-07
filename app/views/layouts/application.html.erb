@@ -11,11 +11,7 @@
     <% end %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= csrf_meta_tags %>
-    <% if @use_custom_ogp %>
-      <%= render 'shared/ogp_project', project: @project %>
-    <% else %>
-      <%= render partial: "shared/ogp_common" %>
-    <% end %>
+    <%= display_meta_tags default_meta_tags %>
     <%= yield :twitter_card %>
     <%= %>
   </head>
