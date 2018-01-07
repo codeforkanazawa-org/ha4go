@@ -6,6 +6,7 @@
   email: user1@ha4go.net
   info:
     name: 寺分 五郎太
+    image: http://placehold.jp/100x100.png?text={ダミー画像}
   extra:
     raw_info:
       name: 寺分 五郎太
@@ -16,6 +17,7 @@
   email: user2@ha4go.net
   info:
     name: 紺田 かをる
+    image: http://placehold.jp/100x100.png?text={ダミー画像}
   extra:
     raw_info:
       name: 紺田 かをる
@@ -26,6 +28,7 @@
   email: user3@ha4go.net
   info:
     name: 仲上 梅安
+    image: http://placehold.jp/100x100.png?text={ダミー画像}
   extra:
     raw_info:
       name: 仲上 梅安
@@ -36,6 +39,7 @@
   email: user4@ha4go.net
   info:
     name: 鶴間 親元
+    image: http://placehold.jp/100x100.png?text={ダミー画像}
   extra:
     raw_info:
       name: 鶴間 親元
@@ -46,6 +50,7 @@
   email: user5@ha4go.net
   info:
     name: 常本 友紀
+    image: http://placehold.jp/100x100.png?text={ダミー画像}
   extra:
     raw_info:
       name: 常本 友紀
@@ -56,6 +61,7 @@
   email: user6@ha4go.net
   info:
     name: 石間 精二
+    image: http://placehold.jp/100x100.png?text={ダミー画像}
   extra:
     raw_info:
       name: 石間 精二
@@ -66,6 +72,7 @@
   email: user7@ha4go.net
   info:
     name: 仁志 浩寿
+    image: http://placehold.jp/100x100.png?text={ダミー画像}
   extra:
     raw_info:
       name: 仁志 浩寿
@@ -76,6 +83,7 @@
   email: user8@ha4go.net
   info:
     name: 光明 沙都子
+    image: http://placehold.jp/100x100.png?text={ダミー画像}
   extra:
     raw_info:
       name: 光明 沙都子
@@ -86,6 +94,7 @@
   email: user9@ha4go.net
   info:
     name: 大仁 たけお
+    image: http://placehold.jp/100x100.png?text={ダミー画像}
   extra:
     raw_info: !ruby/hash:OmniAuth::AuthHash
       name: 大仁 たけお
@@ -96,6 +105,7 @@
   email: user10@ha4go.net
   info:
     name: 伊野部 鶴代
+    image: http://placehold.jp/100x100.png?text={ダミー画像}
   extra:
     raw_info:
       name: 伊野部 鶴代
