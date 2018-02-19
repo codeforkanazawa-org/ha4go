@@ -1,0 +1,83 @@
+{
+  "name": "Small Sharp Tool",
+  "description": "This app does one little thing, and does it well.",
+  "website": "https://small-sharp-tool.com/",
+  "repository": "https://github.com/jane-doe/small-sharp-tool",
+  "scripts": {
+    "postdeploy": "bundle exec rails db:seed"
+  },
+
+  "env": {
+    "SECRET_TOKEN": {
+      "description": "A secret key for verifying the integrity of signed cookies.",
+      "generator": "secret"
+    },
+
+    "APP_HOST": {
+      "description": "foo",
+      "required": true
+    },
+
+    "FACEBOOK_APP_ID": {
+      "description": "A Facebook app id",
+      "required": true
+    },
+
+    "FACEBOOK_APP_SECRET": {
+      "description": "A Facebook app secret",
+      "required": true
+    },
+
+    "LANG": {
+      "required": true
+    },
+
+    "TZ": {
+      "required": true
+    },
+
+    "EMAIL_SERVICE": {
+      "description": "Write what email service you are using",
+      "required": true
+    },
+
+    "STMP_DOMAIN": {
+      "required": true
+    },
+
+    "STMP_PORT": {
+      "required": true
+    },
+
+    "STMP_SERVER": {
+      "required": true
+    },
+
+    "STMP_USER": {
+      "required": true
+    },
+
+    "LINK_ABOUT_PROJECT_STATUS": {
+      "required": true
+    },
+
+    "LINK_USER_TERMS": {
+      "required": true
+    }
+  },
+
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "free"
+    },
+
+    "worker": {
+      "quantitiy": 1,
+      "size": "free"
+    }
+  },
+
+  "image": "heroku/ruby",
+  "addons": ["cleardb:ignite", "sendgrid:starter"]
+}
