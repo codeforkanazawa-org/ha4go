@@ -57,6 +57,26 @@
       "required": true
     },
 
+    "STORAGE_SERIVCE": {
+      "required": true
+    },
+
+    "S3_ACCESS_KEY_ID": {
+      "required": true
+    },
+
+    "S3_SECRET_KEY_ID": {
+      "required": true
+    },
+
+    "S3_REGION": {
+      "required": true
+    },
+
+    "S3_BUCKET_NAME": {
+      "required": true
+    },
+
     "LINK_ABOUT_PROJECT_STATUS": {
       "required": true
     },

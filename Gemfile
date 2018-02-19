@@ -82,6 +82,10 @@ gem 'koala', '~> 2.2'
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 gem 'rmagick'
 
+install_if -> { ENV['STORAGE_SERVICE'] == 'amazon-s3' } do
+  gem 'fog-aws'
+end
+
 # backgroud job
 gem 'delayed_job_active_record'
 
