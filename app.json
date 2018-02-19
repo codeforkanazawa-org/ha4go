@@ -1,8 +1,8 @@
 {
-  "name": "Small Sharp Tool",
-  "description": "This app does one little thing, and does it well.",
-  "website": "https://small-sharp-tool.com/",
-  "repository": "https://github.com/jane-doe/small-sharp-tool",
+  "name": "ha4go.net",
+  "description": "市民の課題と解決者のマッチングプラットフォームプロジェクト",
+  "website": "http://ha4go.net/",
+  "repository": "https://github.com/codeforkanazawa-org/ha4go",
   "scripts": {
     "postdeploy": "bundle exec rails db:seed"
   },
@@ -29,16 +29,19 @@
     },
 
     "LANG": {
-      "required": true
+      "required": true,
+      "value": "ja_JP.UTF-8"
     },
 
     "TZ": {
-      "required": true
+      "required": true,
+      "value": "Asia/Tokyo"
     },
 
     "EMAIL_SERVICE": {
       "description": "Write what email service you are using",
-      "required": true
+      "required": true,
+      "value": "sendgrid"
     },
 
     "STMP_DOMAIN": {
@@ -46,11 +49,13 @@
     },
 
     "STMP_PORT": {
-      "required": true
+      "required": true,
+      "value": "587"
     },
 
     "STMP_SERVER": {
-      "required": true
+      "required": true,
+      "value": "smtp.sendgrid.net"
     },
 
     "STMP_USER": {
@@ -58,7 +63,8 @@
     },
 
     "STORAGE_SERIVCE": {
-      "required": true
+      "required": true,
+      "value": "amazon-s3"
     },
 
     "S3_ACCESS_KEY_ID": {
@@ -70,7 +76,8 @@
     },
 
     "S3_REGION": {
-      "required": true
+      "required": true,
+      "value": "ap-northeast-1"
     },
 
     "S3_BUCKET_NAME": {
@@ -78,11 +85,13 @@
     },
 
     "LINK_ABOUT_PROJECT_STATUS": {
-      "required": true
+      "required": true,
+      "value": "https://github.com/codeforkanazawa-org/ha4go/wiki/%E8%AA%B2%E9%A1%8C%E3%81%AE%E3%82%B9%E3%83%86%E3%83%BC%E3%82%BF%E3%82%B9"
     },
 
     "LINK_USER_TERMS": {
-      "required": true
+      "required": true,
+      "value": "https://github.com/codeforkanazawa-org/ha4go/wiki/ha4go-%E5%88%A9%E7%94%A8%E8%A6%8F%E7%B4%84"
     }
   },
 
