@@ -288,8 +288,9 @@ $ heroku run rake db:migrate # 以降イテレーション時に必要あれば
 
 その場合、
 
-- 画像保存で利用するファイルストレージの設定
-- メール配信サービスの設定
+- 画像保存で利用するファイルストレージの設定（デフォルトではAmazon S3を指定しています）
+- メール配信サービスの設定（デフォルトではSendGridを指定しています。[設定方法](https://devcenter.heroku.com/articles/sendgrid)）
+- [データベースの設定](https://devcenter.heroku.com/articles/cleardb#configuring-your-ruby-application-to-use-cleardb)
 
 が必要になります。
 
