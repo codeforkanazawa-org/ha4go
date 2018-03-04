@@ -282,6 +282,18 @@ $ heroku run rake db:migrate # 以降イテレーション時に必要あれば
 
 同ディレクトリで `git push heroku` をすればデプロイされます。データベースのマイグレーションや初期データの設定を行う必要がある場合(最初のデプロイ時には必ず必要です)には `heroku run rake db:setup` を同ディレクトリで行ってください。
 
+### Deploy to Heroku ボタンでのデプロイする
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy) をクリックすることでHerokuデプロイが容易にできます。
+
+その場合、
+
+- 画像保存で利用するファイルストレージの設定（デフォルトではAmazon S3を指定しています）
+- メール配信サービスの設定（デフォルトではSendGridを指定しています。[設定方法](https://devcenter.heroku.com/articles/sendgrid)）
+- [データベースの設定](https://devcenter.heroku.com/articles/cleardb#configuring-your-ruby-application-to-use-cleardb)
+
+が必要になります。
+
 
 # 運用
 

@@ -1,0 +1,112 @@
+{
+  "name": "ha4go.net",
+  "description": "市民の課題と解決者のマッチングプラットフォームプロジェクト",
+  "website": "http://ha4go.net/",
+  "repository": "https://github.com/codeforkanazawa-org/ha4go",
+  "scripts": {
+    "postdeploy": "bundle exec rails db:seed"
+  },
+
+  "env": {
+    "SECRET_TOKEN": {
+      "description": "A secret key for verifying the integrity of signed cookies.",
+      "generator": "secret"
+    },
+
+    "APP_HOST": {
+      "description": "foo",
+      "required": true
+    },
+
+    "FACEBOOK_APP_ID": {
+      "description": "A Facebook app id",
+      "required": true
+    },
+
+    "FACEBOOK_APP_SECRET": {
+      "description": "A Facebook app secret",
+      "required": true
+    },
+
+    "LANG": {
+      "required": true,
+      "value": "ja_JP.UTF-8"
+    },
+
+    "TZ": {
+      "required": true,
+      "value": "Asia/Tokyo"
+    },
+
+    "EMAIL_SERVICE": {
+      "description": "Write what email service you are using",
+      "required": true,
+      "value": "sendgrid"
+    },
+
+    "STMP_DOMAIN": {
+      "required": true
+    },
+
+    "STMP_PORT": {
+      "required": true,
+      "value": "587"
+    },
+
+    "STMP_SERVER": {
+      "required": true,
+      "value": "smtp.sendgrid.net"
+    },
+
+    "STMP_USER": {
+      "required": true
+    },
+
+    "STORAGE_SERIVCE": {
+      "required": true,
+      "value": "amazon-s3"
+    },
+
+    "S3_ACCESS_KEY_ID": {
+      "required": true
+    },
+
+    "S3_SECRET_KEY_ID": {
+      "required": true
+    },
+
+    "S3_REGION": {
+      "required": true,
+      "value": "ap-northeast-1"
+    },
+
+    "S3_BUCKET_NAME": {
+      "required": true
+    },
+
+    "LINK_ABOUT_PROJECT_STATUS": {
+      "required": true,
+      "value": "https://github.com/codeforkanazawa-org/ha4go/wiki/%E8%AA%B2%E9%A1%8C%E3%81%AE%E3%82%B9%E3%83%86%E3%83%BC%E3%82%BF%E3%82%B9"
+    },
+
+    "LINK_USER_TERMS": {
+      "required": true,
+      "value": "https://github.com/codeforkanazawa-org/ha4go/wiki/ha4go-%E5%88%A9%E7%94%A8%E8%A6%8F%E7%B4%84"
+    }
+  },
+
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "free"
+    },
+
+    "worker": {
+      "quantitiy": 1,
+      "size": "free"
+    }
+  },
+
+  "image": "heroku/ruby",
+  "addons": ["cleardb:ignite", "sendgrid:starter"]
+}

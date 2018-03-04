@@ -32,6 +32,10 @@ gem 'omniauth-facebook'
 
 gem 'meta-tags'
 
+install_if -> { ENV['EMAIL_SERVICE'] == 'sendgrid' } do
+  gem 'sendgrid-ruby'
+end
+
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code
   gem 'web-console', '>= 3.3.0'
@@ -77,6 +81,10 @@ gem 'koala', '~> 2.2'
 # for Image upload
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 gem 'rmagick'
+
+install_if -> { ENV['STORAGE_SERVICE'] == 'amazon-s3' } do
+  gem 'fog-aws'
+end
 
 # backgroud job
 gem 'delayed_job_active_record'
