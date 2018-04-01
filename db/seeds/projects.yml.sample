@@ -1,0 +1,16 @@
+- subject: 議論と調査している課題
+  description: 議論と調査している課題の説明
+  stage_id: 10
+  user_id: 1
+- subject: 企画と試作中の課題
+  description: 企画と試作中の課題の説明
+  stage_id: 11
+  user_id: 1
+- subject: 運用中の課題
+  description: 運用中の課題の説明
+  stage_id: 12
+  user_id: 1
+- subject: 休止・終了の課題
+  description: 休止・終了の課題の説明
+  stage_id: 13
+  user_id: 1

@@ -1,0 +1,113 @@
+---
+# ha4go は Facebook ログインを利用しているため、 uid はその Facebook が払い出したIDを本来用いないといけませんが、
+# ここではダミーの値を用いてます。この値を使っても Facebook と連携はとれません。
+- provider: facebook
+  uid: '108042236335534'
+  email: user1@ha4go.net
+  info:
+    name: 寺分 五郎太
+    image: http://placehold.jp/100x100.png?text={ダミー画像}
+  extra:
+    raw_info:
+      name: 寺分 五郎太
+      id: '108042236335534'
+      birthday: 06/04/1953
+- provider: facebook
+  uid: '129490564185647'
+  email: user2@ha4go.net
+  info:
+    name: 紺田 かをる
+    image: http://placehold.jp/100x100.png?text={ダミー画像}
+  extra:
+    raw_info:
+      name: 紺田 かをる
+      id: '129490564185647'
+      birthday: 10/13/2000
+- provider: facebook
+  uid: '109065222899468'
+  email: user3@ha4go.net
+  info:
+    name: 仲上 梅安
+    image: http://placehold.jp/100x100.png?text={ダミー画像}
+  extra:
+    raw_info:
+      name: 仲上 梅安
+      id: '109065222899468'
+      birthday: 07/20/1999
+- provider: facebook
+  uid: '107694676370654'
+  email: user4@ha4go.net
+  info:
+    name: 鶴間 親元
+    image: http://placehold.jp/100x100.png?text={ダミー画像}
+  extra:
+    raw_info:
+      name: 鶴間 親元
+      id: '107694676370654'
+      birthday: 11/07/1964
+- provider: facebook
+  uid: '113194775817938'
+  email: user5@ha4go.net
+  info:
+    name: 常本 友紀
+    image: http://placehold.jp/100x100.png?text={ダミー画像}
+  extra:
+    raw_info:
+      name: 常本 友紀
+      id: '113194775817938'
+      birthday: 11/03/1962
+- provider: facebook
+  uid: '112430925894441'
+  email: user6@ha4go.net
+  info:
+    name: 石間 精二
+    image: http://placehold.jp/100x100.png?text={ダミー画像}
+  extra:
+    raw_info:
+      name: 石間 精二
+      id: '112430925894441'
+      birthday: 02/09/1987
+- provider: facebook
+  uid: '125899821212190'
+  email: user7@ha4go.net
+  info:
+    name: 仁志 浩寿
+    image: http://placehold.jp/100x100.png?text={ダミー画像}
+  extra:
+    raw_info:
+      name: 仁志 浩寿
+      id: '125899821212190'
+      birthday: 03/19/1956
+- provider: facebook
+  uid: '113020549168769'
+  email: user8@ha4go.net
+  info:
+    name: 光明 沙都子
+    image: http://placehold.jp/100x100.png?text={ダミー画像}
+  extra:
+    raw_info:
+      name: 光明 沙都子
+      id: '113020549168769'
+      birthday: 04/02/1992
+- provider: facebook
+  uid: '113219372482380'
+  email: user9@ha4go.net
+  info:
+    name: 大仁 たけお
+    image: http://placehold.jp/100x100.png?text={ダミー画像}
+  extra:
+    raw_info: !ruby/hash:OmniAuth::AuthHash
+      name: 大仁 たけお
+      id: '113219372482380'
+      birthday: 12/17/1987
+- provider: facebook
+  uid: '120178591785317'
+  email: user10@ha4go.net
+  info:
+    name: 伊野部 鶴代
+    image: http://placehold.jp/100x100.png?text={ダミー画像}
+  extra:
+    raw_info:
+      name: 伊野部 鶴代
+      id: '120178591785317'
+      birthday: 07/04/2000
