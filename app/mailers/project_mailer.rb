@@ -1,7 +1,7 @@
 # coding: utf-8
 class ProjectMailer < ApplicationMailer
   add_template_helper(ApplicationHelper)
-  default from: 'ha4go@codeforkanazawa.org'
+  default from: ENV['NOTIF_MAIL_FROM'] || ENV['SMTP_USER'] || "ha4go@#{ENV.fetch('APP_HOST') { 'codeforkanazawa.org' }}"
 
   def tell_create(mails, project)
     @project = project

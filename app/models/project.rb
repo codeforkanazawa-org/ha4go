@@ -2,6 +2,7 @@
 class Project < ActiveRecord::Base
   attribute :images, ArrayType.new
   mount_uploaders :images, ImageUploader
+  serialize :images, JSON
   validates :subject, presence: true
   has_many :project_updates
   belongs_to :user
