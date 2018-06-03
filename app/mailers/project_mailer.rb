@@ -17,8 +17,11 @@ class ProjectMailer < ApplicationMailer
 
   def tell_skill_match(mails, project, is_new = false)
     @project = project
-    subject = '[Ha4go] あなたのスキルにマッチした課題が登録されました' if is_new
-    subject = '[Ha4go] あなたのスキルを求めている課題があります'
+    subject = if is_new
+                '[Ha4go] あなたのスキルにマッチした課題が登録されました'
+              else
+                '[Ha4go] あなたのスキルを求めている課題があります'
+              end
     mail to: mails, subject: subject
   end
 
