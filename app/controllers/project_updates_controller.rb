@@ -22,7 +22,7 @@ class ProjectUpdatesController < ApplicationController
         ProjectMailer.tell_update(m, @project_update).deliver_later unless m == ''
       end
 
-      @project_update.project.update_attributes!(
+      @project_update.project.update!(
         last_commented_at: @project_update.created_at
       )
       project_publish_to_sns_page(

@@ -1,7 +1,12 @@
 inherit_from: .rubocop_todo.yml
 
 AllCops:
-  TargetRubyVersion: 2.0
+  TargetRubyVersion: 2.3
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'bin/*'
+    - 'vendor/**/*'
 
 Style/AsciiComments:
   Enabled: false
@@ -45,3 +50,6 @@ SignalException:
 # "Line is too long"を無効
 Metrics/LineLength:
   Enabled: false
+
+Rails:
+  Enabled: true
