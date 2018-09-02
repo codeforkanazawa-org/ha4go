@@ -22,24 +22,28 @@
   </div>
 
   <!-- URL -->
-  <div class="content_development_url clearfix">
-    <div class="content_development_url_left"><%= t('dic.url')  %></div>
-    <div class="content_development_url_right">
-      <%= link_to_if project.user_url.present?, project.user_url, project.user_url do %>
-        <span><%= t('dic.url') %>はありません</span>
-      <% end %>
+  <% if project.user_url.present? %>
+    <div class="content_development_url clearfix">
+      <div class="content_development_url_left"><%= t('dic.url')  %></div>
+      <div class="content_development_url_right">
+        <%= link_to_if project.user_url.present?, project.user_url, project.user_url do %>
+          <span><%= t('dic.url') %>はありません</span>
+        <% end %>
+      </div>
     </div>
-  </div>
+  <% end %>
 
   <!-- 開発URL -->
-  <div class="content_development_url clearfix">
-    <div class="content_development_url_left"><%= t('dic.dev_url')  %></div>
-    <div class="content_development_url_right">
-      <%= link_to_if project.development_url.present?,  project.development_url, project.development_url do %>
-        <span><%= t('dic.dev_url') %>はありません</span>
-      <% end %>
+  <% if project.development_url.present? %>
+    <div class="content_development_url clearfix">
+      <div class="content_development_url_left"><%= t('dic.dev_url')  %></div>
+      <div class="content_development_url_right">
+        <%= link_to_if project.development_url.present?,  project.development_url, project.development_url do %>
+          <span><%= t('dic.dev_url') %>はありません</span>
+        <% end %>
+      </div>
     </div>
-  </div>
+  <% end %>
 
   <!-- ステータス -->
   <div class="content_status clearfix">
@@ -48,24 +52,28 @@
   </div>
 
   <!-- 元の課題 -->
-  <div class="content_parent_project clearfix">
-    <div class="content_parent_project_left"><%= t('dic.parent_project') %></div>
-    <div class="content_parent_project_right">
-      <% unless project.project.nil? %>
-        <%= link_to project.project.subject, project_path(id: project.project.id) %>
-      <% end %>
+  <% if project.project.present? %>
+    <div class="content_parent_project clearfix">
+      <div class="content_parent_project_left"><%= t('dic.parent_project') %></div>
+      <div class="content_parent_project_right">
+        <% if project.project.present? %>
+          <%= link_to project.project.subject, project_path(id: project.project.id) %>
+        <% end %>
+      </div>
     </div>
-  </div>
+  <% end %>
 
   <!-- 関連課題(子) -->
-  <div class="content_child_project clearfix">
-    <div class="content_child_project_left"><%= t('dic.child_project') %></div>
-    <div class="content_child_project_right">
-      <% project.projects.each do |p| %>
-        <%= link_to p.subject, project_path(id: p.id) %> <br/>
-      <% end %>
+  <% if project.projects.present? %>
+    <div class="content_child_project clearfix">
+      <div class="content_child_project_left"><%= t('dic.child_project') %></div>
+      <div class="content_child_project_right">
+        <% project.projects.each do |p| %>
+          <%= link_to p.subject, project_path(id: p.id) %> <br/>
+        <% end %>
+      </div>
     </div>
-  </div>
+  <% end %>
 
   <!-- 募集スキル -->
   <div class="content_skill clearfix">
