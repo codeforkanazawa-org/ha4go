@@ -6,21 +6,32 @@ class ProjectsController < ApplicationController
   # GET /projects
   def index
     type = params[:type]
+    page = params[:page]
+    query = Project.page(page).includes(
+      :project_updates,
+      :user,
+      :project,
+      :projects,
+      :users,
+      :skills,
+      :stage
+    )
     if type == 'recent'
       @list_type = I18n.t('dic.project_recent')
-      @projects = Project.recent(default_duration)
+      @projects = query.order(last_commented_at: :desc)
     elsif type == 'hotrank'
       @list_type = I18n.t('dic.project_hot')
-      @projects = Project.hot_rank(default_duration)
+      rank = Project.comment_ranking(default_duration)
+      @projects = query.original_order(rank.keys)
     elsif type == 'match'
       @projects = []
       unless @my_user.nil?
         @list_type = I18n.t('dic.project_match_mine')
-        @projects = Project.match_mine(@my_user.skills)
+        @projects = query.match_skills(@my_user.skill_ids)
       end
     else
       @list_type = I18n.t('dic.project_all')
-      @projects = Project.all
+      @projects = query.order(:id)
     end
   end
 
@@ -175,7 +186,17 @@ class ProjectsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_project
-    @project  = Project.find(params[:id])
+    include_target = [
+      { project_updates: { project_update_histories: :user } },
+      :user,
+      :project,
+      :projects,
+      :users,
+      :skills,
+      :stage
+    ]
+    @project = Project.includes(*include_target)
+                      .find(params[:id])
     @skills   = Skill.all
     @joinners = Project.find(params[:id]).users
     @my_skills = @project.skills.all.map { |k| k[:name] }
