@@ -23,11 +23,11 @@ class ApplicationController < ActionController::Base
   end
 
   def set_quick_link_counts
-    @projects_recent_count = Project.recent(default_duration).length
-    @projects_hot_rank_count = Project.hot_rank(default_duration).length
+    @projects_recent_count = Project.recent.length
+    @projects_hot_rank_count = Project.comment_ranking(default_duration).length
     @projects_all_count = Project.all.count
     if authorized?
-      @projects_match = Project.match_mine(@my_user.skills).length
+      @projects_match = Project.match_skills(@my_user.skill_ids).length
     else
       @projects_match = @projects_all_count
     end

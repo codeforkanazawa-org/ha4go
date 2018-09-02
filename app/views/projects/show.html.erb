@@ -165,7 +165,7 @@
   <% end %>
 
   <!-- コメント一覧(古いのが下、新しいのは上) -->
-  <% @project.project_updates.reverse.each do |update| %>
+  <% @project.project_updates.includes(:user).reverse.each do |update| %>
     <div class="comment clearfix" id="comment-<%=update.id%>">
       <div class="comment_thum">
         <%= link_to image_tag(update.user.image, alt: update.user.name, title: update.user.name), user_path(id: update.user.id) %>
@@ -182,7 +182,7 @@
             <%= link_to t('dic.do_delete'), project_update_path(update, project_id: @project.id), method: :delete %>
           <% end %>
           <br/>
-          <% update.project_update_histories.order(created_at: :desc).each do |history| %>
+          <% update.project_update_histories.sort { |a, b| a.create_at <=> b.created_at}.each do |history| %>
             <%= history.user.name %> <%= t('dic.is') %> <%= created_at_ago(history) %> <%= t('dic.edited_on') %> <br/>
           <% end %>
         </p>
