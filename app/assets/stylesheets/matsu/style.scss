@@ -631,6 +631,40 @@ $content_right_width: $base_width - $content_left_width;
   }
 }
 
+.btn2submit {
+  padding: 3px;
+  background-color: $main_theme_color;
+  width: 100px;
+  color: #fff;
+  font-size: 12px;
+  text-align: center;
+  border-radius: 15px;
+  line-height: 24px;
+  border: solid 1px $main_theme_color;
+  &:hover {
+    opacity: 0.8;
+  }
+  &:disabled {
+      background-color: $button_disabled_color;
+      border: solid 1px $button_disabled_color;
+  }
+}
+
+.btn2secondary {
+  padding: 3px;
+  background-color: #333;
+  width: 100px;
+  color: #fff;
+  font-size: 12px;
+  text-align: center;
+  border-radius: 15px;
+  line-height: 24px;
+  border: solid 1px #333;
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
 /*---アーティクル
 --------------*/
 

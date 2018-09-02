@@ -4,7 +4,6 @@
 
 $ ->
         $('body').on 'click', '#agree_message_check', ->
-                console.log($("#agree_message_check").prop("checked"))
                 if ($("#agree_message_check").prop("checked"))
                         $("#need_agree_button").prop("disabled", false);
                 else
