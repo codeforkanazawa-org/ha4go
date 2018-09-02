@@ -182,7 +182,7 @@
             <%= link_to t('dic.do_delete'), project_update_path(update, project_id: @project.id), method: :delete %>
           <% end %>
           <br/>
-          <% update.project_update_histories.sort { |a, b| a.create_at <=> b.created_at}.each do |history| %>
+          <% update.project_update_histories.sort { |a, b| a.created_at <=> b.created_at}.each do |history| %>
             <%= history.user.name %> <%= t('dic.is') %> <%= created_at_ago(history) %> <%= t('dic.edited_on') %> <br/>
           <% end %>
         </p>
