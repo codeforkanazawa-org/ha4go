@@ -166,7 +166,7 @@
               <%= t('.max', count: 10) %>
             </div>
           </div>
-          <% Project.order(updated_at: :desc).limit(10).each do |p| %>
+          <% @projects.each do |p| %>
             <div class="content_header clearfix">
               <div class="content_title_2nd_level">
                 <%= link_to(p.subject, project_path(id: p.id)) %>
@@ -184,6 +184,9 @@
               <% end %>
             </div>
           <% end %>
+        </div>
+        <div>
+          <%= paginate @projects %>
         </div>
       <% end %>
     </div>

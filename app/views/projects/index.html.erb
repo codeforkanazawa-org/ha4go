@@ -11,4 +11,7 @@
   <% @projects.each do |project| %>
     <%= render 'shared/project', project: project %>
   <% end %>
+  <div>
+    <%= paginate @projects %>
+  </div>
 </div>

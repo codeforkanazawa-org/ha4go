@@ -154,7 +154,7 @@
                   <%= User.all.count %>
                 </div>
 
-                <% Skill.all.each do |s| %>
+                <% Skill.skill_members.each do |s| %>
                   <% if s.users.count > 0 %>
                     <div class="menu01">
                       <%= link_to( s.name, users_path(skill_id: s.id)) %>
