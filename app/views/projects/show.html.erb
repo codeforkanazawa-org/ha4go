@@ -115,7 +115,7 @@
   <div class="content_control clearfix">
     <!-- <div class="btn"><a href="#">投稿を削除する</a></div> -->
     <% if authorized? %>
-      <div class="btn" id="write_comment">
+      <div class="btn2" id="write_comment">
         <a href="#">
           <%= t('.write_comment') %>
         </a>
@@ -156,7 +156,7 @@
           <%= f.hidden_field :project_id, value: @project.id %>
           <%= f.text_area :description, class: 'form-control', placeholder: t('dic.ex_comment'), rows: 5 %>
           <%= f.file_field :comment_image %>
-          <button type="submit" class="btn btn-default btn-primary mt20" align="right">
+          <button type="submit" class="btn2submit" align="right">
             <%= t 'dic.do_comment' %>
           </button>
         <% end %>
@@ -178,7 +178,7 @@
         <p class="comment_author">
           <%= created_at_ago(update, project_path(id: @project.id, anchor: "comment-#{update.id}"))%> <%= t 'dic.posted_on' %>
           <% if authorized? && update.freezing.to_s != 'true' && (update.user_id == @my_user.id || @project.user_id == @my_user.id) %>
-            <%= link_to t('dic.do_edit'),   edit_project_update_path(update, project_id: @project.id) %> -
+            <%= link_to t('dic.do_edit'), edit_project_update_path(update, project_id: @project.id) %> -
             <%= link_to t('dic.do_delete'), project_update_path(update, project_id: @project.id), method: :delete %>
           <% end %>
           <br/>
