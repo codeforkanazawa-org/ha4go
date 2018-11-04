@@ -1,7 +1,7 @@
 {
   "name": "ha4go.net",
   "description": "市民の課題と解決者のマッチングプラットフォームプロジェクト",
-  "website": "http://ha4go.net/",
+  "website": "https://ha4go.net/",
   "repository": "https://github.com/codeforkanazawa-org/ha4go",
   "scripts": {
     "postdeploy": "bundle exec rails db:seed"
