@@ -17,7 +17,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-gem 'bootstrap-sass', '~> 3.3.7'
+gem 'bootstrap-sass', '~> 3.4.1'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -81,7 +81,7 @@ gem 'koala', '~> 2.2'
 
 # for Image upload
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
-gem 'rmagick'
+gem 'rmagick', '~> 2.0'
 
 install_if -> { ENV['STORAGE_SERVICE'] == 'amazon-s3' } do
   gem 'fog-aws'
