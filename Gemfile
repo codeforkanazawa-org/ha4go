@@ -81,7 +81,7 @@ gem 'koala', '~> 2.2'
 
 # for Image upload
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
-gem 'rmagick'
+gem 'rmagick', '~> 2.0'
 
 install_if -> { ENV['STORAGE_SERVICE'] == 'amazon-s3' } do
   gem 'fog-aws'

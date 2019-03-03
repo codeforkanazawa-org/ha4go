@@ -273,7 +273,7 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
-    rmagick (3.0.0)
+    rmagick (2.16.0)
     rubocop (0.65.0)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
@@ -363,7 +363,7 @@ DEPENDENCIES
   rails-controller-testing
   rails-erd
   rails_12factor
-  rmagick
+  rmagick (~> 2.0)
   rubocop
   sass-rails (~> 5.0)
   sendgrid-ruby
