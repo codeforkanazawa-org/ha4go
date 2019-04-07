@@ -1,4 +1,4 @@
-class AddColumnUser < ActiveRecord::Migration
+class AddColumnUser < ActiveRecord::Migration[4.2]
   def change
       add_column :users, :image, :string
   end

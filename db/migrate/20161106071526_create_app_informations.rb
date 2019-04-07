@@ -1,4 +1,4 @@
-class CreateAppInformations < ActiveRecord::Migration
+class CreateAppInformations < ActiveRecord::Migration[4.2]
   def change
     create_table :app_informations do |t|
       t.date :release
