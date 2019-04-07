@@ -173,7 +173,7 @@
       <div class="comment_text">
         <p><%= description_text(update.description) %></p>
         <p class="image_all">
-          <%= image_tag(update.comment_image) if update.comment_image? %>
+          <%= image_tag(update.comment_image.url) if update.comment_image? %>
         </p>
         <p class="comment_author">
           <%= created_at_ago(update, project_path(id: @project.id, anchor: "comment-#{update.id}"))%> <%= t 'dic.posted_on' %>
