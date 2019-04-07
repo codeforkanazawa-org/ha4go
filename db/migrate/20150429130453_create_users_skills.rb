@@ -1,4 +1,4 @@
-class CreateUsersSkills < ActiveRecord::Migration
+class CreateUsersSkills < ActiveRecord::Migration[4.2]
   def change
     create_table :users_skills do |t|
       t.integer :user_id

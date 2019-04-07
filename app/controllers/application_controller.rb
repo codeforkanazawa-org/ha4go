@@ -14,8 +14,8 @@ class ApplicationController < ActionController::Base
   end
 
   def authorized?
-    @my_user = User.find(session[:user_id]) if session[:user_id]
-    !@my_user.nil?
+    @my_user = User.find_by(id: session[:user_id]) if session[:user_id]
+    @my_user.present?
   end
 
   def check_use_https

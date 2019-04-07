@@ -1,10 +1,10 @@
 # coding: utf-8
 source 'https://rubygems.org'
 
-ruby '~> 2.3.0'
+ruby '~> 2.6.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.5'
+gem 'rails', '~> 5.2.0'
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3', groups: %w(test development), require: false
 # gem 'pg', groups: %w(production), require: false
@@ -80,7 +80,8 @@ gem 'google-analytics-rails'
 gem 'koala', '~> 2.2'
 
 # for Image upload
-gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
+# gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
+gem 'carrierwave', '~> 1.0'
 gem 'rmagick', '~> 2.0'
 
 install_if -> { ENV['STORAGE_SERVICE'] == 'amazon-s3' } do
@@ -94,3 +95,5 @@ gem 'delayed_job_active_record'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'kaminari'
+
+gem 'rubocop-performance'
