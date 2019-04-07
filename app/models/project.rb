@@ -12,13 +12,9 @@ class Project < ActiveRecord::Base
   belongs_to :project
   has_many   :projects
 
-  scope :recent, lambda {
-    order(last_commented_at: 'desc')
-  }
+  scope :recent, -> { order(last_commented_at: 'desc') }
 
-  scope :recruiting, lambda {
-    where.not(stage_id: 13)
-  }
+  scope :recruiting, -> { where.not(stage_id: 13) }
 
   scope :match_skills, lambda { |skill_ids|
     where.not(stage_id: 13)
@@ -39,7 +35,7 @@ class Project < ActiveRecord::Base
       .joins(:project_updates)
       .where(
         project_updates: {
-          created_at:  Time.now.ago(30.years)...before
+          created_at: Time.now.ago(30.years)...before
         }
       )
       .group('project_updates.project_id')
