@@ -1,3 +1,7 @@
+require 'dotenv'
+
+Dotenv.load
+
 SUDO = ENV['SUDO'] || ''
 NOCACHE = ENV['NOCACHE'] || ''
 
@@ -79,9 +83,20 @@ task :run, [:role, :local, :docker_ip] do |_t, a|
   e = a[:local] || 'DEBUG'
   sh Cmd.gen([
                DOCKER,
-               'run',
+               "run --name #{NAMES[r]}",
                "#{DOCKER_OPTIONS[e][r]}",
                "#{NAMES[r]}:#{TAGS[r]}",
                "#{DOCKER_COMMAND[e][r]}"
+             ])
+end
+
+desc 'console[<role>,<base>,<`docker-machine ip default`>]'
+task :console, [:role, :local, :docker_ip] do |_t, a|
+  r = a[:role]
+  e = a[:local] || 'DEBUG'
+  sh Cmd.gen([
+               DOCKER,
+               "exec -it #{NAMES[r]}",
+               'bash'
              ])
 end
