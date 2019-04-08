@@ -15,5 +15,5 @@ ADD . /myapp/
 ENV RAILS_ENV  production
 
 EXPOSE 3000
-# CMD ["bundle exec rails s"]
-CMD bash -l -c 'bundle exec rails s --bind=0.0.0.0'
+
+CMD bash -l -c 'bundle exec rake assets:precompile && bundle exec rails s'

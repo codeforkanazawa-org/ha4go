@@ -97,7 +97,6 @@ task :console, [:role, :local, :docker_ip] do |_t, a|
   sh Cmd.gen([
                DOCKER,
                "exec -it #{NAMES[r]}",
-               "#{NAMES[r]}:#{TAGS[r]}",
                'bash'
              ])
 end
