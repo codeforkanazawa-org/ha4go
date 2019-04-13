@@ -6,8 +6,3 @@ ENV MYSQL_DATABASE databasename
 
 # this need to stay the same for script to work
 ENV MYSQL_USER mysql
-
-COPY ./mysql.sh /
-RUN chmod 755 /mysql.sh
-
-ENTRYPOINT ["/mysql.sh"]
