@@ -83,7 +83,7 @@ task :run, [:role, :local, :docker_ip] do |_t, a|
   e = a[:local] || 'DEBUG'
   sh Cmd.gen([
                DOCKER,
-               "run --name #{NAMES[r]}",
+               "run --name ha4go-#{r.downcase}",
                "#{DOCKER_OPTIONS[e][r]}",
                "#{NAMES[r]}:#{TAGS[r]}",
                "#{DOCKER_COMMAND[e][r]}"
@@ -96,7 +96,7 @@ task :console, [:role, :local, :docker_ip] do |_t, a|
   e = a[:local] || 'DEBUG'
   sh Cmd.gen([
                DOCKER,
-               "exec -it #{NAMES[r]}",
+               "exec -it ha4go-#{r.downcase}",
                'bash'
              ])
 end
