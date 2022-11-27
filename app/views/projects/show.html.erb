@@ -139,7 +139,7 @@
       <% end %>
     <% else %>
       <div class="btn">
-        <%= link_to( t('projects.show.login'), '/auth/facebook', id: 'sign_in') %>
+        <%= link_to( t('projects.show.login'), '/auth/google_oauth2', id: 'sign_in', method: :post) %>
       </div>
         ( <%= t('projects.show.login_recomendation') %> )
     <% end %>

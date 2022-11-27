@@ -5,9 +5,9 @@ Rails.application.routes.draw do
   get 'sessions/destroy'
 
   # OmniAuth
-  match 'auth/:provider/callback', to: 'sessions#create', via: 'get'
-  match 'auth/failure', to: redirect('/'), via: 'get'
-  match 'signout', to: 'sessions#destroy', as: 'signout', via: 'get'
+  get 'auth/:provider/callback', to: 'sessions#create' # , via: 'get'
+  get 'auth/failure', to: redirect('/') # , via: 'get'
+  get 'signout', to: 'sessions#destroy', as: 'signout' #, via: 'get'
 
   resources :project_updates
 

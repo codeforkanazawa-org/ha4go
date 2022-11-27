@@ -38,7 +38,7 @@
                       <li><%= link_to( t('dic.logout'), signout_path, id: 'sign_out') %></li>
                       <li><%= link_to( t('dic.post_project_do'), new_project_path) %></li>
                     <% else %>
-                      <li><%= link_to( t('dic.login'), '/auth/facebook', id: 'sign_in') %></li>
+                      <li><%= link_to( t('dic.login'), '/auth/google_oauth2', id: 'sign_in', method: :post) %></li>
                     <% end %>
                     <li><%= link_to( t('dic.member'), users_path) %></li>
                   </ul>
@@ -56,7 +56,7 @@
               </div>
             <% else %>
               <div class="login">
-                <%= link_to( image_tag('matsu/header_item2.png'), '/auth/facebook', id: 'sign_in') %>
+                <%= link_to( image_tag('matsu/header_item2.png'), '/auth/google_oauth2', id: 'sign_in', method: :post) %>
               </div>
             <% end %>
           </div>
@@ -88,7 +88,7 @@
                     <%= link_to( t('dic.logout'), signout_path, id: 'sign_out') %>
                   </li>
                 <% else %>
-                  <li class="li_sub"><%= link_to( t('dic.login'), '/auth/facebook', id: 'sign_in') %></li>
+                  <li class="li_sub"><%= link_to( t('dic.login'), '/auth/google_oauth2', id: 'sign_in', method: :post) %></li>
                 <% end %>
                 <li class="li_sub"><%= link_to( t('dic.member'), users_path) %></li>
               </ul>

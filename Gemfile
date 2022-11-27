@@ -28,7 +28,9 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'puma'
 
-gem 'omniauth-facebook'
+# gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-rails_csrf_protection'
 
 gem 'meta-tags'
 
@@ -73,11 +75,12 @@ gem 'rails_12factor', group: :production
 
 #gem 'compass', :git => 'git://github.com/chriseppstein/compass.git'
 gem 'compass'
-gem 'compass-rails', :git => 'git://github.com/Compass/compass-rails.git'
+gem 'compass-rails' #, :git => 'git://github.com/Compass/compass-rails.git'
 
 gem 'google-analytics-rails'
 
-gem 'koala', '~> 2.2'
+# gem 'koala', '~> 2.2'
+gem 'koala'
 
 # for Image upload
 # gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
@@ -97,3 +100,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'kaminari'
 
 gem 'rubocop-performance'
+
+gem 'net-http-persistent'
