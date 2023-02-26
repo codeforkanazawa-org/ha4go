@@ -34,9 +34,7 @@ gem 'omniauth-rails_csrf_protection'
 
 gem 'meta-tags'
 
-install_if -> { ENV['EMAIL_SERVICE'] == 'sendgrid' } do
-  gem 'sendgrid-ruby'
-end
+gem 'sendgrid-ruby'
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code
@@ -87,9 +85,7 @@ gem 'koala'
 gem 'carrierwave', '~> 1.0'
 gem 'rmagick', '~> 2.0'
 
-install_if -> { ENV['STORAGE_SERVICE'] == 'amazon-s3' } do
-  gem 'fog-aws'
-end
+gem 'fog-aws'
 
 # backgroud job
 gem 'delayed_job_active_record'
