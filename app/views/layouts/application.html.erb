@@ -41,6 +41,8 @@
                       <li><%= link_to( t('dic.login'), '/auth/google_oauth2', id: 'sign_in', method: :post) %></li>
                     <% end %>
                     <li><%= link_to( t('dic.member'), users_path) %></li>
+                    <li><%= link_to( t('dic.privacy_policy'), ENV['LINK_PRIVACY_POLICY']) %></li>
+                    <li><%= link_to( t('dic.terms_of_service'), ENV['LINK_USER_TERMS']) %></li>
                   </ul>
                   <!--プルダウンメニューここまで-->
                 </li>
@@ -90,7 +92,8 @@
                 <% else %>
                   <li class="li_sub"><%= link_to( t('dic.login'), '/auth/google_oauth2', id: 'sign_in', method: :post) %></li>
                 <% end %>
-                <li class="li_sub"><%= link_to( t('dic.member'), users_path) %></li>
+                <li class="li_sub"><%= link_to( t('dic.member'), users_path) %></li>               <li><%= link_to( t('dic.privacy_policy'), ENV['LINK_PRIVACY_POLICY']) %></li>
+                <li><%= link_to( t('dic.terms_of_service'), ENV['LINK_USER_TERMS']) %></li>
               </ul>
             </nav>
           </div>
@@ -186,7 +189,7 @@
         </div>
       </footer>
       <div class="copyright">
-        copyright(c) 2016 Ha4go All Right Reserved.
+        プライバシーポリシー copyright(c) 2016 Ha4go All Right Reserved.
       </div>
     </div>
 

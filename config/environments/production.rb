@@ -101,4 +101,6 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   GA.tracker = Rails.application.secrets.ga_track_id
+
+  config.force_ssl = true
 end
